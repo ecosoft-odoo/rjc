@@ -1,0 +1,8 @@
+- OpenERP SA
+- Luc De Meyer (Noviat)
+- Frédéric Clementi (camptocamp)
+- Florian Dacosta (Akretion)
+- Stéphane Bidoul (Acsone)
+- Adrien Peiffer (Acsone)
+- Akim Juillerat <akim.juillerat@camptocamp.com>
+- Henrik Norlin (Apps2GROW)
