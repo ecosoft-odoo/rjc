@@ -1,0 +1,123 @@
+<odoo>
+    <template id="report_assets_common" name="Invoice common assets" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/rjc_account_form/static/scss/style_invoice_report.scss"/>
+        </xpath>
+    </template>
+    <template id="minimal_layout" inherit_id="web.minimal_layout">
+        <xpath expr="//t[@t-if='subst_needed']" position="replace">
+            <t t-if="subst is True">
+                <script>
+                    function subst() {
+                        var vars = {};
+                        var x = document.location.search.substring(1).split('&amp;');
+                        for (var i in x) {
+                            var z = x[i].split('=', 2);
+                            vars[z[0]] = unescape(z[1]);
+                        }
+                        var x=['frompage', 'topage', 'page', 'webpage', 'section', 'subsection', 'subsubsection'];
+                        for (var i in x) {
+                            var y = document.getElementsByClassName(x[i]);
+                            for (var j=0; j&lt;y.length; ++j)
+                                y[j].textContent = vars[x[i]];
+                        }
+                        var operations = {
+                            'not-first-page': function (elt) {
+                                elt.style.visibility = (vars.page === vars.frompage) ? "hidden" : "visible";
+                            },
+                            'not-last-page': function (elt) {
+                                elt.style.visibility = (vars.page === vars.topage) ? "hidden" : "visible";
+                            },
+                            'first-page': function (elt) {
+                                elt.style.visibility = (vars.page === vars.frompage) ? "visible" : "hidden";
+                            },
+                            'last-page': function (elt) {
+                                elt.style.visibility = (vars.page === vars.topage) ? "visible" : "hidden";
+                            },
+                        };
+                        for (var klass in operations) {
+                            var y = document.getElementsByClassName(klass);
+                            for (var j=0; j&lt;y.length; ++j)
+                                operations[klass](y[j]);
+                        }
+                    }
+                </script>
+            </t>
+        </xpath>
+    </template>
+    <template id="rjc_invoice_layout_report">
+        <div class="header">
+            <div class="row">
+                <div class="col-4" style="margin-left:50px">
+                    <span t-field="o.partner_id"/>
+                    <br>
+                        <span t-field="o.partner_id.street"/>
+                        <span t-field="o.partner_id.street2"/>
+                        <span t-field="o.partner_id.city"/>
+                        <span t-field="o.partner_id.state_id.name"/>
+                        <span t-field="o.partner_id.country_id.name"/>
+                        <span t-field="o.partner_id.zip"/>
+                    </br>
+                    <br>
+                        <span t-field="o.partner_id.phone"/>
+                    </br>
+                    <br>
+                        <span t-field="o.partner_id.fax"/>
+                    </br>
+                </div>
+                <div class="col-2" style="margin-left:300px">
+                    <span t-field="o.date_invoice"/>
+                </div>
+            </div>
+        </div>
+        <div class="article invoice_preprint_form" style="padding-top:100px">
+            <table class="table table-sm">
+                <tbody>
+                    <t t-set="i" t-value="1"/>
+                    <t t-foreach="o.invoice_line_ids" t-as="line">
+                        <tr>
+                            <td>
+                                <span t-esc="i"/>
+                                <t t-set="i" t-value="i+1"/>
+                            </td>
+                            <td>
+                                <span t-field="line.name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.quantity"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.uom_id" groups="uom.group_uom"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.price_unit"/>
+                            </td>
+                            <td class="text-right o_price_total">
+                                <span t-field="line.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;False&quot;}"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+        </div>
+        <div class="footer">
+            <div class="row">
+                <div class="col-8 last-page text-center">
+                    <span t-esc="o.amount_text(o.amount_total)"/>
+                </div>
+                <div class="col-4 last-page text-right">
+                    <span t-field="o.amount_total"/>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="rjc_invoice_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="rjc_account_form.rjc_invoice_layout_report"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>
