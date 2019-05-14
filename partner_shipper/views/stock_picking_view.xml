@@ -1,0 +1,61 @@
+<odoo>
+
+  <record id="view_picking_form" model="ir.ui.view">
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//page[@name='extra']" position="inside">
+        <group name="shipper">
+          <field name="partner_ids" invisible="1"/>
+          <field name="shipper_id" domain="[('id', 'in', partner_ids)]" attrs="{'readonly': [('state', '=', 'done')]}"/>
+        </group>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_picking_internal_search" model="ir.ui.view">
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+    <field name="arch" type="xml">
+      <field name="group_id" position="after">
+        <separator/>
+        <field name="shipper_id"/>
+      </field>
+      <xpath expr="//filter[@name='picking_type']/.." position="inside">
+        <filter name="shipper_group" string="Shippers" context="{'group_by': 'shipper_id'}"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="picking_view_delivery_kanban" model="ir.ui.view">
+    <field name="name">stock.picking.delivery.kanban</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.stock_picking_kanban"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='date']" position="after">
+        <field name="shipper_id"/>
+      </xpath>
+      <xpath expr="//div[@class='oe_kanban_bottom_left']" position="replace">
+        <div class="oe_kanban_bottom_left">
+          <div>
+            <t t-esc="record.partner_id.value"/>
+          </div>
+          <div t-if="record.shipper_id">
+            <t t-esc="record.shipper_id.value"/>
+          </div>
+        </div>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="picking_view_delivery_tree" model="ir.ui.view">
+    <field name="name">stock.picking.delivery.tree</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.vpicktree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='partner_id']" position="after">
+        <field name="shipper_id"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

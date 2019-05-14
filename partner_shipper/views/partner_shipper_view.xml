@@ -1,0 +1,75 @@
+<odoo>
+
+  <record id="view_partner_shipper_form" model="ir.ui.view">
+    <field name="name">partner.shipper.form</field>
+    <field name="model">partner.shipper</field>
+    <field name="arch" type="xml">
+      <form string="Shippers">
+        <sheet>
+          <group>
+            <group>
+              <field name="code"/>
+              <field name="name"/>
+              <field name="route"/>
+              <label for="street" string="Address"/>
+              <div class="o_address_format">
+                <field name="street" placeholder="Street..." class="o_address_street"/>
+                <field name="street2" placeholder="Street 2..." class="o_address_street"/>
+                <field name="city" placeholder="City" class="o_address_city"/>
+                <field name="state_id" class="o_address_state" placeholder="State" options="{&quot;no_open&quot;: True}" context="{'country_id': country_id, 'zip': zip}"/>
+                <field name="zip" placeholder="ZIP" class="o_address_zip"/>
+                <field name="country_id" placeholder="Country" class="o_address_country" options="{&quot;no_open&quot;: True, &quot;no_create&quot;: True}"/>
+              </div>
+              <field name="conversed_area"/>
+              <field name="note"/>
+            </group>
+            <group>
+              <field name="phone" widget="phone"/>
+              <field name="fax"/>
+              <field name="mobile" widget="phone"/>
+              <field name="email" widget="email" context="{'gravatar_image': True}"/>
+              <field name="active"/>
+              <field name="destination_contact"/>
+            </group>
+          </group>
+        </sheet>
+      </form>
+    </field>
+  </record>
+
+  <record id="view_partner_shipper_tree" model="ir.ui.view">
+    <field name="name">partner.shipper.tree</field>
+    <field name="model">partner.shipper</field>
+    <field name="arch" type="xml">
+      <tree string="Shippers">
+        <field name="code"/>
+        <field name="name"/>
+        <field name="route"/>
+        <field name="conversed_area"/>
+      </tree>
+    </field>
+  </record>
+
+  <record id="view_partner_shipper_search" model="ir.ui.view">
+    <field name="name">partner.shipper.search</field>
+    <field name="model">partner.shipper</field>
+    <field name="arch" type="xml">
+      <search string="Shipper">
+        <field name="code"/>
+        <field name="name"/>
+      </search>
+    </field>
+  </record>
+
+  <record id="partner_shipper_action" model="ir.actions.act_window">
+    <field name="name">Shippers</field>
+    <field name="res_model">partner.shipper</field>
+    <field name="view_mode">tree,form</field>
+    <field name="help" type="html">
+      <p class="oe_view_nocontent_create">Click to set a new shipper for partners.</p>
+    </field>
+  </record>
+
+  <menuitem id="partner_shipper_menu" parent="sale.menu_sale_config" action="partner_shipper_action" sequence="30"/>
+
+</odoo>
