@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+  <data>
+    <report string="Invoice Preprint"
+            id="rjc_invoice_pdf_report"
+            model="account.invoice"
+            name="rjc_account_form.rjc_invoice_pdf"
+            file="rjc_account_form.rjc_invoice_pdf"
+            report_type="qweb-pdf"
+            print_report_name="'INV - [%s]' % object.display_name"/>
+    <report string="Invoice Credit Notes"
+            id="rjc_invoice_credit_note_pdf_report"
+            model="account.invoice"
+            name="rjc_account_form.rjc_invoice_credit_note_pdf"
+            file="rjc_account_form.rjc_invoice_credit_note_pdf"
+            report_type="qweb-pdf"
+            print_report_name="'INV - [%s]' % object.display_name"/>
+  </data>
+</odoo>

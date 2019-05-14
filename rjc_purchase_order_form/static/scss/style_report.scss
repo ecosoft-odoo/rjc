@@ -1,0 +1,76 @@
+@font-face {
+    font-family: 'Lato';
+}
+body {
+    font-family: 'Lato';
+    font-size: 14px;
+}
+.header_po {
+    h1, h2, h3 {
+        color: $o-brand-primary;
+        font-weight: bolder;
+        margin-left: 100px;
+        display: block;
+    }
+.o_report_layout_clean {
+    h1, h2, h3 {
+        color: $o-brand-primary;
+        font-weight: bolder;
+    }
+    strong {
+        color: $o-brand-odoo;
+    }
+    table {
+        &.o_main_table {
+            margin-bottom: 0;
+        }
+
+        thead {
+            color: $o-brand-odoo;
+            tr th {
+                border-top: 3px solid $o-brand-odoo !important;
+                text-transform: uppercase;
+            }
+            tr th:last-child {
+            }
+            tr th:first-child {
+                width: 48%;
+            }
+        }
+        tbody {
+            color: #000;
+            tr:first-child td {
+                border-top: none;
+            }
+            tr:last-child td {
+                border-bottom: 3px solid $o-brand-odoo;
+            }
+            tr {
+                td {
+                    padding: 15px 5px;
+                }
+                td:last-child {
+                }
+            }
+        }
+    }
+    /*Total table*/
+    /* compat 12.0 */
+    .row:not(#total) > div:has(table) {
+        top: -16px;
+    }
+    /* row col rule compat 12.0 */
+    .row > div > table,
+    div#total table {
+        tr {
+            &:first-child td,
+            &.o_subtotal {
+                border-top: none !important;
+            }
+            &:last-child td,
+            &.o_total {
+                border-top: 1px solid gray('200') !important;
+            }
+        }
+    }
+}
