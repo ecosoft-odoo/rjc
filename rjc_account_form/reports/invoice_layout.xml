@@ -1,0 +1,87 @@
+<odoo>
+
+    <template id="report_assets_common" name="Invoice common assets" inherit_id="web.report_assets_common">
+
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/rjc_account_form/static/scss/style_report.scss"/>
+        </xpath>
+    </template>
+
+    <template id="rjc_invoice_layout_report">
+        <div class="article">
+            <!-- <div class="article" t-attf-style="background-image:url('/rjc_account_form/static/src/img/InvoiceForm.jpg'); background-size:300mm 424mm; width:300mm; height:424mm;" > -->
+            <div class="row">
+                <div class="col-6" t-field="o.partner_id" t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'/>
+                <div class="col-6">
+
+                    <span t-field="o.date_invoice"/>
+                </div>
+
+            </div>
+            <table class="table table-sm o_main_table height_table_test">
+                <tbody class="invoice_tbody">
+                    <t t-set="i" t-value="1"/>
+                    <t t-foreach="o.invoice_line_ids" t-as="line">
+                        <tr>
+                            <td>
+                                <span t-esc="i"/>
+                                <t t-set="i" t-value="i+1"/>
+                            </td>
+                            <td>
+                                <span t-field="line.name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.quantity"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.uom_id" groups="uom.group_uom"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.price_unit"/>
+                            </td>
+                            <td class="text-right o_price_total">
+                                <span t-field="line.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;False&quot;}"/>
+                            </td>
+                        </tr>
+                    </t>
+                </tbody>
+            </table>
+
+            <!-- <span class="test" t-field="o.amount_total"/> -->
+            <div class="row">
+                <div class="col-lg-6">
+                    <table>
+                        <tr>
+                            <td class="text-left">
+                                <span t-esc="o.amount_text(o.amount_total)"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-lg-6">
+                    <table>
+                        <tr>
+                            <td class="text-right">
+                                <span t-field="o.amount_total"/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <footer>
+            <p t-if="o.comment" name="comment">
+                <span t-field="o.comment"/>
+            </p>
+        </footer>
+    </template>
+
+    <template id="rjc_invoice_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="rjc_account_form.rjc_invoice_layout_report"/>
+            </t>
+        </t>
+    </template>
+
+</odoo>

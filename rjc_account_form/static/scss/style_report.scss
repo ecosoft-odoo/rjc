@@ -1,0 +1,28 @@
+@font-face {
+    font-family: 'THSarabun';
+    src: url('../fonts/THSarabunNew Bold.ttf') format('truetype');
+}
+body {
+    font-family: 'THSarabun';
+    font-size: 22px;
+}
+
+.company_name {
+    background-color: red;
+    margin-right: 200px;
+    position: fixed;
+}
+.company_address {
+    margin-left: 113px;
+    position: fixed;
+    top: 233px;
+    box-sizing: content-box;
+    width: 1000px;
+    height: 40px;
+    padding: 1px;
+}
+.test {
+    position: fixed;
+    top: 300px;
+    right: 73px;
+}
