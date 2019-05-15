@@ -19,10 +19,6 @@ $psql -c "delete from mrp_production";
 $psql -c "delete from stock_inventory";
 $psql -c "delete from stock_picking";
 $psql -c "delete from stock_move";
-$psql -c "delete from stock_quant";
-$psql -c "delete from stock_rule";
-$psql -c "delete from stock_picking_type";
-$psql -c "delete from stock_warehouse";
 
 # Accounting
 $psql -c "delete from account_partial_reconcile";
