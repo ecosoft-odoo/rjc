@@ -17,6 +17,10 @@ $psql -c "delete from stock_picking";
 $psql -c "delete from stock_move";
 $psql -c "delete from stock_quant";
 
+# foreign key
+$psql -c "delete from account_move_line_partner_id_fkey";
+$psql -c "delete from account_invoice_move_id_fkey";
+
 # Accounting
 $psql -c "delete from account_invoice";
 $psql -c "delete from account_invoice_line";
