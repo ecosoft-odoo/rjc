@@ -51,9 +51,6 @@ $psql -c "delete from account_asset";
 # Stock Warehouse
 $psql -c "delete from stock_warehouse_orderpoint";
 
-# UOM
-$psql -c "delete from uom_category";
-
 # Product
 $psql -c "delete from product_template";
 $psql -c "delete from product_supplierinfo";
