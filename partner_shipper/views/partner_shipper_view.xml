@@ -1,3 +1,5 @@
+<!-- Copyright 2019 Ecosoft
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
 <odoo>
 
   <record id="view_partner_shipper_form" model="ir.ui.view">
