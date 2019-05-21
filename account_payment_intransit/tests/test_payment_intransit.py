@@ -143,7 +143,7 @@ class TestAccountPaymentIntransit(SavepointCase):
                 'move_line_id': move_line.id,
                 'receipt_type': 'cash',
                 'allocation': allocation or 10,
-                'order_id': payment_intransit.id
+                'intransit_id': payment_intransit.id
             })
         return payment_intransit
 
@@ -174,7 +174,7 @@ class TestAccountPaymentIntransit(SavepointCase):
             payment_intransit._check_allocation()
 
     def test_2_create_payment_intransit(self):
-        """ Create bank receipt from invoice. """
+        """ Create payment intransit from invoice. """
         inv_1 = self.create_invoice(
             amount=100, currency_id=self.currency_eur_id)
         inv_2 = self.create_invoice(
@@ -190,10 +190,8 @@ class TestAccountPaymentIntransit(SavepointCase):
         payment_intransit.move_id.action_post()
         payment_intransit.onchange_company_id()
         payment_intransit.onchange_journal_id()
-        with self.assertRaises(UserError):
-            payment_intransit.unlink()
+        payment_intransit.action_intransit_cancel()
         payment_intransit.backtodraft()
-        payment_intransit.unlink()
 
     def test_3_create_diff_currency(self):
         inv_1 = self.create_invoice(

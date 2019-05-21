@@ -10,18 +10,19 @@
                             states="draft"
                             string="Validate"
                             type="object" class="oe_highlight"/>
-                    <button name="backtodraft"
+                    <button name="action_intransit_cancel"
                             states="done"
+                            string="Cancel"
+                            type="object"/>
+                    <button name="backtodraft"
+                            states="cancel"
                             string="Back to Draft"
                             type="object"/>
-                    <button name="get_report" string="Print" type="object"/>
-                    <field name="state"
-                           widget="statusbar"
-                           statusbar_visible="draft,done"/>
+                    <field name="state" widget="statusbar" statusbar_visible="draft,done"/>
                 </header>
                 <sheet>
                     <div class="oe_title">
-                        <label string="Bank Receipt" for="name"/>
+                        <label string="Payment Intransit" for="name"/>
                         <h1>
                             <field name="name"/>
                         </h1>
@@ -86,7 +87,7 @@
         <field name="name">account.payment.intransit.tree</field>
         <field name="model">account.payment.intransit</field>
         <field name="arch" type="xml">
-            <tree decoration-info="state == 'draft'">
+            <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
                 <field name="name"/>
                 <field name="receipt_date"/>
                 <field name="journal_id"/>
@@ -105,7 +106,7 @@
         <field name="model">account.payment.intransit</field>
         <field name="arch" type="xml">
             <search>
-                <field name="name" string="Bank Receipt Number"/>
+                <field name="name" string="Payment Intransit Number"/>
                 <filter name="draft" string="Draft"
                         domain="[('state', '=', 'draft')]"/>
                 <filter name="done" string="Done"
