@@ -1,10 +1,10 @@
-# -*- coding: utf-8 -*-
-# Part of Odoo. See LICENSE file for full copyright and licensing details.
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 {
     'name': 'Thai Localization - Withholding Tax Certificate Form',
     'version': '12.0.1.0.0',
-    'author': 'Ecosoft',
+    'author': 'Ecosoft,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/l10n-thailand/',
     'category': 'Report',
@@ -12,6 +12,9 @@
                 'web',
                 'l10n_th_withholding_tax_cert',
                 ],
+    'external_dependencies': {
+        'python': ['num2words'],
+    },
     'data': [
         'data/paper_format.xml',
         'reports/layout.xml',
