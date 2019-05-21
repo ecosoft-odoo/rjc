@@ -151,7 +151,7 @@ class TestAccountPaymentIntransit(SavepointCase):
                 'move_line_id': move_line.id,
                 'receipt_type': 'cash',
                 'allocation': allocation or 10,
-                'order_id': payment_intransit.id
+                'intransit_id': payment_intransit.id
             })
         return payment_intransit
 

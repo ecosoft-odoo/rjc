@@ -47,7 +47,8 @@ class AccountPaymentIntransit(models.Model):
     )
     state = fields.Selection([
         ('draft', 'Draft'),
-        ('done', 'Done')],
+        ('done', 'Done'),
+        ('cancel', 'Cancelled')],
         string='Status',
         default='draft',
         readonly=True,
@@ -91,7 +92,7 @@ class AccountPaymentIntransit(models.Model):
     )
     receipt_line_ids = fields.One2many(
         comodel_name='account.payment.intransit.line',
-        inverse_name='order_id',
+        inverse_name='intransit_id',
         states={'done': [('readonly', True)]},
     )
 
@@ -135,15 +136,19 @@ class AccountPaymentIntransit(models.Model):
         return super(AccountPaymentIntransit, self).unlink()
 
     @api.multi
-    def backtodraft(self):
+    def action_intransit_cancel(self):
         for rec in self:
             if rec.move_id:
                 rec.move_id.button_cancel()
                 rec.move_id.line_ids.filtered(
                     lambda x: x.account_id.reconcile).remove_move_reconcile()
                 rec.move_id.unlink()
-            rec.write({'state': 'draft'})
+            rec.write({'state': 'cancel'})
         return True
+
+    @api.multi
+    def backtodraft(self):
+        return self.write({'state': 'draft'})
 
     @api.model
     def create(self, vals):
@@ -308,9 +313,9 @@ class AccountPaymentIntransit(models.Model):
 class AccountPaymentIntransitLine(models.Model):
     _name = 'account.payment.intransit.line'
     _description = 'Account Payment Intransit Line'
-    _order = 'order_id, id'
+    _order = 'intransit_id, id'
 
-    order_id = fields.Many2one(
+    intransit_id = fields.Many2one(
         comodel_name='account.payment.intransit',
         string='Order Reference',
         copy=False,
@@ -372,7 +377,8 @@ class AccountPaymentIntransitLine(models.Model):
         for rec in self:
             amount = 0.0
             amount_residual = 0.0
-            if rec.order_id.company_id.currency_id != rec.order_id.currency_id:
+            company_curr = rec.intransit_id.company_id.currency_id
+            if company_curr != rec.intransit_id.currency_id:
                 amount = rec.move_line_id.amount_currency
                 amount_residual = rec.move_line_id.amount_residual_currency
             else:
