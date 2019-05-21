@@ -11,21 +11,9 @@ class CreateWithholdingTaxCert(models.TransientModel):
         comodel_name='account.account',
         string='Withholing Tax Accounts',
         help="If accounts are specified, system will auto fill tax amount",
-        default=lambda self: self._default_wt_account_ids(),
+        default=lambda self:
+        self.env['account.account'].search([('wt_account', '=', True)]),
     )
-
-    @api.model
-    def _default_wt_account_ids(self):
-        payment_id = self._context.get('active_id')
-        payment = self.env['account.payment'].browse(payment_id)
-        wt_moves = self.env['withholding.tax.move'].search([
-            ('payment_line_id', 'in', payment.move_line_ids.ids)])
-        if wt_moves:
-            taxes = wt_moves.mapped('withholding_tax_id')
-            accounts = taxes.mapped('account_receivable_id') + \
-                taxes.mapped('account_payable_id')
-            return accounts
-        return False
 
     @api.multi
     def create_wt_cert(self):

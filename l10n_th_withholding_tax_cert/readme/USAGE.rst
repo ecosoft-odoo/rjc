@@ -4,4 +4,4 @@ From supplier payment that has already withheld tax,
 - Fill in required information for Withholding Tax Certificate
 - User can also print out Withholding Tax Cert. as PDF
 
-All Withholding Tax Certs will be accessible from menu Invoicing > Withholding Tax > WT Certificates
+All Withholding Tax Certs will be accessible from menu Invoicing > Vendor > WT Certificates
