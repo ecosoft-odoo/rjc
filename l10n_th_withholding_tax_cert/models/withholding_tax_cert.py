@@ -26,6 +26,7 @@ TAX_PAYER = [('withholding', 'Withholding'),
 
 class WithholdingTaxCert(models.Model):
     _name = 'withholding.tax.cert'
+    _description = 'Withholding Tax Certificate'
 
     name = fields.Char(
         string='Number',
@@ -110,16 +111,6 @@ class WithholdingTaxCert(models.Model):
         copy=False,
     )
 
-    @api.constrains('wt_line')
-    def _check_wt_line(self):
-        for cert in self:
-            for line in cert.wt_line:
-                prec = self.env.user.company_id.currency_id.decimal_places
-                if float_compare(line.amount,
-                                 line.base * line.wt_percent / 100,
-                                 prec) != 0:
-                    raise ValidationError(_('WT Base/Percent/Tax mismatch!'))
-
     @api.onchange('payment_id')
     def _onchange_payment_id(self):
         """ Prepare withholding cert """
@@ -135,23 +126,10 @@ class WithholdingTaxCert(models.Model):
     @api.model
     def _prepare_wt_line(self, move_line):
         """ Hook point to prepare wt_line """
-        # With withholding.tax.move, get % tax
-        WTMove = self.env['withholding.tax.move']
-        wt_move = WTMove.search([('wt_account_move_id', '=',
-                                  move_line.move_id.id)])
-        base = 0.0
-        percent = 0.0
-        tax = abs(move_line.balance)
-        if wt_move:
-            if wt_move.statement_id.base:
-                percent = round(wt_move.statement_id.tax /
-                                wt_move.statement_id.base, 2)
-                if percent:
-                    base = tax / percent
         vals = {
             'wt_cert_income_type': self._context.get('wt_cert_income_type'),
-            'wt_percent': percent * 100,
-            'base': base,
+            'wt_percent': False,
+            'base': False,
             'amount': abs(move_line.balance),
             'ref_move_line_id': move_line.id, }
         return vals
@@ -159,17 +137,9 @@ class WithholdingTaxCert(models.Model):
     @api.model
     def _get_wt_move_line(self, payment, wt_account_ids):
         """ Hook point to get wt_move_lines """
-        # Move line from payment itself
-        wt_move_lines = payment.move_line_ids
-        # From other related withholding move line (l10n_it_withholding_tax)
-        if 'withholding_tax_generated_by_move_id' in payment.move_line_ids:
-            payment_moves = payment.move_line_ids.mapped('move_id')
-            wt_moves = self.env['account.move.line'].search([
-                ('withholding_tax_generated_by_move_id', 'in',
-                 payment_moves.ids)]).mapped('move_id')
-            wt_move_lines += wt_moves.mapped('line_ids')
-        return wt_move_lines.\
+        wt_move_lines = payment.move_line_ids.\
             filtered(lambda l: l.account_id.id in wt_account_ids)
+        return wt_move_lines
 
     @api.multi
     def action_draft(self):
@@ -189,6 +159,7 @@ class WithholdingTaxCert(models.Model):
 
 class WithholdingTaxCertLine(models.Model):
     _name = 'withholding.tax.cert.line'
+    _description = 'Withholding Tax Cert Lines'
 
     cert_id = fields.Many2one(
         'withholding.tax.cert',
@@ -223,6 +194,17 @@ class WithholdingTaxCertLine(models.Model):
         help="Reference back to journal item which create wt move",
     )
 
+    @api.multi
+    @api.constrains('base', 'wt_percent', 'amount')
+    def _check_wt_line(self):
+        for rec in self:
+            prec = self.env.user.company_id.currency_id.decimal_places
+            if rec.wt_percent and \
+                    float_compare(rec.amount,
+                                  rec.base * rec.wt_percent / 100,
+                                  prec) != 0:
+                raise ValidationError(_('WT Base/Percent/Tax mismatch!'))
+
     @api.onchange('wt_cert_income_type')
     def _onchange_wt_cert_income_type(self):
         if self.wt_cert_income_type:
@@ -233,10 +215,7 @@ class WithholdingTaxCertLine(models.Model):
 
     @api.onchange('wt_percent')
     def _onchange_wt_percent(self):
-        if self.base:
-            self.amount = self.base * self.wt_percent / 100
-        if self.amount:
-            if self.wt_percent:
-                self.base = self.amount * 100 / self.wt_percent
-            else:
-                self.base = 0.0
+        if self.wt_percent:
+            self.base = self.amount * 100 / self.wt_percent
+        else:
+            self.base = 0.0

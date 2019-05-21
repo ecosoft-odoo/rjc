@@ -25,8 +25,6 @@ Thai Localization - Withholding Tax Certificate
 This module allow user to create Withholding Tax Certificate from any payment document
 that contain accounting entry on withholding tax.
 
-The module make use of Italian Withholding Tax module, which is identical to Thai Withholding Tax.
-
 **Table of contents**
 
 .. contents::
@@ -35,9 +33,7 @@ The module make use of Italian Withholding Tax module, which is identical to Tha
 Installation
 ============
 
-To install this module, you need to install Italian Withholding Tax **l10n_it_withholding_tax**
-
-Then, simply install **l10n_th_withholding_tax_cert**.
+No special requirement to install this module
 
 Usage
 =====
@@ -48,12 +44,12 @@ From supplier payment that has already withheld tax,
 - Fill in required information for Withholding Tax Certificate
 - User can also print out Withholding Tax Cert. as PDF
 
-All Withholding Tax Certs will be accessible from menu Invoicing > Withholding Tax > WT Certificates
+All Withholding Tax Certs will be accessible from menu Invoicing > Vendor > WT Certificates
 
 Changelog
 =========
 
-12.0.1.0.0 (2019-03-07)
+12.0.1.0.0 (2019-05-08)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * Start of the history
