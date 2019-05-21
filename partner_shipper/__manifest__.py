@@ -1,3 +1,5 @@
+# Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
+# License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 {
     'name': 'Partner Shipper',
     'summary': 'Set on partners shipper for delivery goods',
@@ -5,7 +7,8 @@
     'development_status': 'Beta',
     'category': 'Delivery',
     'website': 'https://github.com/ecosoft-odoo/addons',
-    'author': 'Ecosoft',
+    'author': 'Ecosoft,'
+              'Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'application': False,
     'installable': True,

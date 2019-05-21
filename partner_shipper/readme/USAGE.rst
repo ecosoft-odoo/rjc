@@ -6,7 +6,5 @@ To use this module you need to:
 #. Go to *Sales and Purchases* tab.
 #. Set a shipper for this partner in *Shippers* field.
 #. Got to *Sales > Quotations*
-#. Create a quotation, select shipper field is filled. Confirm
-   it.
-#. Open the picking and you can see the shipper in
-   'Additional Information' tab.
+#. Create a quotation, select shipper field is filled. Confirm it.
+#. Open the picking and you can see the shipper in 'Additional Information' tab.
