@@ -5,10 +5,11 @@
     'license': 'AGPL-3',
     'website': 'https://github.com/ecosoft-odoo/',
     'category': 'Report',
-    'depends': ['purchase',
-                'partner_fax',
-                'web',
-                ],
+    'depends': [
+        'purchase',
+        'partner_fax',
+        'web',
+    ],
     'data': [
         'reports/purchase_order_layout.xml',
         'data/report_data.xml',
