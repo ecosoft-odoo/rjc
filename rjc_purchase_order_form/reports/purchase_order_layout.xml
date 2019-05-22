@@ -1,4 +1,3 @@
-
 <odoo>
     <template id="report_assets_common" name="Purchase Order common assets" inherit_id="web.report_assets_common">
         <xpath expr="." position="inside">
