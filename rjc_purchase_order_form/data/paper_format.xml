@@ -1,4 +1,3 @@
-
 <odoo>
     <data noupdate="1">
         <record id="paperformat_rjc_purchase_order" model="report.paperformat">
