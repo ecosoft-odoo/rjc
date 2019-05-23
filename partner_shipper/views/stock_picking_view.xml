@@ -1,0 +1,40 @@
+<!-- Copyright 2019 Ecosoft
+     License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl). -->
+<odoo>
+
+  <record id="view_picking_form" model="ir.ui.view">
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_form"/>
+    <field name="arch" type="xml">
+      <xpath expr="//page[@name='extra']/group/group/field[@name='move_type']" position="after">
+        <field name="partner_shipper_ids" invisible="1"/>
+        <field name="shipper_id" domain="[('id', 'in', partner_shipper_ids)]" attrs="{'readonly': [('state', '=', 'done')]}"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="view_picking_internal_search" model="ir.ui.view">
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.view_picking_internal_search"/>
+    <field name="arch" type="xml">
+      <field name="group_id" position="after">
+        <separator/>
+        <field name="shipper_id"/>
+      </field>
+      <xpath expr="//filter[@name='picking_type']/.." position="inside">
+        <filter name="shipper_group" string="Shippers" context="{'group_by': 'shipper_id'}"/>
+      </xpath>
+    </field>
+  </record>
+
+  <record id="picking_view_delivery_tree" model="ir.ui.view">
+    <field name="name">stock.picking.delivery.tree</field>
+    <field name="model">stock.picking</field>
+    <field name="inherit_id" ref="stock.vpicktree"/>
+    <field name="arch" type="xml">
+      <xpath expr="//field[@name='partner_id']" position="after">
+        <field name="shipper_id"/>
+      </xpath>
+    </field>
+  </record>
+</odoo>

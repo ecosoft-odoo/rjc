@@ -3,20 +3,19 @@
 
 {
     'name': 'Thai Localization - Withholding Tax Certificate',
-    'summary': 'Base module for easy way to develop Excel import/export',
     'version': '12.0.1.0.0',
     'author': 'Ecosoft,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/l10n-thailand/',
     'category': 'Localization / Accounting',
-    'depends': ['account',
-                'l10n_it_withholding_tax'],
+    'depends': ['account'],
     'data': ['security/ir.model.access.csv',
              'wizard/create_withholding_tax_cert.xml',
              'views/withholding_tax_cert.xml',
              'views/account_payment_view.xml',
+             'views/account_view.xml',
              ],
     'installable': True,
-    'development_status': 'alpha',
+    'development_status': 'beta',
     'maintainers': ['kittiu'],
 }

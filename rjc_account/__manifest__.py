@@ -4,7 +4,7 @@
     'version': '12.0.1.0.0',
     'development_status': 'Beta',
     'category': 'Account',
-    'website': 'https://github.com/ecosoft-odoo/addons',
+    'website': 'https://github.com/ecosoft-odoo/rjc',
     'author': 'Ecosoft',
     'license': 'AGPL-3',
     'application': False,

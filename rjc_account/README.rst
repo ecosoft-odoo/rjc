@@ -25,19 +25,12 @@ RJC Account
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module add field pre-print number on account invoice view.
+This module add field Preprint Number on account invoice view.
 
 **Table of contents**
 
 .. contents::
    :local:
-
-Configuration
-=============
-
-To configure this module you need to:
-
-#. Go to *Invoicing > and create any Pre-print Number
 
 Usage
 =====

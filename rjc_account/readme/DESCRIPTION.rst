@@ -1,1 +1,1 @@
-This module add field pre-print number on account invoice view.
+This module add field Preprint Number on account invoice view.

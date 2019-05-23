@@ -1,0 +1,301 @@
+<odoo>
+    <template id="report_assets_common" name="Purchase Order common assets" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/rjc_purchase_order_form/static/scss/style_report.scss"/>
+        </xpath>
+    </template>
+    <template id="rjc_purchase_order_layout_report">
+        <div class="article">
+            <div class="header">
+                <div class="row">
+                    <div class="col-4">
+                        <div>
+                            <strong t-field="o.partner_id.company_id.name"/>
+                        </div>
+                        <span t-field="o.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                    </div>
+                    <div class="col-2" style="margin-left:85px">
+                        <div class="text-center">
+                            <p>
+                                <span>
+                                    <strong>ใบสั่งซื้อ</strong>
+                                </span>
+                                <span>
+                                    <strong>Purchase Order</strong>
+                                </span>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="page">
+                <div class="row">
+                    <div class="col-7">
+                        <br>
+                            <strong>ชื่อ Name:</strong>
+                            <span t-field="o.partner_id"/>
+                        </br>
+                        <br>
+                            <strong>ที่อยู่ Address:</strong>
+                            <span t-field="o.partner_id.street"/>
+                            <span t-field="o.partner_id.street2"/>
+                            <span t-field="o.partner_id.city"/>
+                            <span t-field="o.partner_id.state_id.name"/>
+                            <span t-field="o.partner_id.country_id.name"/>
+                            <span t-field="o.partner_id.zip"/>
+                        </br>
+                        <br>
+                            <strong>Phone:</strong>
+                            <span t-field="o.partner_id.phone"/>
+                        </br>
+                        <br>
+                            <strong>Fax:</strong>
+                            <span t-field="o.partner_id.fax"/>
+                        </br>
+                    </div>
+                    <div class="col-5" style="padding-left:90px">
+                        <br>
+                            <strong>เลขที่เอกสาร Doc No.:</strong>
+                            <span t-field="o.name"/>
+                        </br>
+                        <br>
+                            <strong>วันที่ Date:</strong>
+                            <span t-esc="o.date_order" t-options='{"widget": "date"}'/>
+                        </br>
+                        <br>
+                            <strong>วันส่งสินค้า Delivery Date:</strong>
+                            <span t-esc="o.date_planned" t-options='{"widget": "date"}'/>
+                        </br>
+                        <br>
+                            <strong>เลขที่อ้างอิง Reference:</strong>
+                            <span t-field="o.partner_ref"/>
+                        </br>
+                        <br>
+                            <strong>กำหนดชำระเงิน Payment Term:</strong>
+                            <span t-field="o.payment_term_id.name"/>
+                        </br>
+                    </div>
+                </div>
+                <table class="table table-sm o_main_table border-black">
+                    <thead>
+                        <tr class="border-black">
+                            <th>
+                                <br>
+                                    <strong>ลำดับที่</strong>
+                                </br>
+                                <br>No.</br>
+                            </th>
+                            <th>
+                                <br>
+                                    <strong>รายการ</strong>
+                                </br>
+                                <br>
+                                    <strong>Description</strong>
+                                </br>
+                            </th>
+                            <th class="text-right">
+                                <br>
+                                    <strong>จำนวน</strong>
+                                </br>
+                                <br>
+                                    <strong>Quantity</strong>
+                                </br>
+                            </th>
+                            <th class="text-right">
+                                <br>
+                                    <strong>หน่วย</strong>
+                                </br>
+                                <br>
+                                    <strong>Unit</strong>
+                                </br>
+                            </th>
+                            <th class="text-right">
+                                <br>
+                                    <strong>หน่วยละ</strong>
+                                </br>
+                                <br>
+                                    <strong>Unit Price</strong>
+                                </br>
+                            </th>
+                            <th class="text-right">
+                                <br>
+                                    <strong>จำนวนเงิน</strong>
+                                </br>
+                                <br>
+                                    <strong>Amount</strong>
+                                </br>
+                            </th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="i" t-value="1"/>
+                        <tr t-foreach="o.order_line" t-as="line">
+                            <td>
+                                <span t-esc="i"/>
+                                <t t-set="i" t-value="i+1"/>
+                            </td>
+                            <td>
+                                <span t-field="line.name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.product_qty"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.product_uom.name" groups="uom.group_uom"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.price_unit"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="row">
+                <div class="col-6">
+                    <p t-field="o.notes"/>
+                    <div class="oe_structure"/>
+                    <span t-esc="o.amount_text(o.amount_total)"/>
+                </div>
+                <div class="col-6" style="margin-left:20px">
+                    <t t-set="amount_before_discount" t-value="o.amount_before_discount()"/>
+                    <t t-set="amount_discount" t-value="amount_before_discount - o.amount_total"/>
+                    <table class="table table-sm" border="1" style="width:100%;">
+                        <tr class="border-black">
+                            <td>
+                                <strong>ราคาก่อนหักส่วนลด</strong>
+                            </td>
+                            <td>
+                                <strong>Subtotal</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="amount_before_discount"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>ส่วนลด</strong>
+                            </td>
+                            <td>
+                                <strong>Discount</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="amount_discount"
+                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>ราคาหลังหักส่วนลด</strong>
+                            </td>
+                            <td>
+                                <strong>Price after discount</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>VAT</strong>
+                            </td>
+                            <td>
+                                <strong>7%</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black o_total">
+                            <td>
+                                <strong>ยอดรวม</strong>
+                            </td>
+                            <td>
+                                <strong>Grand Total</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total" t-options='{"widget": "monetary"}'/>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+            <div class="row" style="margin-top:20px">
+                <div class="col-4">
+                    <table class="table table-sm">
+                        <tr>
+                            <td>
+                                <strong>กรุณาลงลายมือชื่อและโทรสารกลับเพื่อยืนยันการได้รับ</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>Please sign and send it back</strong>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>ลงชื่อ Name</strong>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td>
+                                <strong>วันที่ Date</strong>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-4" style="margin-top:80px">
+                    <table class="table table-sm">
+                        <tr class="border-black">
+                            <td>
+                                <strong>สั่งซื้อโดย Order by</strong>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>วันที่ Date</strong>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-4" style="margin-top:80px">
+                    <table class="table table-sm">
+                        <tr class="border-black">
+                            <td>
+                                <strong>อนุมัติโดย Authorized by</strong>
+                            </td>
+                            <td></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>วันที่ Date</strong>
+                            </td>
+                        </tr>
+                        <tr class="border-black">
+                            <td></td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </template>
+
+    <template id="rjc_purchase_order_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="rjc_purchase_order_form.rjc_purchase_order_layout_report"/>
+            </t>
+        </t>
+    </template>
+</odoo>
