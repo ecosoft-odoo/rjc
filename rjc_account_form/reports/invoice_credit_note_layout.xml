@@ -2,37 +2,33 @@
     <template id="rjc_invoice_credit_note_layout_report">
         <div class="header">
             <div class="row">
-                <div class="col-3">
+                <div class="col-1">
                     <span>
                         <img src='/rjc_account_form/static/src/img/raja.jpg' style="max-height: 75px;"/>
                     </span>
-                    <br>
+                </div>
+                <div class="col-3">
+                    <span>
                         <strong>บริษัท ราชาไซเคิล จำกัด</strong>
-                        <strong>RAJA CYCLE CO.,LTD.</strong>
-                    </br>
+                        <strong>RAJA CYCLE CO., LTD.</strong>
+                    </span>
                 </div>
             </div>
             <div class="row">
-                <div class="col-12">
-                    <div class="text-center">
-                        <p>
-                            <span>
-                                <h2>ใบลดหนี้</h2>
-                            </span>
-                        </p>
-                    </div>
+                <div class="col-12 text-center">
+                    <span>
+                        <h2>ใบลดหนี้</h2>
+                    </span>
                 </div>
             </div>
         </div>
         <div class="article">
             <div class="page">
-                <div class="row">
-                    <div class="col-7">
-                        <br>
+                <div class="row pb8">
+                    <div class="col-6">
+                        <p>
                             <strong>ชื่อ Name:</strong>
-                            <span t-field="o.partner_id"/>
-                        </br>
-                        <br>
+                            <span t-field="o.partner_id"/><br/>
                             <strong>ที่อยู่ Address:</strong>
                             <span t-field="o.partner_id.street"/>
                             <span t-field="o.partner_id.street2"/>
@@ -40,84 +36,46 @@
                             <span t-field="o.partner_id.state_id.name"/>
                             <span t-field="o.partner_id.country_id.name"/>
                             <span t-field="o.partner_id.zip"/>
-                        </br>
+                        </p>
                     </div>
-                    <div class="col-5" style="padding-left:90px">
-                        <br>
-                            <strong>เลขที่เอกสาร:</strong>
-                            <span t-field="o.number"/>
-                        </br>
-                        <br>
-                            <strong>วันที่:</strong>
-                            <span t-field="o.date_invoice"/>
-                        </br>
-                        <br>
-                            <strong>เลขที่อ้างอิง RJC:</strong>
-                            <span t-field="o.refund_invoice_id.number_preprint"/>
-                        </br>
-                        <br>
-                            <strong>วันที่อ้างอิง RJC:</strong>
-                            <span t-field="o.refund_invoice_id.date_invoice"/>
-                        </br>
+                    <div class="col-3">
+                        <p>
+                            <strong>เลขที่เอกสาร:</strong><br/>
+                            <strong>วันที่:</strong><br/>
+                            <strong>เลขที่อ้างอิง RJC:</strong><br/>
+                            <strong>วันที่อ้างอิง RJC:</strong><br/>
+                        </p>
+                    </div>
+                    <div class="col-3">
+                        <p>
+                            <span t-field="o.number"/><br/>
+                            <span t-field="o.date_invoice"/><br/>
+                            <span t-field="o.refund_invoice_id.number_preprint"/><br/>
+                            <span t-field="o.refund_invoice_id.date_invoice"/><br/>
+                        </p>
                     </div>
                 </div>
                 <table class="table table-sm o_main_table border-black">
                     <thead>
                         <tr class="border-black">
-                            <th>
-                                <br>
-                                    <strong>ลำดับ</strong>
-                                </br>
-                            </th>
-                            <th>
-                                <br>
-                                    <strong>รหัสสินค้า</strong>
-                                </br>
-                            </th>
-                            <th>
-                                <br>
-                                    <strong>รายละเอียด</strong>
-                                </br>
-                            </th>
-                            <th>
-                                <br>
-                                    <strong>จำนวน</strong>
-                                </br>
-                            </th>
-                            <th class="text-right">
-                                <br>
-                                    <strong>ราคาต่อหน่วย</strong>
-                                </br>
-                            </th>
-                            <th class="text-right">
-                                <br>
-                                    <strong>จำนวนเงิน</strong>
-                                </br>
-                            </th>
+                            <th class="text-center"><strong>ลำดับ</strong></th>
+                            <th class="text-center"><strong>รหัสสินค้า</strong></th>
+                            <th class="text-center"><strong>รายละเอียด</strong></th>
+                            <th class="text-center"><strong>จำนวน</strong></th>
+                            <th class="text-center"><strong>ราคาต่อหน่วย</strong></th>
+                            <th class="text-center"><strong>จำนวนเงิน</strong></th>
                         </tr>
                     </thead>
                     <tbody>
                         <t t-set="column" t-value="1"/>
                         <tr t-foreach="o.invoice_line_ids" t-as="line">
-                            <td>
-                                <span t-esc="column"/>
-                                <t t-set="column" t-value="column+1"/>
-                            </td>
-                            <td>
-                                <span t-field="line.product_id.default_code"/>
-                            </td>
-                            <td>
-                                <span t-field="line.name"/>
-                            </td>
-                            <td class="text-right">
-                                <span t-field="line.quantity"/>
-                            </td>
-                            <td class="text-right">
-                                <span t-field="line.price_unit"/>
-                            </td>
-                            <td class="text-right">
-                                <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                            </td>
+                            <td><span t-esc="column"/></td>
+                            <td><span t-field="line.product_id.default_code"/></td>
+                            <td><span t-field="line.name"/></td>
+                            <td class="text-right"><span t-field="line.quantity"/></td>
+                            <td class="text-right"><span t-field="line.price_unit"/></td>
+                            <td class="text-right"><span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
+                            <t t-set="column" t-value="column+1"/>
                         </tr>
                     </tbody>
                 </table>
@@ -126,11 +84,11 @@
                 <div class="col-6">
                     <t t-if="o.comment">
                         <p>
-                            <strong>หมายเหตุ :
-                            </strong><span t-field="o.comment"/></p>
+                            <strong>หมายเหตุ : </strong><span t-field="o.comment"/>
+                        </p>
                     </t>
                 </div>
-                <div class="col-6" style="margin-left:20px">
+                <div class="col-6">
                     <t t-set="total_amount_invoice" t-value="o.refund_invoice_id.amount_total - o.amount_total"/>
                     <table class="table table-sm" border="1" style="width:100%;">
                         <tr class="border-black">
@@ -166,10 +124,11 @@
                         (<span t-esc="o.amount_text(o.amount_total)"/>)
                     </p>
                 </div>
-
             </div>
-            <div class="row" style="padding-top:30px;padding-left:500px">
-                    <table class="table col-6">
+            <div class="row pt32">
+                <div class="col-6"/>
+                <div class="col-6">
+                    <table class="table">
                         <tr class="border-black">
                             <th>
                                 <strong>อนุมัติโดย</strong>
@@ -184,16 +143,17 @@
                             <td></td>
                         </tr>
                     </table>
+                </div>
             </div>
         </div>
-        <div class="footer">
-            <div class="col-12">
-                <p class="text-center">
+        <div class="footer pt40">
+            <small>
+                <center>
                     417 หมู่ 2 ถนนบางพลี-ตำหรุ ต.แพรกษาใหม่ อ.เมือง จ.สมุทรปราการ 10280<br/>
                     417 Moo 2 Bangplee-Tamrue Road Tambol Phrekasamai Amphur Muang Samutprakarn 10280<br/>
                     Tel. (662) 703-6818-22 Fax. (622) 703-6823
-                </p>
-            </div>
+                </center>
+            </small>
         </div>
     </template>
 
