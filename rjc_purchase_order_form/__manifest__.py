@@ -3,7 +3,7 @@
     'version': '12.0.1.0.0',
     'author': 'Ecosoft',
     'license': 'AGPL-3',
-    'website': 'https://github.com/ecosoft-odoo/',
+    'website': 'https://github.com/ecosoft-odoo/rjc',
     'category': 'Report',
     'depends': [
         'purchase',

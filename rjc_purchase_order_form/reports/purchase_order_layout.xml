@@ -161,7 +161,7 @@
                 </div>
                 <div class="col-6" style="margin-left:20px">
                     <t t-set="amount_before_discount" t-value="o.amount_before_discount()"/>
-                    <t t-set="amount_discount" t-value="amount_before_discount - o.amount_total"/>
+                    <t t-set="amount_discount" t-value="o.amount_total - amount_before_discount"/>
                     <table class="table table-sm" border="1" style="width:100%;">
                         <tr class="border-black">
                             <td>
