@@ -1,8 +1,7 @@
 {
     'name': 'RJC Account',
-    'summary': 'Add pre print number field',
+    'summary': 'Modify field in account module',
     'version': '12.0.1.0.0',
-    'development_status': 'Beta',
     'category': 'Account',
     'website': 'https://github.com/ecosoft-odoo/rjc',
     'author': 'Ecosoft',
@@ -14,5 +13,6 @@
     ],
     'data': [
         'views/account_invoice_view.xml',
+        'views/account_payment_view.xml',
     ],
 }

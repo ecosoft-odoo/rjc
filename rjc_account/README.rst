@@ -25,19 +25,14 @@ RJC Account
 
 |badge1| |badge2| |badge3| |badge4| |badge5| 
 
-This module add field Preprint Number on account invoice view.
+This module include
+* Add field Preprint Number on account invoice view
+* Add field Payment Ref, Internal Notes on payment view.
 
 **Table of contents**
 
 .. contents::
    :local:
-
-Usage
-=====
-
-To use this module you need to:
-
-#. Got to *Invoicing > Create invoice*
 
 Bug Tracker
 ===========
