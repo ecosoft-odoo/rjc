@@ -47,6 +47,11 @@
     </template>
     <template id="rjc_invoice_layout_report">
         <div class="header">
+            <div class="row" style="padding-left:700px">
+                <div class="col-12">
+                    <strong><span t-field="o.state"/></strong>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-1"/>
                 <div class="col-7">
@@ -58,10 +63,12 @@
                     <span t-field="o.partner_id.country_id.name"/>
                     <span t-field="o.partner_id.zip"/><br/>
                     <span t-field="o.partner_id.phone"/><br/>
-                    <span t-field="o.partner_id.fax"/>
+                    <span t-field="o.partner_id.fax"/><br/>
+                    <span t-field="o.number"/>
                 </div>
                 <div class="col-4">
-                    <span t-field="o.date_invoice"/>
+                    <span t-field="o.date_invoice"/><br/>
+                    <span t-field="o.origin"/>
                 </div>
             </div>
         </div>
@@ -96,6 +103,11 @@
             </table>
         </div>
         <div class="footer">
+            <div class="row">
+                <div class="col-6">
+                    <span t-esc="o.comment"/>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-8 last-page text-center">
                     <span t-esc="o.amount_text(o.amount_total)"/>
