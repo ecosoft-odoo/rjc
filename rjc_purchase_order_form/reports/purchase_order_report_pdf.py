@@ -4,7 +4,7 @@ from num2words import num2words
 
 class ReportRjcPo(models.AbstractModel):
     _name = 'report.rjc_purchase_order_pdf'
-    _description = 'report PO'
+    _description = 'Report Purchase Order'
 
     @api.model
     def _get_report_values(self, docids, data=None):
@@ -24,8 +24,7 @@ class PurchaseOrder(models.Model):
     @api.multi
     def amount_text(self, amount):
         try:
-            num_to_text = num2words(amount, to='currency', lang='th')
-            return "(%s)" % num_to_text
+            return num2words(amount, to='currency', lang='th')
         except NotImplementedError:
             return num2words(amount, to='currency', lang='en')
 
