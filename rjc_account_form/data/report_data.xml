@@ -1,7 +1,7 @@
 
 <odoo>
   <data>
-    <report string="Invoice Preprint"
+    <report string="Invoice"
             id="rjc_invoice_pdf_report"
             model="account.invoice"
             name="rjc_account_form.rjc_invoice_pdf"
@@ -16,7 +16,7 @@
             file="rjc_account_form.rjc_invoice_credit_note_pdf"
             report_type="qweb-pdf"
             print_report_name="'CN - [%s]' % object.display_name"/>
-    <report string="Tax Invoice Preprint"
+    <report string="Tax Invoice"
             id="rjc_tax_invoice_pdf_report"
             model="account.invoice"
             name="rjc_account_form.rjc_tax_invoice_pdf"

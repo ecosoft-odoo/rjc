@@ -8,14 +8,14 @@
         <div class="header">
             <div class="col-5">
                 <span t-field="o.partner_id"/><br/>
+                <span t-field="o.partner_id.vat"/> /
+                <span t-field="o.partner_id.branch"/><br/>
                 <span t-field="o.partner_id.street"/>
                 <span t-field="o.partner_id.street2"/>
                 <span t-field="o.partner_id.city"/>
                 <span t-field="o.partner_id.state_id.name"/>
                 <span t-field="o.partner_id.country_id.name"/>
-                <span t-field="o.partner_id.zip"/><br/>
-                <span t-field="o.partner_id.phone"/><br/>
-                <span t-field="o.partner_id.fax"/>
+                <span t-field="o.partner_id.zip"/>
             </div>
             <div class="row pt32">
                 <div class="col-3">
@@ -34,7 +34,7 @@
         </div>
         <div class="article tax_invoice_preprint_form">
             <t t-set="amount_before_discount" t-value="o.amount_before_discount()"/>
-            <t t-set="amount_discount" t-value="o.amount_total - amount_before_discount"/>
+            <t t-set="amount_discount" t-value="amount_before_discount - o.amount_untaxed"/>
             <table class="table table-sm">
                 <tbody>
                     <t t-set="column" t-value="1"/>
