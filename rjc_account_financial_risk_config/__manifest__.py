@@ -1,17 +1,18 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+
 {
-    'name': 'Partner Stock Risk Config',
-    'summary': 'Config partner risk in stock moves',
+    'name': 'RJC Account Financial Risk Config',
+    'summary': 'config customer risk',
     'version': '12.0.1.0.0',
-    'category': 'Sales Management',
+    'category': 'Accounting',
     'license': 'AGPL-3',
-    'author': 'Ecosoft, '
-              'Odoo Community Association (OCA)',
+    'author': 'Ecosoft, Odoo Community Association (OCA)',
     'website': 'https://github.com/ecosoft-odoo/rjc',
     'depends': [
+        'account_financial_risk',
+        'account',
         'stock',
-        'account_financial_risk'
     ],
     'data': [
         'views/res_config_settings_views.xml',
