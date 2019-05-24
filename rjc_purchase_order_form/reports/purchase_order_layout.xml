@@ -5,142 +5,79 @@
         </xpath>
     </template>
     <template id="rjc_purchase_order_layout_report">
-        <div class="article">
-            <div class="header">
-                <div class="row">
-                    <div class="col-4">
-                        <div>
-                            <strong t-field="o.partner_id.company_id.name"/>
-                        </div>
-                        <span t-field="o.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
-                    </div>
-                    <div class="col-2" style="margin-left:85px">
-                        <div class="text-center">
-                            <p>
-                                <span>
-                                    <strong>ใบสั่งซื้อ</strong>
-                                </span>
-                                <span>
-                                    <strong>Purchase Order</strong>
-                                </span>
-                            </p>
-                        </div>
-                    </div>
+        <div class="header">
+            <div class="row">
+                <div class="col-4">
+                    <strong t-field="o.partner_id.company_id.name"/>
+                    <span t-field="o.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                </div>
+                <div class="col-4 text-center">
+                    <h4>
+                        ใบสั่งซื้อ<br/>Purchase Order
+                    </h4>
+                </div>
+                <div class="col-4 text-right">
+                    <img src='/rjc_purchase_order_form/static/src/img/raja.jpg' style="max-height: 75px;"/>
                 </div>
             </div>
+        </div>
+        <div class="article">
             <div class="page">
-                <div class="row">
-                    <div class="col-7">
-                        <br>
-                            <strong>ชื่อ Name:</strong>
-                            <span t-field="o.partner_id"/>
-                        </br>
-                        <br>
-                            <strong>ที่อยู่ Address:</strong>
-                            <span t-field="o.partner_id.street"/>
-                            <span t-field="o.partner_id.street2"/>
-                            <span t-field="o.partner_id.city"/>
-                            <span t-field="o.partner_id.state_id.name"/>
-                            <span t-field="o.partner_id.country_id.name"/>
-                            <span t-field="o.partner_id.zip"/>
-                        </br>
-                        <br>
-                            <strong>Phone:</strong>
-                            <span t-field="o.partner_id.phone"/>
-                        </br>
-                        <br>
-                            <strong>Fax:</strong>
-                            <span t-field="o.partner_id.fax"/>
-                        </br>
+                <div class="row pb32">
+                    <div class="col-6">
+                        <strong>ชื่อ Name:</strong>
+                        <span t-field="o.partner_id"/><br/>
+                        <strong>ที่อยู่ Address:</strong>
+                        <span t-field="o.partner_id.street"/>
+                        <span t-field="o.partner_id.street2"/>
+                        <span t-field="o.partner_id.city"/>
+                        <span t-field="o.partner_id.state_id.name"/>
+                        <span t-field="o.partner_id.country_id.name"/>
+                        <span t-field="o.partner_id.zip"/><br/>
+                        <strong>Phone:</strong>
+                        <span t-field="o.partner_id.phone"/><br/>
+                        <strong>Fax:</strong>
+                        <span t-field="o.partner_id.fax"/><br/>
                     </div>
-                    <div class="col-5" style="padding-left:90px">
-                        <br>
-                            <strong>เลขที่เอกสาร Doc No.:</strong>
-                            <span t-field="o.name"/>
-                        </br>
-                        <br>
-                            <strong>วันที่ Date:</strong>
-                            <span t-esc="o.date_order" t-options='{"widget": "date"}'/>
-                        </br>
-                        <br>
-                            <strong>วันส่งสินค้า Delivery Date:</strong>
-                            <span t-esc="o.date_planned" t-options='{"widget": "date"}'/>
-                        </br>
-                        <br>
-                            <strong>เลขที่อ้างอิง Reference:</strong>
-                            <span t-field="o.partner_ref"/>
-                        </br>
-                        <br>
-                            <strong>กำหนดชำระเงิน Payment Term:</strong>
-                            <span t-field="o.payment_term_id.name"/>
-                        </br>
+                    <div class="col-3">
+                        <strong>เลขที่เอกสาร Doc No. :</strong><br/>
+                        <strong>วันที่ Date :</strong><br/>
+                        <strong>วันส่งสินค้า Delivery Date :</strong><br/>
+                        <strong>เลขที่อ้างอิง Reference :</strong><br/>
+                        <strong>กำหนดชำระเงิน Payment Term :</strong>
+                    </div>
+                    <div class="col-3">
+                        <span t-field="o.name"/><br/>
+                        <span t-esc="o.date_order" t-options='{"widget": "date"}'/><br/>
+                        <span t-esc="o.date_planned" t-options='{"widget": "date"}'/><br/>
+                        <span t-field="o.partner_ref"/><br/>
+                        <span t-field="o.payment_term_id.name"/>
                     </div>
                 </div>
                 <table class="table table-sm o_main_table border-black">
                     <thead>
-                        <tr class="border-black">
-                            <th>
-                                <br>
-                                    <strong>ลำดับที่</strong>
-                                </br>
-                                <br>No.</br>
-                            </th>
-                            <th>
-                                <br>
-                                    <strong>รายการ</strong>
-                                </br>
-                                <br>
-                                    <strong>Description</strong>
-                                </br>
-                            </th>
-                            <th class="text-right">
-                                <br>
-                                    <strong>จำนวน</strong>
-                                </br>
-                                <br>
-                                    <strong>Quantity</strong>
-                                </br>
-                            </th>
-                            <th class="text-right">
-                                <br>
-                                    <strong>หน่วย</strong>
-                                </br>
-                                <br>
-                                    <strong>Unit</strong>
-                                </br>
-                            </th>
-                            <th class="text-right">
-                                <br>
-                                    <strong>หน่วยละ</strong>
-                                </br>
-                                <br>
-                                    <strong>Unit Price</strong>
-                                </br>
-                            </th>
-                            <th class="text-right">
-                                <br>
-                                    <strong>จำนวนเงิน</strong>
-                                </br>
-                                <br>
-                                    <strong>Amount</strong>
-                                </br>
-                            </th>
+                        <tr class="border-black text-center">
+                            <th>ลำดับที่<br/>No.</th>
+                            <th>รายการ<br/>Description</th>
+                            <th>จำนวน<br/>Quantity</th>
+                            <th>หน่วย<br/>Unit</th>
+                            <th>หน่วยละ<br/>Unit Price</th>
+                            <th>จำนวนเงิน<br/>Amount</th>
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-set="i" t-value="1"/>
+                        <t t-set="column" t-value="1"/>
                         <tr t-foreach="o.order_line" t-as="line">
-                            <td>
-                                <span t-esc="i"/>
-                                <t t-set="i" t-value="i+1"/>
+                            <td class="text-center">
+                                <span t-esc="column"/>
                             </td>
                             <td>
                                 <span t-field="line.name"/>
                             </td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <span t-field="line.product_qty"/>
                             </td>
-                            <td class="text-right">
+                            <td class="text-center">
                                 <span t-field="line.product_uom.name" groups="uom.group_uom"/>
                             </td>
                             <td class="text-right">
@@ -149,20 +86,21 @@
                             <td class="text-right">
                                 <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                             </td>
+                            <t t-set="column" t-value="column+1"/>
                         </tr>
                     </tbody>
                 </table>
             </div>
             <div class="row">
                 <div class="col-6">
-                    <p t-field="o.notes"/>
-                    <div class="oe_structure"/>
-                    <span t-esc="o.amount_text(o.amount_total)"/>
+                    <t t-if="o.notes">
+                        <p><strong>หมายเหตุ (Memo) : </strong><span t-field="o.notes"/></p>
+                    </t>
                 </div>
-                <div class="col-6" style="margin-left:20px">
+                <div class="col-6">
                     <t t-set="amount_before_discount" t-value="o.amount_before_discount()"/>
                     <t t-set="amount_discount" t-value="o.amount_total - amount_before_discount"/>
-                    <table class="table table-sm" border="1" style="width:100%;">
+                    <table class="table table-sm">
                         <tr class="border-black">
                             <td>
                                 <strong>ราคาก่อนหักส่วนลด</strong>
@@ -171,8 +109,7 @@
                                 <strong>Subtotal</strong>
                             </td>
                             <td class="text-right">
-                                <span t-esc="amount_before_discount"
-                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <span t-esc="amount_before_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                             </td>
                         </tr>
                         <tr>
@@ -183,8 +120,7 @@
                                 <strong>Discount</strong>
                             </td>
                             <td class="text-right">
-                                <span t-esc="amount_discount"
-                                        t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <span t-esc="amount_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                             </td>
                         </tr>
                         <tr>
@@ -223,19 +159,18 @@
                     </table>
                 </div>
             </div>
-            <div class="row" style="margin-top:20px">
-                <div class="col-4">
-                    <table class="table table-sm">
-                        <tr>
-                            <td>
-                                <strong>กรุณาลงลายมือชื่อและโทรสารกลับเพื่อยืนยันการได้รับ</strong>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td>
-                                <strong>Please sign and send it back</strong>
-                            </td>
-                        </tr>
+            <div class="row">
+                <div class="col-8 text-center" style="border: 1px solid;">
+                    <span>(<t t-esc="o.amount_text(o.amount_total)"/>)</span>
+                </div>
+            </div>
+            <div class="row pt32">
+                <div class="col-6">
+                    <p class="text-center">
+                        <strong>กรุณาลงลายมือชื่อและโทรสารกลับเพื่อยืนยันการได้รับ</strong><br/>
+                        <strong>Please sign and send it back</strong>
+                    </p>
+                    <table class="col-12 table-sm">
                         <tr>
                             <td>
                                 <strong>ลงชื่อ Name</strong>
@@ -251,13 +186,12 @@
                         </tr>
                     </table>
                 </div>
-                <div class="col-4" style="margin-top:80px">
-                    <table class="table table-sm">
-                        <tr class="border-black">
+                <div class="col-3 pt64">
+                    <table class="col-12 table-sm">
+                        <tr class="border-black text-center">
                             <td>
-                                <strong>สั่งซื้อโดย Order by</strong>
+                                <small><strong>สั่งซื้อโดย Order by</strong></small><br/>
                             </td>
-                            <td></td>
                         </tr>
                         <tr>
                             <td>
@@ -265,17 +199,16 @@
                             </td>
                         </tr>
                         <tr class="border-black">
-                            <td></td>
+                            <td/>
                         </tr>
                     </table>
                 </div>
-                <div class="col-4" style="margin-top:80px">
-                    <table class="table table-sm">
+                <div class="col-3 pt64">
+                    <table class="col-12 table-sm">
                         <tr class="border-black">
                             <td>
-                                <strong>อนุมัติโดย Authorized by</strong>
+                                <small><strong>อนุมัติโดย Authorized by</strong></small><br/>
                             </td>
-                            <td></td>
                         </tr>
                         <tr>
                             <td>
@@ -283,7 +216,7 @@
                             </td>
                         </tr>
                         <tr class="border-black">
-                            <td></td>
+                            <td/>
                         </tr>
                     </table>
                 </div>
