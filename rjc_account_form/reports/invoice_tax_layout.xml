@@ -6,8 +6,9 @@
     </template>
     <template id="rjc_tax_invoice_layout_report">
         <div class="header">
-            <div class="col-5">
+            <div class="col-6">
                 <span t-field="o.partner_id"/><br/>
+                เลขประจำตัวผู้เสียภาษีลูกค้า
                 <span t-field="o.partner_id.vat"/> /
                 <span t-field="o.partner_id.branch"/><br/>
                 <span t-field="o.partner_id.street"/>
@@ -67,7 +68,7 @@
         <div class="footer">
             <div class="row">
                 <div class="col-8 last-page text-center">
-                    <span t-esc="o.amount_text(o.amount_total)"/>
+                    (<span t-esc="o.amount_text(o.amount_total)"/>)
                 </div>
                 <div class="col-4 last-page text-right">
                     <span t-esc="amount_before_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>

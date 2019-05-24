@@ -49,7 +49,7 @@
         <div class="header">
             <div class="row" style="padding-left:700px">
                 <div class="col-12">
-                    <strong><span t-field="o.state"/></strong>
+                    (<strong><span t-field="o.state"/></strong>)
                 </div>
             </div>
             <div class="row">
@@ -62,8 +62,6 @@
                     <span t-field="o.partner_id.state_id.name"/>
                     <span t-field="o.partner_id.country_id.name"/>
                     <span t-field="o.partner_id.zip"/><br/>
-                    <span t-field="o.partner_id.phone"/><br/>
-                    <span t-field="o.partner_id.fax"/><br/>
                     <span t-field="o.number"/>
                 </div>
                 <div class="col-4">
@@ -110,7 +108,7 @@
             </div>
             <div class="row">
                 <div class="col-8 last-page text-center">
-                    <span t-esc="o.amount_text(o.amount_total)"/>
+                    (<span t-esc="o.amount_text(o.amount_total)"/>)
                 </div>
                 <div class="col-4 last-page text-right">
                     <span t-field="o.amount_total"/>
