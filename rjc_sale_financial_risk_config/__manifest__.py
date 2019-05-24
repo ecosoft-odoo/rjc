@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 {
-    'name': 'Sale Financial Risk Config',
+    'name': 'RJC Sale Financial Risk Config',
     'summary': 'Config partner risk in sales orders',
     'version': '12.0.1.0.0',
     'category': 'Sales Management',
