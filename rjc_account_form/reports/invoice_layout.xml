@@ -48,29 +48,24 @@
     <template id="rjc_invoice_layout_report">
         <div class="header">
             <div class="row">
-                <div class="col-4" style="margin-left:50px">
-                    <span t-field="o.partner_id"/>
-                    <br>
-                        <span t-field="o.partner_id.street"/>
-                        <span t-field="o.partner_id.street2"/>
-                        <span t-field="o.partner_id.city"/>
-                        <span t-field="o.partner_id.state_id.name"/>
-                        <span t-field="o.partner_id.country_id.name"/>
-                        <span t-field="o.partner_id.zip"/>
-                    </br>
-                    <br>
-                        <span t-field="o.partner_id.phone"/>
-                    </br>
-                    <br>
-                        <span t-field="o.partner_id.fax"/>
-                    </br>
+                <div class="col-1"/>
+                <div class="col-7">
+                    <span t-field="o.partner_id"/><br/>
+                    <span t-field="o.partner_id.street"/>
+                    <span t-field="o.partner_id.street2"/>
+                    <span t-field="o.partner_id.city"/>
+                    <span t-field="o.partner_id.state_id.name"/>
+                    <span t-field="o.partner_id.country_id.name"/>
+                    <span t-field="o.partner_id.zip"/><br/>
+                    <span t-field="o.partner_id.phone"/><br/>
+                    <span t-field="o.partner_id.fax"/>
                 </div>
-                <div class="col-2" style="margin-left:300px">
+                <div class="col-4">
                     <span t-field="o.date_invoice"/>
                 </div>
             </div>
         </div>
-        <div class="article invoice_preprint_form" style="padding-top:100px">
+        <div class="article invoice_preprint_form">
             <table class="table table-sm">
                 <tbody>
                     <t t-set="i" t-value="1"/>

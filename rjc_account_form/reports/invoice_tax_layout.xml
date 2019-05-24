@@ -6,26 +6,18 @@
     </template>
     <template id="rjc_tax_invoice_layout_report">
         <div class="header">
-            <div class="row">
-                <div class="col-4" style="margin-left:50px">
-                    <span t-field="o.partner_id"/>
-                    <br>
-                        <span t-field="o.partner_id.street"/>
-                        <span t-field="o.partner_id.street2"/>
-                        <span t-field="o.partner_id.city"/>
-                        <span t-field="o.partner_id.state_id.name"/>
-                        <span t-field="o.partner_id.country_id.name"/>
-                        <span t-field="o.partner_id.zip"/>
-                    </br>
-                    <br>
-                        <span t-field="o.partner_id.phone"/>
-                    </br>
-                    <br>
-                        <span t-field="o.partner_id.fax"/>
-                    </br>
-                </div>
+            <div class="col-5">
+                <span t-field="o.partner_id"/><br/>
+                <span t-field="o.partner_id.street"/>
+                <span t-field="o.partner_id.street2"/>
+                <span t-field="o.partner_id.city"/>
+                <span t-field="o.partner_id.state_id.name"/>
+                <span t-field="o.partner_id.country_id.name"/>
+                <span t-field="o.partner_id.zip"/><br/>
+                <span t-field="o.partner_id.phone"/><br/>
+                <span t-field="o.partner_id.fax"/>
             </div>
-            <div class="row mt8 mb8" style="margin-left:50px">
+            <div class="row pt32">
                 <div class="col-3">
                     <span t-field="o.partner_id.ref"/>
                 </div>
@@ -40,7 +32,7 @@
                 </div>
             </div>
         </div>
-        <div class="article tax_invoice_preprint_form" style="padding-top:150px">
+        <div class="article tax_invoice_preprint_form">
             <t t-set="amount_before_discount" t-value="o.amount_before_discount()"/>
             <t t-set="amount_discount" t-value="o.amount_total - amount_before_discount"/>
             <table class="table table-sm">
