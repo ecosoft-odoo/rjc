@@ -1,0 +1,24 @@
+@font-face {
+    font-family: 'Lato';
+}
+.tax_invoice_preprint_form {
+    body {
+        font-size: 22px;
+        padding-top: 40px;
+    }
+    .main_table_tax_invoice {
+        position: fixed;
+        margin-top: 500px;
+    }
+    .tax_invoice_table-sm {
+        > thead > tr > th {
+            border-bottom: none !important;
+        }
+        > tbody > tr {
+            page-break-inside: avoid !important;
+            border-top: none !important;
+            margin-top: 200px;
+            background-color: red;
+        }
+    }
+}
