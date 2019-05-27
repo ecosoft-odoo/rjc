@@ -1,5 +1,4 @@
 <odoo>
-  <data>
     <report string="Purchase Order RJC"
             id="rjc_purchase_order_pdf_report"
             model="purchase.order"
@@ -8,5 +7,4 @@
             report_type="qweb-pdf"
             print_report_name="'PO - [%s]' % object.display_name"
             paperformat="rjc_purchase_order_form.paperformat_rjc_purchase_order"/>
-  </data>
 </odoo>

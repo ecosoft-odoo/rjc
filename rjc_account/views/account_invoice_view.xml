@@ -1,13 +1,12 @@
 <odoo>
-
-  <record id="invoice_form_inherit" model="ir.ui.view">
-    <field name="name">account.invoice.form.inherit.view</field>
-    <field name="model">account.invoice</field>
-    <field name="inherit_id" ref="account.invoice_form"/>
-    <field name="arch" type="xml">
-      <xpath expr="//field[@name='payment_term_id']" position="after">
-        <field name="number_preprint"/>
-      </xpath>
-    </field>
-  </record>
+    <record id="invoice_form_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.form.inherit.view</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='payment_term_id']" position="after">
+                <field name="number_preprint"/>
+            </xpath>
+        </field>
+    </record>
 </odoo>
