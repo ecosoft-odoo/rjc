@@ -1,12 +1,13 @@
 <odoo>
     <report string="Invoice"
-            id="rjc_invoice_pdf_report"
+            id="rjc_invoice_preprint_pdf_report"
             model="account.invoice"
-            name="rjc_account_form.rjc_invoice_pdf"
-            file="rjc_account_form.rjc_invoice_pdf"
+            name="rjc_account_form.rjc_invoice_preprint_pdf"
+            file="rjc_account_form.rjc_invoice_preprint_pdf"
             report_type="qweb-pdf"
             print_report_name="'Preprint - [%s]' % object.display_name"
             paperformat="rjc_account_form.paperformat_rjc_invoice"/>
+
     <report string="Invoice Credit Notes"
             id="rjc_invoice_credit_note_pdf_report"
             model="account.invoice"
@@ -14,6 +15,7 @@
             file="rjc_account_form.rjc_invoice_credit_note_pdf"
             report_type="qweb-pdf"
             print_report_name="'CN - [%s]' % object.display_name"/>
+
     <report string="Tax Invoice"
             id="rjc_tax_invoice_pdf_report"
             model="account.invoice"
@@ -22,4 +24,12 @@
             report_type="qweb-pdf"
             print_report_name="'TAX - [%s]' % object.display_name"
             paperformat="rjc_account_form.paperformat_rjc_tax_invoice"/>
+
+    <report string="Voucher"
+            id="rjc_voucher_pdf_report"
+            model="account.payment"
+            name="rjc_account_form.rjc_voucher_pdf"
+            file="rjc_account_form.rjc_voucher_pdf"
+            report_type="qweb-pdf"
+            print_report_name="'Voucher - [%s]' % object.display_name"/>
 </odoo>

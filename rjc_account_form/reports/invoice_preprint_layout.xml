@@ -1,16 +1,8 @@
 <odoo>
-    <template id="report_assets_common" name="Invoice common assets" inherit_id="web.report_assets_common">
-        <xpath expr="." position="inside">
-            <link rel="stylesheet" type="text/scss" href="/rjc_account_form/static/scss/style_invoice_report.scss"/>
-        </xpath>
-    </template>
-
-    <template id="rjc_invoice_layout_report">
+    <template id="rjc_invoice_preprint_layout_report">
         <div class="header">
-            <div class="row" style="padding-left:700px">
-                <div class="col-12">
-                    (<strong><span t-field="o.state"/></strong>)
-                </div>
+            <div class="col-12 text-right">
+                (<strong><span t-field="o.state"/></strong>)
             </div>
             <div class="row">
                 <div class="col-1"/>
@@ -77,10 +69,10 @@
         </div>
     </template>
 
-    <template id="rjc_invoice_pdf">
+    <template id="rjc_invoice_preprint_pdf">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
-                <t t-call="rjc_account_form.rjc_invoice_layout_report"/>
+                <t t-call="rjc_account_form.rjc_invoice_preprint_layout_report"/>
             </t>
         </t>
     </template>

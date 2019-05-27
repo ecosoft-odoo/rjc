@@ -1,10 +1,4 @@
 <odoo>
-    <template id="report_assets_common" name="Tax Invoice common assets" inherit_id="web.report_assets_common">
-        <xpath expr="." position="inside">
-            <link rel="stylesheet" type="text/scss" href="/rjc_account_form/static/scss/style_tax_invoice_report.scss"/>
-        </xpath>
-    </template>
-
     <template id="rjc_tax_invoice_layout_report">
         <div class="header">
             <div class="col-6">

@@ -1,0 +1,150 @@
+<odoo>
+    <template id="rjc_payment_voucher_layout_report">
+        <div class="header">
+            <div class="row">
+                <div class="col-6">
+                    <span t-field="o.company_id.name"/>
+                </div>
+                <div class="col-6 text-right">
+                    <span>
+                        <img src='/rjc_account_form/static/src/img/raja.jpg' style="max-height: 75px;"/>
+                    </span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-3">
+                    <strong>
+                        ใบสำคัญจ่าย<br/>
+                        Payment Voucher
+                    </strong>
+                </div>
+                <div class="col-3"/>
+                <div class="col-6 text-right">
+                    <strong>
+                        เลขที่ / Voucher No.: <span t-field="o.name"></span>
+                    </strong>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-8">
+                    <span>จ่ายให้ / Pay to :</span>
+                    <span t-field="o.partner_id.name"/>
+                </div>
+                <div class="col-4 text-right">
+                    <span>วันที่ / Date :</span>
+                    <span t-field="o.payment_date"/>
+                </div>
+            </div>
+        </div>
+        <div class="article payment">
+            <div class="payment_voucher_form">
+                <table class="table table-sm">
+                    <thead>
+                        <tr class="text-center">
+                            <th/>
+                            <th>รายการ / Description</th>
+                            <th/>
+                            <th>จำนวนเงิน / Amount</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-foreach="o.invoice_ids" t-as="line">
+                            <tr>
+                                <td>
+                                    <span t-field="line.reference"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.comment"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.date_invoice"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.amount_total"/>
+                                </td>
+                            </tr>
+                        </t>
+                        <!-- TODO : find payment difference -->
+                        <t t-if="o.payment_difference_handling != 'open'">
+                            <tr>
+                                <td/>
+                                <td class="text-right">
+                                    <span t-field="o.writeoff_label"/>
+                                </td>
+                                <td/>
+                                <td/>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr>
+                            <td>
+                                บัญชี / A/C : <span t-field="o.journal_id"/>
+                            </td>
+                            <td>
+                                Payment Ref : <span t-field="o.payment_ref"/>
+                            </td>
+                            <td>
+                                Date :
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount"/>
+                            </td>
+                        </tr>
+                    </tfoot>
+                </table>
+                <div class="row">
+                    <div class="col-3">
+                        <strong>
+                            จำนวนเงิน <br/>
+                            The sum of baht
+                        </strong>
+                    </div>
+                    <div class="col-9">
+                        <p class="line_dot"><span t-esc="o.amount_text(o.amount)"/></p>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3">
+                        <strong>
+                            หมายเหตุ <br/>
+                            Note
+                        </strong>
+                    </div>
+                    <div class="col-9">
+                        <span t-field="o.notes"></span>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-2">
+                        <strong>
+                            ลายเซ็นผู้อนุมัติ <br/>
+                            Authorized
+                        </strong>
+                    </div>
+                    <div class="col-2">
+                        <p class="line_dot pt32"></p>
+                    </div>
+                    <div class="col-2 margin_left">
+                        <strong>
+                            ผู้จ่ายเงิน <br/>
+                            Paid by
+                        </strong>
+                    </div>
+                    <div class="col-2">
+                        <p class="line_dot pt32"></p>
+                    </div>
+                    <div class="col-2">
+                        <strong>
+                            ผู้รับเงิน <br/>
+                            Received by
+                        </strong>
+                    </div>
+                    <div class="col-2">
+                        <p class="line_dot pt32"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
