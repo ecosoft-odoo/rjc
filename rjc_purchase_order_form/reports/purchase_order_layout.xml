@@ -4,6 +4,7 @@
             <link rel="stylesheet" type="text/scss" href="/rjc_purchase_order_form/static/scss/style_report.scss"/>
         </xpath>
     </template>
+
     <template id="rjc_purchase_order_layout_report">
         <div class="header">
             <div class="row">

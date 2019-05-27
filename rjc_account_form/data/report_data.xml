@@ -1,6 +1,4 @@
-
 <odoo>
-  <data>
     <report string="Invoice"
             id="rjc_invoice_pdf_report"
             model="account.invoice"
@@ -24,5 +22,4 @@
             report_type="qweb-pdf"
             print_report_name="'TAX - [%s]' % object.display_name"
             paperformat="rjc_account_form.paperformat_rjc_tax_invoice"/>
-  </data>
 </odoo>
