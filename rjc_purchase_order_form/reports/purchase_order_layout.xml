@@ -4,7 +4,12 @@
             <div class="row">
                 <div class="col-4">
                     <h4 t-field="o.partner_id.company_id.name"/>
-                    <span t-field="o.company_id.partner_id" t-options='{"widget": "contact", "fields": ["address"], "no_marker": true}'/>
+                    <span t-field="o.partner_id.street"/>
+                    <span t-field="o.partner_id.street2"/>
+                    <span t-field="o.partner_id.city"/>
+                    <span t-field="o.partner_id.state_id.name"/>
+                    <span t-field="o.partner_id.country_id.name"/>
+                    <span t-field="o.partner_id.zip"/><br/>
                 </div>
                 <div class="col-4 text-center">
                     <h4>
@@ -91,7 +96,7 @@
                     </div>
                     <div class="col-6">
                         <t t-set="amount_before_discount" t-value="o.amount_before_discount()"/>
-                        <t t-set="amount_discount" t-value="o.amount_total - amount_before_discount"/>
+                        <t t-set="amount_discount" t-value="o.amount_untaxed - amount_before_discount"/>
                         <table class="table table-sm">
                             <tr class="border-black">
                                 <td>
