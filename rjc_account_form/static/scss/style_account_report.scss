@@ -45,22 +45,8 @@
         }
         .horizontal_dotted_line {
           display: flex;
-          border-right: 1px solid black;
-          border-left: 1px solid black;
           padding: 5px;
-          &:after {
-            content: attr(data-content);
-             border-bottom: 1px dotted black;
-          }
+          border: 1px solid black;
         }
-        // .horizontal_dotted_line:after {
-        //   border-bottom: 1px dotted black;
-        //   content: '';
-        //   flex: 1;
-        // }
-
-        // .line_dot {
-        //     border-bottom:1px dotted #000;
-        // }
     }
 }

@@ -194,25 +194,32 @@
                         </tfoot>
                     </table>
                 </t>
-                <!-- <table class="table table-sm">
-                    <tbody>
-                        <tr>
-                            <td>Approved By</td>
-                            <td class="horizontal_dotted_line"/>
-                            <td>Account By</td>
-                            <td class="horizontal_dotted_line"/>
-                            <td>Booked By</td>
-                            <td class="horizontal_dotted_line"/>
-                            <td>Received By</td>
-                            <td class="horizontal_dotted_line"/>
-                        </tr>
-                    </tbody>
-                </table> -->
                 <div class="row">
-                    <div class="col-3">
-                        <div class="horizontal_dotted_line">
-                            Approved By
-                        </div>
+                    <div class="col-3 horizontal_dotted_line">
+                        Approved By
+                    </div>
+                    <div class="col-3 horizontal_dotted_line">
+                        Account By
+                    </div>
+                    <div class="col-3 horizontal_dotted_line">
+                        Booked By
+                    </div>
+                    <div class="col-3 horizontal_dotted_line">
+                        Received By
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-3 horizontal_dotted_line">
+                        Date
+                    </div>
+                    <div class="col-3 horizontal_dotted_line">
+                        Date
+                    </div>
+                    <div class="col-3 horizontal_dotted_line">
+                        Date
+                    </div>
+                    <div class="col-3 horizontal_dotted_line">
+                        Date
                     </div>
                 </div>
             </div>
