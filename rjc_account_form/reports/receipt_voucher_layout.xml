@@ -1,0 +1,221 @@
+<odoo>
+    <template id="rjc_payment_receipt_layout_report">
+        <div class="header">
+            <div class="row">
+                <div class="col-3">
+                    <span t-field="o.company_id.name"/>
+                </div>
+                <div class="col-6 text-center">
+                    <strong>RECEIPT VOUCHER</strong>
+                </div>
+                <div class="col-3">
+                    <span t-field="o.name"/><br/>
+                    <span>Status :<span t-field="o.state"/></span>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-9">
+                    <span>Customer Name :<span class="o.partner_id.name"/></span>
+                </div>
+                <div class="col-3">
+                    <span>RV Date : <span t-field="o.payment_date"/></span>
+                </div>
+            </div>
+        </div>
+        <div class="article payment">
+            <div class="payment_receipt_form">
+                <table class="table table-sm">
+                    <thead>
+                        <tr class="text-center">
+                            <th>#</th>
+                            <th>Date</th>
+                            <th>Invoice No.</th>
+                            <th>ยอดเต็ม</th>
+                            <th>ยอดสุทธิ</th>
+                            <th>ชำระแล้ว</th>
+                            <th>ชำระครั้งนี้</th>
+                            <th>ยอดค้างชำระ</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <t t-set="invoice_payment_total" t-value="0"/>
+                        <t t-foreach="o.reconciled_invoice_ids" t-as="line">
+                            <t t-set="payment_widget" t-value="line._get_payments_vals()"/>
+                            <t t-set="payment_widget" t-value="line._get_payments_amount(payment_widget, o.id)"/>
+                            <t t-set="invoice_payment_total" t-value="invoice_payment_total + payment_widget.get('amount')"/>
+                            <tr>
+                                <td>
+                                    <span>1</span>
+                                </td>
+                                <td>
+                                    <span t-field="line.date_invoice"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.number_preprint"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.amount_total"/>
+                                </td>
+                                <td/>
+                                <td/>
+                                <td class="text-right">
+                                    <span t-esc="payment_widget.get('amount')" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.residual"/>
+                                </td>
+                            </tr>
+                        </t>
+                    </tbody>
+                    <tfoot>
+                        <tr class="border-black">
+                            <td/><td/><td/><td/><td/>
+                            <td class="text-right">
+                                รวม
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="invoice_payment_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                            <td/>
+                        </tr>
+                        <tr>
+                            <td/><td/><td/><td/><td/>
+                            <td class="text-right">
+                                ส่วนลดจ่าย
+                            </td>
+                            <td class="text-right">
+                            </td>
+                            <td/>
+                        </tr>
+                        <tr>
+                            <td/><td/><td/><td/><td/>
+                            <td class="text-right">
+                                ยอดรับชำระสุทธิ
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount"/>
+                            </td>
+                            <td/>
+                        </tr>
+                    </tfoot>
+                </table>
+                <t t-set="payment_intransit" t-value="o._get_payment_intransit()"/>
+                <t t-set="check_amount" t-value="0"/>
+                <t t-set="cash_amount" t-value="0"/>
+                <t t-set="transfer_amount" t-value="0"/>
+                <t t-if="payment_intransit">
+                    <table class="table table-sm">
+                        <thead>
+                            <tr class="text-center">
+                                <th>Bank/Branch Bank Account</th>
+                                <th>Type</th>
+                                <th>Check No.</th>
+                                <th>Due Date</th>
+                                <th>Amount</th>
+                                <th>Payin Date</th>
+                                <th>Bank/Branch</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <t t-foreach="payment_intransit" t-as="line">
+                                <t t-if="line.receipt_type == 'check'">
+                                    <t t-set="check_amount" t-value="check_amount + line.allocation"/>
+                                </t>
+                                <t t-elif="line.receipt_type == 'cash'">
+                                    <t t-set="cash_amount" t-value="cash_amount + line.allocation"/>
+                                </t>
+                                <t t-else="">
+                                    <t t-set="transfer_amount" t-value="transfer_amount + line.allocation"/>
+                                </t>
+                                <tr>
+                                    <td>
+                                        <span t-field="line.intransit_id.bank_journal_id"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.receipt_type"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.check_number"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.due_date_payment"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-field="line.allocation" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <!-- TODO : Waiting feedback -->
+                                    <td/>
+                                    <td/>
+                                </tr>
+                            </t>
+                        </tbody>
+                        <tfoot>
+                            <t t-set="total_amount" t-value="check_amount + cash_amount + transfer_amount"/>
+                            <tr class="border-black">
+                                <td/><td/><td/><td/>
+                                <td class="text-right">
+                                    รวมเช็ค
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="check_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td/><td/><td/><td/>
+                                <td class="text-right">
+                                    รวมเงินสด
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="cash_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td/><td/><td/><td/>
+                                <td class="text-right">
+                                    รวมเงินโอน
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="transfer_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td/><td/><td/><td/>
+                                <td class="text-right">
+                                    รวมทั้งหมด
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="total_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                                <td/>
+                            </tr>
+                        </tfoot>
+                    </table>
+                </t>
+                <!-- <table class="table table-sm">
+                    <tbody>
+                        <tr>
+                            <td>Approved By</td>
+                            <td class="horizontal_dotted_line"/>
+                            <td>Account By</td>
+                            <td class="horizontal_dotted_line"/>
+                            <td>Booked By</td>
+                            <td class="horizontal_dotted_line"/>
+                            <td>Received By</td>
+                            <td class="horizontal_dotted_line"/>
+                        </tr>
+                    </tbody>
+                </table> -->
+                <div class="row">
+                    <div class="col-3">
+                        <div class="horizontal_dotted_line">
+                            Approved By
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </template>
+</odoo>
