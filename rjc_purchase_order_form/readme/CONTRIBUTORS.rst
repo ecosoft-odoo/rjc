@@ -1,1 +1,2 @@
-* Jirawat Aree <jirawata@ecosoft.co.th> (http://ecosoft.co.th)
+* Jirawat Aree <jirawata@ecosoft.co.th>
+* Saran Lim. <saranl@ecosoft.co.th>

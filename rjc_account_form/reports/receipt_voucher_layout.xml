@@ -15,7 +15,7 @@
             </div>
             <div class="row">
                 <div class="col-9">
-                    <span>Customer Name :<span class="o.partner_id.name"/></span>
+                    <span>Customer Name :<span t-field="o.partner_id.name"/></span>
                 </div>
                 <div class="col-3">
                     <span>RV Date : <span t-field="o.payment_date"/></span>
@@ -143,8 +143,10 @@
                                     <td class="text-right">
                                         <span t-field="line.allocation" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                     </td>
+                                    <td>
+                                        <span t-field="line.date_payment"/>
+                                    </td>
                                     <!-- TODO : Waiting feedback -->
-                                    <td/>
                                     <td/>
                                 </tr>
                             </t>

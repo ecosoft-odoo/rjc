@@ -3,7 +3,7 @@
         <div class="header">
             <div class="row">
                 <div class="col-6">
-                    <span t-field="o.company_id.name"/>
+                    <h4 t-field="o.company_id.name"/>
                 </div>
                 <div class="col-6 text-right">
                     <span>
