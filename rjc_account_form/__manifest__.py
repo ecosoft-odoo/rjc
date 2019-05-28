@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 {
-    'name': 'RJC account report and preprint',
+    'name': 'RJC Account Report',
     'version': '12.0.1.0.0',
     'author': 'Ecosoft',
     'license': 'AGPL-3',
@@ -11,7 +11,7 @@
     'depends': [
         'web',
         'account',
-                ],
+    ],
     'data': [
         'data/paper_format.xml',
         'data/paper_format_tax_invoice.xml',

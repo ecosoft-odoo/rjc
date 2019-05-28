@@ -8,7 +8,7 @@
             print_report_name="'Preprint - [%s]' % object.display_name"
             paperformat="rjc_account_form.paperformat_rjc_invoice"/>
 
-    <report string="Invoice Credit Notes"
+    <report string="Credit Note"
             id="rjc_invoice_credit_note_pdf_report"
             model="account.invoice"
             name="rjc_account_form.rjc_invoice_credit_note_pdf"
