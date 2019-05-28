@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 {
-    'name': 'RJC Purchase Order form',
+    'name': 'RJC Purchase Order Form',
     'version': '12.0.1.0.0',
     'author': 'Ecosoft',
     'license': 'AGPL-3',
@@ -14,9 +14,10 @@
         'web',
     ],
     'data': [
-        'reports/purchase_order_layout.xml',
-        'data/report_data.xml',
         'data/paper_format.xml',
+        'data/report_data.xml',
+        'reports/account_style.xml',
+        'reports/purchase_order_layout.xml',
     ],
     'installable': True,
 }
