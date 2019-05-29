@@ -1,6 +1,14 @@
 @font-face {
     font-family: 'Lato';
 }
+.horizontal_dotted_line {
+  display: flex;
+  padding: 5px;
+}
+.horizontal_dotted_line::after {
+    content: attr(data-content);
+    // border-bottom: 1px dotted black !important;
+}
 // style invoice preprint
 .invoice_preprint_form {
     body {
@@ -27,9 +35,6 @@
         .line_dot {
             border-bottom:1px dotted #000;
         }
-        .margin_left {
-            padding-left: 50px;
-        }
     }
     // style payment receipt
     .payment_receipt_form {
@@ -42,11 +47,6 @@
                     border-top: 1px solid black !important;
                 }
             }
-        }
-        .horizontal_dotted_line {
-          display: flex;
-          padding: 5px;
-          border: 1px solid black;
         }
     }
 }

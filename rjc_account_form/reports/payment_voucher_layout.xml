@@ -116,32 +116,23 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-2">
-                        <strong>
+                    <div class="col-4 horizontal_dotted_line" data-content="....................................">
+                        <strong class="mr32">
                             ลายเซ็นผู้อนุมัติ <br/>
                             Authorized
                         </strong>
                     </div>
-                    <div class="col-2">
-                        <p class="line_dot pt32"></p>
-                    </div>
-                    <div class="col-2 margin_left">
-                        <strong>
+                    <div class="col-4 horizontal_dotted_line" data-content="............................................">
+                        <strong class="mr8">
                             ผู้จ่ายเงิน <br/>
                             Paid by
                         </strong>
                     </div>
-                    <div class="col-2">
-                        <p class="line_dot pt32"></p>
-                    </div>
-                    <div class="col-2">
+                    <div class="col-4 horizontal_dotted_line" data-content="...........................................">
                         <strong>
                             ผู้รับเงิน <br/>
                             Received by
                         </strong>
-                    </div>
-                    <div class="col-2">
-                        <p class="line_dot pt32"></p>
                     </div>
                 </div>
             </div>

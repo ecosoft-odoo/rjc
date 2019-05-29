@@ -2,28 +2,29 @@
     <template id="rjc_payment_receipt_layout_report">
         <div class="header">
             <div class="row">
-                <div class="col-3">
-                    <span t-field="o.company_id.name"/>
+                <div class="col-4">
+                    <h4 t-field="o.company_id.name"/>
                 </div>
-                <div class="col-6 text-center">
-                    <strong>RECEIPT VOUCHER</strong>
+                <div class="col-4 text-center">
+                    <h4>RECEIPT VOUCHER</h4>
                 </div>
+                <div class="col-1"/>
                 <div class="col-3">
                     <span t-field="o.name"/><br/>
                     <span>Status :<span t-field="o.state"/></span>
                 </div>
             </div>
-            <div class="row">
-                <div class="col-9">
-                    <span>Customer Name :<span t-field="o.partner_id.name"/></span>
-                </div>
-                <div class="col-3">
-                    <span>RV Date : <span t-field="o.payment_date"/></span>
-                </div>
-            </div>
         </div>
         <div class="article payment">
             <div class="payment_receipt_form">
+                <div class="row">
+                    <div class="col-9">
+                        <span>Customer Name : <span t-field="o.partner_id.name"/></span>
+                    </div>
+                    <div class="col-3">
+                        <span>RV Date : <span t-field="o.payment_date"/></span>
+                    </div>
+                </div>
                 <table class="table table-sm">
                     <thead>
                         <tr class="text-center">
@@ -197,30 +198,30 @@
                     </table>
                 </t>
                 <div class="row">
-                    <div class="col-3 horizontal_dotted_line">
+                    <div class="col-3 horizontal_dotted_line" data-content=".........................">
                         Approved By
                     </div>
-                    <div class="col-3 horizontal_dotted_line">
+                    <div class="col-3 horizontal_dotted_line" data-content="...........................">
                         Account By
                     </div>
-                    <div class="col-3 horizontal_dotted_line">
+                    <div class="col-3 horizontal_dotted_line" data-content="............................">
                         Booked By
                     </div>
-                    <div class="col-3 horizontal_dotted_line">
+                    <div class="col-3 horizontal_dotted_line" data-content=".........................">
                         Received By
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 horizontal_dotted_line">
+                    <div class="col-3 horizontal_dotted_line" data-content="......................................">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line">
+                    <div class="col-3 horizontal_dotted_line" data-content="......................................">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line">
+                    <div class="col-3 horizontal_dotted_line" data-content="......................................">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line">
+                    <div class="col-3 horizontal_dotted_line" data-content="......................................">
                         Date
                     </div>
                 </div>
