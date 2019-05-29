@@ -11,5 +11,6 @@ class AccountInvoice(models.Model):
         string='Billing',
         copy=False,
         index=True,
+        readonly=True,
         help="Relationship between invoice and billing"
     )
