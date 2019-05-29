@@ -1,14 +1,6 @@
 @font-face {
     font-family: 'Lato';
 }
-.horizontal_dotted_line {
-  display: flex;
-  padding: 5px;
-}
-.horizontal_dotted_line::after {
-    content: attr(data-content);
-    // border-bottom: 1px dotted black !important;
-}
 // style invoice preprint
 .invoice_preprint_form {
     body {
@@ -24,6 +16,14 @@
 
 // style payment
 .payment {
+    .horizontal_dotted_line {
+      display: flex;
+      padding: 5px;
+    }
+    .horizontal_dotted_line::after {
+        content: attr(data-content);
+        // border-bottom: 1px dotted black !important;
+    }
     body {
         font-size: 22px;
     }

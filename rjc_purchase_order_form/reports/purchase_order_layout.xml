@@ -167,21 +167,12 @@
                             <strong>กรุณาลงลายมือชื่อและโทรสารกลับเพื่อยืนยันการได้รับ</strong><br/>
                             <strong>Please sign and send it back</strong>
                         </p>
-                        <table class="col-12 table-sm">
-                            <tr>
-                                <td>
-                                    <strong>ลงชื่อ Name</strong>
-                                </td>
-                            </tr>
-                            <tr class="border-black">
-                                <td>
-                                    <strong>วันที่ Date</strong>
-                                </td>
-                            </tr>
-                            <tr class="border-black">
-                                <td></td>
-                            </tr>
-                        </table>
+                        <div class="horizontal_dotted_line" data-content="__________________________________________">
+                            ลงชื่อ Name
+                        </div>
+                        <div class="horizontal_dotted_line" data-content="____________________________________________">
+                            วันที่ Date
+                        </div>
                     </div>
                     <div class="col-3 pt64">
                         <table class="col-12 table-sm">
@@ -191,12 +182,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <strong>วันที่ Date</strong>
+                                <td class="horizontal_dotted_line" data-content="______________">
+                                    วันที่ Date
                                 </td>
-                            </tr>
-                            <tr class="border-black">
-                                <td/>
                             </tr>
                         </table>
                     </div>
@@ -208,12 +196,9 @@
                                 </td>
                             </tr>
                             <tr>
-                                <td>
-                                    <strong>วันที่ Date</strong>
+                                <td class="horizontal_dotted_line" data-content="______________">
+                                    วันที่ Date
                                 </td>
-                            </tr>
-                            <tr class="border-black">
-                                <td/>
                             </tr>
                         </table>
                     </div>

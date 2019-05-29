@@ -1,5 +1,5 @@
 <odoo>
-    <report string="Purchase Order RJC"
+    <report string="Purchase Order"
             id="rjc_purchase_order_pdf_report"
             model="purchase.order"
             name="rjc_purchase_order_form.rjc_purchase_order_pdf"
