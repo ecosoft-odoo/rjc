@@ -16,7 +16,7 @@
     'data': [
         'data/paper_format.xml',
         'data/report_data.xml',
-        'reports/account_style.xml',
+        'reports/purchase_style.xml',
         'reports/purchase_order_layout.xml',
     ],
     'installable': True,

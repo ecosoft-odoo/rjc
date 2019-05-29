@@ -30,7 +30,7 @@ class AccountInvoice(models.Model):
 
     @api.multi
     def remove_menu_print(self, res, reports):
-        # Remove reports if its not Customer
+        # Remove reports menu
         for report in reports:
             reports = self.env.ref(report, raise_if_not_found=False)
             for rec in res.get('toolbar', {}).get('print', []):
@@ -66,12 +66,12 @@ class AccountInvoice(models.Model):
             # del menu report customer and vendor
             self.remove_menu_print(res, hide_reports_base)
             # del menu report vendor
-            if type not in ['out_invoice', 'out_refund']:
+            if type and type not in ['out_invoice', 'out_refund']:
                 self.remove_menu_print(res, hide_reports_vendor)
             # del menu report customer invoice
-            if type != 'out_refund':
+            if type and type != 'out_refund':
                 self.remove_menu_print(res, hide_reports_customer_invoice)
             # del menu report customer refund
-            if type != 'out_invoice':
+            if type and type != 'out_invoice':
                 self.remove_menu_print(res, hide_reports_customer_refund)
         return res

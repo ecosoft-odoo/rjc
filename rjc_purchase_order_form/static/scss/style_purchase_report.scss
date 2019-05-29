@@ -1,5 +1,13 @@
 // style purchase order
 .purchase_order_form {
+    .horizontal_dotted_line {
+      display: flex;
+      padding: 5px;
+    }
+    .horizontal_dotted_line::after {
+        content: attr(data-content);
+        // border-bottom: 1px dotted black !important;
+    }
     body {
         font-size: 16px;
     }
