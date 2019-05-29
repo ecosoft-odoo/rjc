@@ -12,9 +12,10 @@
     'depends': ['account'],
     'data': [
         'data/account_billing_sequence.xml',
+        'data/account_invoice.xml',
         'security/ir.model.access.csv',
         'views/account_billing.xml',
-        'views/account_invoice.xml',
+        'views/account_invoice_view.xml',
         'report/report_billing.xml',
         'report/report.xml',
         ],
