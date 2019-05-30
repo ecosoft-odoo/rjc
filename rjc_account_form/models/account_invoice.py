@@ -23,10 +23,28 @@ class AccountInvoice(models.Model):
         return amount_total
 
     @api.multi
-    def _get_payments_amount(self, payments_widget, payment_id):
-        for inv in payments_widget:
-            if inv.get('account_payment_id') == payment_id:
-                return inv
+    def _get_payments_widget(self, payments_widget, payment_id, value, type):
+        if value == 'net_amount':
+            net_amount = [x.get('amount') for x in payments_widget
+                          if x.get('account_payment_id') < payment_id]
+            if self.type == type:
+                return self.amount_total - sum(net_amount)
+            else:
+                return -(self.amount_total - sum(net_amount))
+        if value == 'paid':
+            payment_paid = [x.get('amount') for x in payments_widget
+                            if x.get('account_payment_id') < payment_id]
+            if self.type == type:
+                return sum(payment_paid)
+            else:
+                return -sum(payment_paid)
+        if value == 'amount':
+            payment_amount = [x.get('amount') for x in payments_widget
+                              if x.get('account_payment_id') == payment_id]
+            if self.type == type:
+                return sum(payment_amount)
+            else:
+                return -sum(payment_amount)
 
     @api.multi
     def remove_menu_print(self, res, reports):

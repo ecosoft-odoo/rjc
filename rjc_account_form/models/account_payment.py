@@ -27,6 +27,12 @@ class account_payment(models.Model):
                 return payment_intransit
 
     @api.multi
+    def _get_payment_amount_multi_diff(self):
+        multi_deduc = self.env['account.payment.deduction'].search([
+            ('payment_id', '=', self.id)])
+        return multi_deduc
+
+    @api.multi
     def remove_menu_print(self, res, reports):
         # Remove reports menu
         for report in reports:

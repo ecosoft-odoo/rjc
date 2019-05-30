@@ -48,7 +48,12 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <t t-foreach="o.invoice_ids" t-as="line">
+                        <t t-set="total_payment" t-value="0"/>
+                        <t t-foreach="o.reconciled_invoice_ids" t-as="line">
+                            <t t-set="type" t-value="'in_invoice'"/>
+                            <t t-set="payment_widget" t-value="line._get_payments_vals()"/>
+                            <t t-set="payment_amount" t-value="line._get_payments_widget(payment_widget, o.id, 'amount', type)"/>
+                            <t t-set="total_payment" t-value="total_payment + payment_amount"/>
                             <tr>
                                 <td>
                                     <span t-field="line.reference"/>
@@ -60,19 +65,37 @@
                                     <span t-field="line.date_invoice"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-field="line.amount_total"/>
+                                    <span t-esc="payment_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                 </td>
                             </tr>
                         </t>
                         <!-- TODO : find payment difference -->
-                        <t t-if="o.payment_difference_handling != 'open'">
+                        <t t-if="o.payment_difference_handling == 'reconcile_multi_deduct'">
+                            <t t-set="payment_multi_diff" t-value="o._get_payment_amount_multi_diff()"/>
+                            <t t-foreach="payment_multi_diff" t-as="diff_line">
+                                <tr>
+                                    <td/>
+                                    <td class="text-right">
+                                        <t t-esc="diff_line.name"/>
+                                    </td>
+                                    <td/>
+                                    <td class="text-right">
+                                        <t t-esc="diff_line.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                </tr>
+                            </t>
+                        </t>
+                        <t t-if="o.payment_difference_handling == 'reconcile'">
+                            <t t-set="payment_diff" t-value="total_payment - o.amount"/>
                             <tr>
                                 <td/>
                                 <td class="text-right">
                                     <span t-field="o.writeoff_label"/>
                                 </td>
                                 <td/>
-                                <td/>
+                                <td class="text-right">
+                                    <t t-esc="payment_diff" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
                             </tr>
                         </t>
                     </tbody>
