@@ -4,9 +4,31 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
-            <xpath expr="//field[@name='payment_term_id']" position="after">
+            <xpath expr="/form/sheet/group/group[1]" position="inside">
                 <field name="number_preprint"/>
             </xpath>
+        </field>
+    </record>
+
+    <record id="invoice_tree_inherit" model="ir.ui.view">
+        <field name="name">account.invoice.tree.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.invoice_tree"/>
+        <field name="arch" type="xml">
+            <field name="number" position="after">
+                <field name="number_preprint"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="view_account_invoice_filter" model="ir.ui.view">
+        <field name="name">account.invoice.select.inherit</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account.view_account_invoice_filter"/>
+        <field name="arch" type="xml">
+            <field name="number" position="after">
+                <field name="number_preprint" string="Preprint Number"/>
+            </field>
         </field>
     </record>
 </odoo>
