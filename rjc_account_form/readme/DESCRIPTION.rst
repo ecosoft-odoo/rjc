@@ -1,1 +1,1 @@
-This module create new form and preprint of account invoice.
+This module create new form in account.
