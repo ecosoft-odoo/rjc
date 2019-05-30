@@ -5,7 +5,7 @@
         <field name="inherit_id" ref="account.invoice_form"/>
         <field name="arch" type="xml">
             <xpath expr="/form/sheet/group/group[1]" position="inside">
-                <field name="billing_id"/>
+                <field name="billing_id" attrs="{'invisible': [('billing_id', '=', False)]}"/>
             </xpath>
         </field>
     </record>
