@@ -98,16 +98,18 @@ class AccountBilling(models.Model):
         res = super(AccountBilling, self).fields_view_get(
             view_id=view_id, view_type=view_type,
             toolbar=toolbar, submenu=submenu)
-        invoices = self.env['account.invoice'].browse(
-            self._context.get('active_ids', []))
-        billing = invoices.mapped('billing_id')
-        if any(inv.state != 'open' for inv in invoices):
-            raise ValidationError(_('The billing cannot be processed '
-                                    'because the invoice is not open!'))
-        if billing:
-            raise ValidationError(_(
-                'Invoice: %s, already billed!') % ', '.join(
-                invoices.filtered(lambda l: l.billing_id).mapped('number')))
+        if res and view_type in ['tree', 'form']:
+            invoices = self.env['account.invoice'].browse(
+                self._context.get('active_ids', []))
+            billing = invoices.mapped('billing_id')
+            if any(inv.state != 'open' for inv in invoices):
+                raise ValidationError(_('The billing cannot be processed '
+                                        'because the invoice is not open!'))
+            if billing:
+                raise ValidationError(_(
+                    'Invoice: %s, already billed!') % ', '.join(
+                    invoices.filtered(lambda l: l.billing_id).mapped('number')
+                    ))
         return res
 
     @api.onchange('bill_type')
