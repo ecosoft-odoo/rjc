@@ -25,6 +25,7 @@ class AccountAbstractPayment(models.AbstractModel):
         ar = any(set(['out_invoice', 'out_refund']).intersection(types))
         if ap and ar:  # Both AP and AR -> Netting
             rec.update({'netting': True,
+                        'multi': False,  # With netting, allow edit amount
                         'communication': ', '.join(invoices.mapped('number')),
                         })
         return rec
