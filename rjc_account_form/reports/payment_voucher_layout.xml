@@ -69,7 +69,6 @@
                                 </td>
                             </tr>
                         </t>
-                        <!-- TODO : find payment difference -->
                         <t t-if="o.payment_difference_handling == 'reconcile_multi_deduct'">
                             <t t-set="payment_multi_diff" t-value="o._get_payment_amount_multi_diff()"/>
                             <t t-foreach="payment_multi_diff" t-as="diff_line">
@@ -86,7 +85,7 @@
                             </t>
                         </t>
                         <t t-if="o.payment_difference_handling == 'reconcile'">
-                            <t t-set="payment_diff" t-value="total_payment - o.amount"/>
+                            <t t-set="payment_diff" t-value="o._get_payment_amount_diff()"/>
                             <tr>
                                 <td/>
                                 <td class="text-right">

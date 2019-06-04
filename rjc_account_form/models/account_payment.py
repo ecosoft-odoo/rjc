@@ -56,3 +56,15 @@ class account_payment(models.Model):
             # del menu report customer and vendor
             self.remove_menu_print(res, hide_reports_base)
         return res
+
+    @api.multi
+    def _get_total_payment(self):
+        total = 0.0
+        for rec in self.invoice_ids:
+            total += rec.amount_total
+        return total
+
+    def _get_payment_amount_diff(self):
+        for pay in self.filtered(lambda p: p.invoice_ids):
+            payment_difference = pay.amount - pay._get_total_payment()
+        return payment_difference
