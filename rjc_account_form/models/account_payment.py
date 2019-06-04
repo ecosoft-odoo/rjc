@@ -61,4 +61,5 @@ class account_payment(models.Model):
         move_line_id = self.env['account.move.line'].search([
             ('account_id', '=', self.writeoff_account_id.id),
             ('payment_id', '=', self.id)])
-        return move_line_id.balance
+        balance = move_line_id.balance * -1
+        return balance
