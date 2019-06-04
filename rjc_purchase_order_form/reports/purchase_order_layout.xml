@@ -38,19 +38,19 @@
                     <strong>Fax:</strong>
                     <span t-field="o.partner_id.fax"/><br/>
                 </div>
-                <div class="col-3">
+                <div class="col-4">
                     <strong>เลขที่เอกสาร Doc No. :</strong><br/>
                     <strong>วันที่ Date :</strong><br/>
                     <strong>วันส่งสินค้า Delivery Date :</strong><br/>
                     <strong>เลขที่อ้างอิง Reference :</strong><br/>
-                    <strong>กำหนดชำระเงิน Payment Term :</strong>
+                    <strong>กำหนดชำระเงิน Payment Term : </strong><br/>
+                    <span t-field="o.payment_term_id.name"/>
                 </div>
-                <div class="col-3">
+                <div class="col-2">
                     <span t-field="o.name"/><br/>
                     <span t-esc="o.date_order" t-options='{"widget": "date"}'/><br/>
                     <span t-esc="o.date_planned" t-options='{"widget": "date"}'/><br/>
                     <span t-field="o.partner_ref"/><br/>
-                    <span t-field="o.payment_term_id.name"/>
                 </div>
             </div>
             <table class="table table-sm">

@@ -3,7 +3,7 @@
 
 {
     'name': 'RJC Purchase Order Form',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.0.1',
     'author': 'Ecosoft',
     'license': 'AGPL-3',
     'website': 'https://github.com/ecosoft-odoo/rjc',
