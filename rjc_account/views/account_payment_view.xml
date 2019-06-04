@@ -18,11 +18,21 @@
         <field name="model">account.payment</field>
         <field name="inherit_id" ref="account.view_account_payment_invoice_form"/>
         <field name="arch" type="xml">
-            <xpath expr="/form/sheet/group" position="inside">
-                <group>
-                    <field name="payment_ref"/>
-                    <field name="notes"/>
-                </group>
+            <xpath expr="/form/sheet/group/group[1]" position="inside">
+                <field name="payment_ref"/>
+                <field name="notes"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="view_account_payment_from_invoices" model="ir.ui.view">
+        <field name="name">view.account.payment.from.invoices</field>
+        <field name="model">account.register.payments</field>
+        <field name="inherit_id" ref="account.view_account_payment_from_invoices"/>
+        <field name="arch" type="xml">
+            <xpath expr="/form/group/group[1]" position="inside">
+                <field name="payment_ref"/>
+                <field name="notes"/>
             </xpath>
         </field>
     </record>
