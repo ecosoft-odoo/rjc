@@ -48,8 +48,8 @@
                             <t t-set="net_amount" t-value="line._get_payments_widget(payment_widget, o.id, 'net_amount', type)"/>
                             <t t-set="payment_paid" t-value="line._get_payments_widget(payment_widget, o.id, 'paid', type)"/>
                             <t t-set="payment_amount" t-value="line._get_payments_widget(payment_widget, o.id, 'amount', type)"/>
-                            <t t-set="payment_balance" t-value="net_amount - payment_amount"/>
-                            <t t-set="invoice_payment_total" t-value="invoice_payment_total + payment_amount"/>
+                            <t t-set="payment_balance" t-value="float('%.2f' % net_amount) - float('%.2f' % payment_amount)"/>
+                            <t t-set="invoice_payment_total" t-value="float('%.2f' % invoice_payment_total) - float('%.2f' % payment_amount)"/>
                             <tr>
                                 <td>
                                     <span t-esc="column"/>
@@ -110,7 +110,7 @@
                             </t>
                         </t>
                         <t t-if="o.payment_difference_handling == 'reconcile'">
-                            <t t-set="payment_diff" t-value="invoice_payment_total - o.amount"/>
+                            <t t-set="payment_diff" t-value="o._get_payment_amount_diff()"/>
                             <tr>
                                 <td/><td/><td/><td/><td/>
                                 <td class="text-right">
