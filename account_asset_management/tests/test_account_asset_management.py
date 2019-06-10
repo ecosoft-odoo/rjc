@@ -90,6 +90,26 @@ class TestAssetManagement(SavepointCase):
             'journal_id': cls.journal.id,
             'invoice_line_ids': [(4, cls.invoice_line.id)]})
 
+        cls.invoice_line_2 = cls.account_invoice_line.create({
+            'name': 'test 2',
+            'account_id': cls.account_payable.id,
+            'price_unit': 10000.00,
+            'quantity': 1,
+            'product_id': cls.product.id})
+        cls.invoice_line_3 = cls.account_invoice_line.create({
+            'name': 'test 3',
+            'account_id': cls.account_payable.id,
+            'price_unit': 20000.00,
+            'quantity': 1,
+            'product_id': cls.product.id})
+
+        cls.invoice_2 = cls.account_invoice.create({
+            'partner_id': cls.partner.id,
+            'account_id': cls.account_recv.id,
+            'journal_id': cls.journal.id,
+            'invoice_line_ids': [(4, cls.invoice_line_2.id),
+                                 (4, cls.invoice_line_3.id)]})
+
     def test_01_nonprorata_basic(self):
         """Basic tests of depreciation board computations and postings."""
         #
@@ -467,3 +487,68 @@ class TestAssetManagement(SavepointCase):
             # I check that the new asset has the correct purchase value
             self.assertAlmostEqual(
                 asset.purchase_value, -line.price_unit, places=2)
+
+    def test_11_assets_from_invoice(self):
+        all_assets = self.env['account.asset'].search([])
+        invoice = self.invoice_2
+        asset_profile = self.env.ref(
+            'account_asset_management.account_asset_profile_car_5Y')
+        asset_profile.asset_product_item = True
+        # Compute depreciation lines on invoice validation
+        asset_profile.open_asset = True
+
+        self.assertTrue(len(invoice.invoice_line_ids) == 2)
+        invoice.invoice_line_ids.write({
+            'quantity': 1,
+            'asset_profile_id': asset_profile.id,
+        })
+        invoice.action_invoice_open()
+        # Retrieve all assets after invoice validation
+        current_assets = self.env['account.asset'].search([])
+        # What are the new assets?
+        new_assets = current_assets - all_assets
+        self.assertEqual(len(new_assets), 2)
+
+        for asset in new_assets:
+            dlines = asset.depreciation_line_ids.filtered(
+                lambda l: l.type == 'depreciate')
+            dlines = dlines.sorted(key=lambda l: l.line_date)
+            self.assertAlmostEqual(dlines[0].depreciated_value, 0.0)
+            self.assertAlmostEqual(dlines[-1].remaining_value, 0.0)
+
+    def test_12_prorata_days_calc(self):
+        """Prorata temporis depreciation with days calc option."""
+        asset_id = self.asset_model.create(self.cr, self.uid, {
+            'name': 'test asset',
+            'profile_id': self.ref('account_asset_management.'
+                                   'account_asset_profile_car_5Y'),
+            'purchase_value': 3333,
+            'salvage_value': 0,
+            'date_start': time.strftime('%Y-07-07'),
+            'method_time': 'year',
+            'method_number': 5,
+            'method_period': 'month',
+            'prorata': True,
+            'days_calc': True,
+        })
+        asset = self.asset_model.browse(self.cr, self.uid, asset_id)
+        self.asset_model.compute_depreciation_board(
+            self.cr, self.uid, [asset.id])
+        asset.refresh()
+        day_rate = 0.0
+        if calendar.isleap(date.today().year):
+            day_rate = 1.82  # 3333 / 1827 depreciation days
+        else:
+            day_rate = 1.83  # 3333 / 1826 depreciation days
+
+        for i in range(1, 10):
+            self.assertAlmostEqual(
+                asset.depreciation_line_ids[i].amount,
+                asset.depreciation_line_ids[i].line_days * day_rate, places=2)
+
+        if calendar.isleap(date.today().year):  # Last depreciation remaining
+            self.assertAlmostEqual(
+                asset.depreciation_line_ids[-1].amount, 18.78, places=2)
+        else:
+            self.assertAlmostEqual(
+                asset.depreciation_line_ids[-1].amount, 2.4, places=2)

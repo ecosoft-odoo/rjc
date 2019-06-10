@@ -43,6 +43,10 @@ class AccountAssetLine(models.Model):
         string='Amount Already Depreciated',
         store=True)
     line_date = fields.Date(string='Date', required=True)
+    line_days = fields.Integer(
+        string='Days',
+        readonly=True,
+    )
     move_id = fields.Many2one(
         comodel_name='account.move',
         string='Depreciation Entry', readonly=True)
@@ -72,19 +76,26 @@ class AccountAssetLine(models.Model):
         dlines = dlines.filtered(lambda l: l.type == 'depreciate')
         dlines = dlines.sorted(key=lambda l: l.line_date)
 
-        for i, dl in enumerate(dlines):
-            if i == 0:
-                depreciation_base = dl.depreciation_base
-                depreciated_value = dl.previous_id \
-                    and (depreciation_base - dl.previous_id.remaining_value) \
-                    or 0.0
-                remaining_value = \
-                    depreciation_base - depreciated_value - dl.amount
-            else:
-                depreciated_value += dl.previous_id.amount
-                remaining_value -= dl.amount
-            dl.depreciated_value = depreciated_value
-            dl.remaining_value = remaining_value
+        # Group depreciation lines per asset
+        asset_ids = dlines.mapped('asset_id')
+        grouped_dlines = []
+        for asset in asset_ids:
+            grouped_dlines.append(
+                dlines.filtered(lambda l: l.asset_id.id == asset.id))
+
+        for dlines in grouped_dlines:
+            for i, dl in enumerate(dlines):
+                if i == 0:
+                    depreciation_base = dl.depreciation_base
+                    tmp = depreciation_base - dl.previous_id.remaining_value
+                    depreciated_value = dl.previous_id and tmp or 0.0
+                    remaining_value = \
+                        depreciation_base - depreciated_value - dl.amount
+                else:
+                    depreciated_value += dl.previous_id.amount
+                    remaining_value -= dl.amount
+                dl.depreciated_value = depreciated_value
+                dl.remaining_value = remaining_value
 
     @api.depends('move_id')
     @api.multi
