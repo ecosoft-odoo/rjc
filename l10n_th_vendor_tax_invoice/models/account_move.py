@@ -24,31 +24,26 @@ class AccountMoveLine(models.Model):
 
     invoice_tax_line_id = fields.Many2one(
         comodel_name='account.invoice.tax',
-        string='Invoice Tax Line',
         copy=True,
         ondelete='restrict',
     )
     payment_tax_line_id = fields.Many2one(
         comodel_name='account.payment.tax',
-        string='Payment Tax Line',
         copy=True,
         ondelete='restrict',
     )
     tax_invoice_manual = fields.Char(
-        string='Tax Invoice',
+        string='Tax Invoice Number',
         copy=True,
     )
     tax_invoice = fields.Char(
-        string='Tax Invoice',
         compute='_compute_tax_invoice',
         store=True,
     )
     tax_date_manual = fields.Date(
-        string='Tax Date',
         copy=True,
     )
     tax_date = fields.Char(
-        string='Tax Date',
         compute='_compute_tax_invoice',
         store=True,
     )
@@ -135,3 +130,12 @@ class AccountPartialReconcile(models.Model):
         ctx = {'cash_basis_entry_move_line': move_line,
                'payment': payment}
         return self.with_context(ctx)
+
+    def create_tax_cash_basis_entry(self, percentage_before_rec):
+        res = super(AccountPartialReconcile, self).create_tax_cash_basis_entry(
+            percentage_before_rec)
+        move_line = self.env['account.move.line'].search([
+            ('move_id.tax_cash_basis_rec_id', '=', self.id)]).filtered(
+            lambda l: not l.invoice_tax_line_id)
+        move_line.unlink()
+        return res

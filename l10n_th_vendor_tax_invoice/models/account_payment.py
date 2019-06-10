@@ -103,19 +103,17 @@ class AccountPaymentTax(models.Model):
 
     payment_id = fields.Many2one(
         comodel_name='account.payment',
-        string='Payment',
         index=True,
         readonly=True,
     )
     invoice_tax_line_id = fields.Many2one(
         comodel_name='account.invoice.tax',
-        string='Invoice Tax Line',
     )
     name = fields.Char(
         string='Tax Description',
     )
     tax_invoice_manual = fields.Char(
-        string='Tax Invoice',
+        string='Tax Invoice Number',
         help="Vendor provided tax invoice number",
     )
     tax_date_manual = fields.Date(
@@ -124,7 +122,6 @@ class AccountPaymentTax(models.Model):
     )
     company_currency_id = fields.Many2one(
         comodel_name='res.currency',
-        string='Company Currency',
         default=lambda self: self.env.user.company_id.currency_id,
     )
     move_line_id = fields.Many2one(
