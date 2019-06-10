@@ -77,7 +77,8 @@ class AccountInvoice(models.Model):
                 continue
             to_reconcile = move_line + line_to_netting.filtered(
                 lambda x: x.account_id == move_line.account_id)
-            to_reconcile.filtered(lambda r: not r.reconciled).reconcile()
+            to_reconcile.filtered('account_id.reconcile').\
+                filtered(lambda r: not r.reconciled).reconcile()
         return super().register_payment(
             payment_line.filtered(lambda l: not l.reconciled),
             writeoff_acc_id=writeoff_acc_id,
