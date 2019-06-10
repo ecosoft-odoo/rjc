@@ -73,15 +73,28 @@
                         <td>
                             <span t-field="line.name"/>
                         </td>
-                        <td class="text-center">
-                            <span t-field="line.product_qty"/>
-                        </td>
-                        <td class="text-center">
-                            <span t-field="line.product_uom.name" groups="uom.group_uom"/>
-                        </td>
-                        <td class="text-right">
-                            <span t-field="line.price_unit"/>
-                        </td>
+                        <t t-if="line.secondary_uom_id">
+                            <td class="text-center">
+                                <span t-field="line.secondary_uom_qty"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="line.secondary_uom_id.name"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.secondary_unit_price" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </t>
+                        <t t-if="not line.secondary_uom_id">
+                            <td class="text-center">
+                                <span t-field="line.product_qty"/>
+                            </td>
+                            <td class="text-center">
+                                <span t-field="line.product_uom.name" groups="uom.group_uom"/>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </t>
                         <td class="text-right">
                             <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                         </td>

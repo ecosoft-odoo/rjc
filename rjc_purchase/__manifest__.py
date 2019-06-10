@@ -4,7 +4,7 @@
 {
     'name': 'RJC Purchase',
     'summary': 'Modify field in purchase module',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'category': 'Purchases',
     'website': 'https://github.com/ecosoft-odoo/rjc',
     'author': 'Ecosoft',

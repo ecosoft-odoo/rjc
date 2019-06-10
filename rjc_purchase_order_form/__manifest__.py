@@ -3,13 +3,14 @@
 
 {
     'name': 'RJC Purchase Order Form',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.2',
     'author': 'Ecosoft',
     'license': 'AGPL-3',
     'website': 'https://github.com/ecosoft-odoo/rjc',
     'category': 'Report',
     'depends': [
         'purchase',
+        'purchase_order_secondary_unit',
         'partner_fax',
         'web',
     ],
