@@ -40,10 +40,10 @@
             <div class="payment_voucher_form">
                 <table class="table table-sm">
                     <thead>
-                        <tr class="text-center">
-                            <th/>
+                        <tr class="text-left">
+                            <th>ใบส่งสินค้า / Invoice No.</th>
                             <th>รายการ / Description</th>
-                            <th/>
+                            <th>วันที่ / Date</th>
                             <th>จำนวนเงิน / Amount</th>
                         </tr>
                     </thead>
@@ -104,10 +104,10 @@
                                 บัญชี / A/C : <span t-field="o.journal_id"/>
                             </td>
                             <td>
-                                Payment Ref : <span t-field="o.payment_ref"/>
+                                Payment Ref : <span t-field="o.cheque_no"/>
                             </td>
                             <td>
-                                Date :
+                                Date : <span t-field="o.value_date"/>
                             </td>
                             <td class="text-right">
                                 <span t-field="o.amount"/>
@@ -138,19 +138,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4 horizontal_dotted_line" data-content="....................................">
+                    <div class="col-4 horizontal_dotted_line" data-content="...........................">
                         <strong class="mr32">
                             ลายเซ็นผู้อนุมัติ <br/>
                             Authorized
                         </strong>
                     </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="............................................">
+                    <div class="col-4 horizontal_dotted_line" data-content="....................................">
                         <strong class="mr8">
                             ผู้จ่ายเงิน <br/>
                             Paid by
                         </strong>
                     </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="...........................................">
+                    <div class="col-4 horizontal_dotted_line" data-content="....................................">
                         <strong>
                             ผู้รับเงิน <br/>
                             Received by

@@ -29,7 +29,16 @@
     }
     // style payment voucher
     .payment_voucher_form {
+        thead {
+            background-color: whitesmoke;
+        }
         tfoot {
+            tr td {
+                border-top: none;
+            }
+            tr .border-black td {
+                border-top: 1px solid black !important;
+            }
             background-color: whitesmoke;
         }
         .line_dot {
