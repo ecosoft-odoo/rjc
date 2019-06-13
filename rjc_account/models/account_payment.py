@@ -16,8 +16,7 @@ class AccountPayment(models.Model):
         readonly=True,
         )
     cheque_no = fields.Char(
-        string='Cheque No.',
-        readonly=False,
+        string='Cheque No.'
     )
     validate_by = fields.Many2one(
         comodel_name='res.users',
