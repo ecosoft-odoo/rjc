@@ -43,13 +43,22 @@ class AccountPayment(models.Model):
             ('id', 'in', move_line.mapped('intransit_id').ids)]})
         return result
 
+    @api.constrains('payment_intransit_line_ids')
+    def _check_sum_allocation(self):
+        for rec in self:
+            allocation = sum(
+                rec.payment_intransit_line_ids.mapped('allocation'))
+            if allocation != rec.amount:
+                raise ValidationError(_(
+                    'Amount Total not equal Payment amount'))
+
     @api.depends('payment_intransit_line_ids.allocation')
     def _compute_amount_intransit_line_total(self):
         self.amount_intransit_line_total = \
             sum(self.payment_intransit_line_ids.mapped('allocation'))
         if self.amount_intransit_line_total > self.amount:
             raise ValidationError(_(
-                'Can not payment balance allocation more than %s'
+                'Balance allocation must less than %s'
             ) % self.amount)
         return True
 
