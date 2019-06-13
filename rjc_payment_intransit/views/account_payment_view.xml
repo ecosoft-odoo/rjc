@@ -1,0 +1,39 @@
+<odoo>
+    <record id="view_account_payment_form_inherit_intransit" model="ir.ui.view">
+        <field name="name">account.payment.form.inherit.view.intransit</field>
+        <field name="model">account.payment</field>
+        <field name="inherit_id" ref="account.view_account_payment_form"/>
+        <field name="arch" type="xml">
+            <button name="post" position="after">
+                <button name="action_payment_intransit" class="oe_highlight" string="Create Payment Intransit" type="object"
+                    attrs="{'invisible':['|', ('has_intransit','!=',False), ('state', '!=', 'posted')]}"/>
+            </button>
+            <xpath expr="/form/sheet//div[@name='button_box']" position="inside">
+                <button class="oe_stat_button" name="payment_intransit_tree_view"
+                        string="Payment Intransit" type="object"
+                        groups="account.group_account_user"
+                        attrs="{'invisible':[('has_intransit','=',False)]}" icon="fa-bars"/>
+                <field name="has_intransit" invisible="1"/>
+            </xpath>
+            <xpath expr="/form/sheet" position="inside">
+                <notebook name="payment_intransit">
+                    <page string="Payment Intransit" name="payment_intransit_line">
+                        <field name="payment_intransit_line_ids" context="{'payment_id': id}">
+                            <tree editable="bottom">
+                                <field name="move_line_id" invisible="1"/>
+                                <field name="bank_branch"/>
+                                <field name="receipt_type"/>
+                                <field name="check_number"/>
+                                <field name="due_date"/>
+                                <field name="allocation"/>
+                            </tree>
+                        </field>
+                        <group class="oe_subtotal_footer oe_right">
+                            <field name="amount_intransit_line_total"/>
+                        </group>
+                    </page>
+                </notebook>
+            </xpath>
+        </field>
+    </record>
+</odoo>
