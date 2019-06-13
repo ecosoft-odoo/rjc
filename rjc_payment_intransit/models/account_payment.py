@@ -58,8 +58,8 @@ class AccountPayment(models.Model):
         for rec in self:
             if not rec.payment_intransit_line_ids:
                 raise ValidationError(_('Line empty!'))
-            for line in self.payment_intransit_line_ids:
-                intransit = self.env['account.payment.intransit'].create({
+            for line in rec.payment_intransit_line_ids:
+                intransit = rec.env['account.payment.intransit'].create({
                     'partner_id': rec.partner_id.id,
                     'receipt_date': rec.payment_date,
                     'journal_id': rec.journal_id.id,
