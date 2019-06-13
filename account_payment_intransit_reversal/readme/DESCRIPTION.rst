@@ -4,6 +4,4 @@ This will help preserved the accounting history, which is strictly required by s
 
 Following are documented provide this feature,
 
-- Invoice (account.invoice)
-- Payment (acccont.payment)
-- Bank Statement (account.bank.statement.line)
+- Payment Intransit (account.payment.intransit)

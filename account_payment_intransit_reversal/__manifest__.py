@@ -8,17 +8,16 @@
     'author': 'Ecosoft,'
               'Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/account-financial-tools',
-    'category': 'Accounting & Finance',
+    'category': 'Accounting',
     'depends': [
         'account',
         'account_document_reversal',
+        'account_payment_intransit',
     ],
-    'data': [
-        'wizard/reverse_account_document_wizard.xml',
-    ],
+    'data': [],
     'license': 'AGPL-3',
     'installable': True,
     'application': False,
-    'development_status': 'beta',
-    'maintainers': ['kittiu'],
+    'development_status': 'alpha',
+    'maintainers': ['Saran440'],
 }
