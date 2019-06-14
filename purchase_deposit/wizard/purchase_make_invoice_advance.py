@@ -45,6 +45,16 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         help="Taxes used for deposits",
     )
 
+    @api.model
+    def view_init(self, fields):
+        active_id = self._context.get('active_id')
+        purchase = self.env['purchase.order'].browse(active_id)
+        if purchase.state != 'purchase':
+            raise UserError(
+                _('This action is allowed only in Purchase Order sate'))
+        return super().view_init(fields)
+
+
     @api.onchange('purchase_deposit_product_id')
     def _onchagne_purchase_deposit_product_id(self):
         product = self.purchase_deposit_product_id
@@ -102,7 +112,6 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                 'account_id': account_id,
                 'price_unit': amount,
                 'quantity': 1.0,
-                'discount': 0.0,
                 'uom_id': product.uom_id.id,
                 'product_id': product.id,
                 'purchase_line_id': po_line.id,
@@ -132,12 +141,15 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
         product = self.purchase_deposit_product_id
         if not product:
             vals = self._prepare_deposit_product()
-            product = self.env['product.product'].create(vals)
+            product = self.purchase_deposit_product_id = \
+                self.env['product.product'].create(vals)
             IrDefault.set('purchase.advance.payment.inv',
                           'purchase_deposit_product_id', product.id)
         PurchaseLine = self.env['purchase.order.line']
         for order in purchases:
             amount = self.amount
+            if self.advance_payment_method == 'percentage':  # Case percent
+                amount = self.amount/100 * order.amount_untaxed
             if product.purchase_method != 'purchase':
                 raise UserError(
                     _('The product used to invoice a down payment should have '
@@ -162,7 +174,6 @@ class PurchaseAdvancePaymentInv(models.TransientModel):
                 'price_unit': amount,
                 'product_qty': 0.0,
                 'order_id': order.id,
-                'discount': 0.0,
                 'product_uom': product.uom_id.id,
                 'product_id': product.id,
                 'taxes_id': [(6, 0, tax_ids)],

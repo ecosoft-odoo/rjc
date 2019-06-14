@@ -135,13 +135,13 @@ class TestAccountPaymentIntransit(SavepointCase):
             'partner_id': self.partner_agrolait.id,
             'journal_id': self.journal_account.id,
             'bank_journal_id': self.bank_journal.id,
-            'receipt_date': time.strftime('%Y-%m-%d'),
+            'intransit_date': time.strftime('%Y-%m-%d'),
             'currency_id': curr_id or self.main_company.currency_id.id,
         })
         for move_line in move_lines:
             self.payment_intransit_line_model.create({
                 'move_line_id': move_line.id,
-                'receipt_type': 'cash',
+                'payment_intransit_type': 'cash',
                 'allocation': allocation or 10,
                 'intransit_id': payment_intransit.id
             })

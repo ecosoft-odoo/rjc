@@ -133,13 +133,13 @@ class TestPaymentIntransitReversal(SavepointCase):
             'partner_id': self.partner_agrolait.id,
             'journal_id': self.journal_account.id,
             'bank_journal_id': self.bank_journal.id,
-            'receipt_date': time.strftime('%Y-%m-%d'),
+            'intransit_date': time.strftime('%Y-%m-%d'),
             'currency_id': curr_id or self.main_company.currency_id.id,
         })
         for move_line in move_lines:
             self.payment_intransit_line_model.create({
                 'move_line_id': move_line.id,
-                'receipt_type': 'cash',
+                'payment_intransit_type': 'cash',
                 'allocation': allocation or 10,
                 'intransit_id': payment_intransit.id
             })
@@ -181,7 +181,7 @@ class TestPaymentIntransitReversal(SavepointCase):
         except Exception:
             # delete payment difference
             total_amount = \
-                sum(payment_intransit.receipt_line_ids.mapped('allocation'))
+                sum(payment_intransit.payment_line_ids.mapped('allocation'))
             payment_intransit.write({'manual_total_amount': total_amount})
             payment_intransit.validate_payment_intransit()
         # Click Cancel will open reverse document wizard
