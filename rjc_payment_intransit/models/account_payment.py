@@ -25,11 +25,14 @@ class AccountPayment(models.Model):
     @api.depends('payment_intransit_line_ids.intransit_id')
     def _compute_count_payment_intransit_ids(self):
         for record in self:
-            intransit_id = \
-                record.payment_intransit_line_ids.mapped('intransit_id')
-            if intransit_id:
-                record.has_intransit = \
-                    bool(intransit_id.filtered(lambda l: l.state != 'cancel'))
+            intransit_id = record.payment_intransit_line_ids.mapped(
+                'intransit_id').filtered(lambda l: l.state != 'cancel')
+            payment_id = record.env['account.payment.intransit.line'].search([
+                ('move_line_id.payment_id', '=', record.id),
+                ('intransit_id', '!=', False),
+                ('intransit_id.state', '!=', 'cancel')])
+            if intransit_id or payment_id:
+                record.has_intransit = True
 
     @api.multi
     def payment_intransit_tree_view(self):
@@ -70,7 +73,7 @@ class AccountPayment(models.Model):
             for line in rec.payment_intransit_line_ids:
                 intransit = rec.env['account.payment.intransit'].create({
                     'partner_id': rec.partner_id.id,
-                    'receipt_date': rec.payment_date,
+                    'payment_date': rec.payment_date,
                     'journal_id': rec.journal_id.id,
                     'currency_id': rec.currency_id.id,
                     'total_amount': line.allocation,

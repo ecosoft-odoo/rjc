@@ -30,7 +30,7 @@
                     <group name="main">
                         <group name="left">
                             <field name="partner_id"/>
-                            <field name="receipt_date"/>
+                            <field name="intransit_date"/>
                             <field name="journal_id"
                                    widget="selection"/>
                             <field name="journal_default_account_id"
@@ -51,26 +51,26 @@
                     </group>
                     <notebook colspan="4">
                         <page string="Bank Intransit" name="bank_intransit">
-                            <field name="receipt_line_ids" nolabel="1"
+                            <field name="intransit_line_ids" nolabel="1"
                                 context="{'currency': currency_id,
                                           'journal_id': journal_id,
                                           'partner_id': partner_id,
                                           'account_id': journal_default_account_id}">
                                 <tree editable="bottom">
-                                    <field name="move_line_id" string="Journal Entry"
+                                    <field name="move_line_id" string="Payment Number"
                                         domain="[('reconciled', '=', False),
                                                  ('debit', '>', 0),
                                                  ('partner_id', '=', context.get('partner_id')),
                                                  ('account_id', '=', context.get('account_id')),
                                                  ('journal_id', '=', context.get('journal_id'))]" />
                                     <field name="date_payment"/>
-                                    <field name="due_date_payment"/>
                                     <field name="ref_payment"/>
                                     <field name="amount_payment"/>
                                     <field name="amount_residual"/>
                                     <field name="currency_id" readonly="True"
                                            groups="base.group_multi_currency"/>
-                                    <field name="receipt_type"/>
+                                    <field name="payment_intransit_type"/>
+                                    <field name="bank_branch"/>
                                     <field name="check_number"/>
                                     <field name="allocation"/>
                                     <field name="full_reconcile_id"/>
@@ -89,12 +89,11 @@
         <field name="arch" type="xml">
             <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
                 <field name="name"/>
-                <field name="receipt_date"/>
+                <field name="intransit_date"/>
                 <field name="journal_id"/>
                 <field name="bank_journal_id"/>
                 <field name="total_amount"/>
                 <field name="currency_id" groups="base.group_multi_currency"/>
-                <field name="is_reconcile"/>
                 <field name="company_id" groups="base.group_multi_company"/>
                 <field name="state"/>
             </tree>
@@ -113,7 +112,7 @@
                         domain="[('state', '=', 'done')]"/>
                 <group string="Group By" name="groupby">
                     <filter name="date_groupby" string="Bank Transit Date"
-                            context="{'group_by': 'receipt_date'}"/>
+                            context="{'group_by': 'intransit_date'}"/>
                     <filter name="journal_groupby" string="Journal"
                             context="{'group_by': 'journal_id'}"/>
                     <filter name="currency_groupby" string="Currency"

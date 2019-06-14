@@ -6,7 +6,7 @@
         <field name="arch" type="xml">
             <button name="post" position="after">
                 <button name="action_payment_intransit" class="oe_highlight" string="Create Payment Intransit" type="object"
-                    attrs="{'invisible':['|', ('has_intransit','!=',False), ('state', '!=', 'posted')]}"/>
+                    attrs="{'invisible':['|', ('has_intransit','!=',False), ('state', 'not in', ('posted', 'reconciled'))]}"/>
             </button>
             <xpath expr="/form/sheet//div[@name='button_box']" position="inside">
                 <button class="oe_stat_button" name="payment_intransit_tree_view"
@@ -18,14 +18,14 @@
             <xpath expr="/form/sheet" position="inside">
                 <notebook name="payment_intransit">
                     <page string="Payment Intransit" name="payment_intransit_line">
-                        <field name="payment_intransit_line_ids" context="{'payment_id': id}">
+                        <field name="payment_intransit_line_ids" context="{'payment_id': id}" attrs="{'readonly': [('has_intransit', '!=', False)]}">
                             <tree editable="bottom">
                                 <field name="move_line_id" invisible="1"/>
                                 <field name="bank_branch"/>
-                                <field name="receipt_type"/>
+                                <field name="payment_intransit_type"/>
                                 <field name="check_number"/>
-                                <field name="due_date"/>
                                 <field name="allocation"/>
+                                <field name="full_reconcile_id"/>
                             </tree>
                         </field>
                         <group class="oe_subtotal_footer oe_right">
