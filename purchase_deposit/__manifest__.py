@@ -6,7 +6,7 @@
     'name': 'Purchase Deposit',
     'version': '12.0.0.0.0',
     'summary': 'Option to create deposit from purchase order',
-    'author': 'Elico Corp, Odoo Community Association (OCA)',
+    'author': 'Elico Corp, Ecosoft, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/purchase-workflow',
     'category': 'Purchase Management',
     'license': 'AGPL-3',
