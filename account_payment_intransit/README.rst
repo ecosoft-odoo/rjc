@@ -11,22 +11,24 @@ Account Payment Intransit
     :target: http://www.gnu.org/licenses/agpl-3.0-standalone.html
     :alt: License: AGPL-3
 .. |badge2| image:: https://img.shields.io/badge/github-OCA%2Faccount--financial--tools-lightgray.png?logo=github
-    :target: https://github.com/OCA/account-financial-tools/tree/12.0-add-account_payment_intransit/account_payment_intransit
+    :target: https://github.com/OCA/account-financial-tools/tree/12.0/account_payment_intransit
     :alt: OCA/account-financial-tools
 .. |badge3| image:: https://img.shields.io/badge/weblate-Translate%20me-F47D42.png
-    :target: https://translation.odoo-community.org/projects/account-financial-tools-12-0-add-account_payment_intransit/account-financial-tools-12-0-add-account_payment_intransit-account_payment_intransit
+    :target: https://translation.odoo-community.org/projects/account-financial-tools-12-0/account-financial-tools-12-0-account_payment_intransit
     :alt: Translate me on Weblate
 .. |badge4| image:: https://img.shields.io/badge/runbot-Try%20me-875A7B.png
-    :target: https://runbot.odoo-community.org/runbot/92/12.0-add-account_payment_intransit
+    :target: https://runbot.odoo-community.org/runbot/92/12.0
     :alt: Try me on Runbot
 
 |badge1| |badge2| |badge3| |badge4| 
 
 This module allows you to manage payment in-transit and supports multi-currency.
+Sometimes customer already payment by check or transfer but this used time process
+before received. So should be record details payment in payment in-transit
 
 i.e. You received check on the 1st and check dated on 5th.
-So you can create record in payment in-transit for manage you deposit and
-validate when you received bank deposit
+So you can create record detail in payment in-transit for manage you deposit and
+validate when you received bank deposit.
 
 **Table of contents**
 
@@ -57,13 +59,10 @@ Used auto post Journal Entry when create payment in-transit
 Usage
 =====
 
-When you receive a check, cash or transfer that pays a customer invoice,
-
 go to the menu *Invoicing > Accounting > Payment Intransit*,
 create a new payment in-transit and set the journal *Bank Intransit*
-and select the bank account on which you want to receive.
-Then click on *Add a line* to select the payment,
-type of payment and allocation to in-transit.
+and select the bank account on which you want to received.
+Then click on *Add a line* to select the payment and details,
 Eventually, validate the deposit.
 
 Bug Tracker
@@ -72,7 +71,7 @@ Bug Tracker
 Bugs are tracked on `GitHub Issues <https://github.com/OCA/account-financial-tools/issues>`_.
 In case of trouble, please check there if your issue has already been reported.
 If you spotted it first, help us smashing it by providing a detailed and welcomed
-`feedback <https://github.com/OCA/account-financial-tools/issues/new?body=module:%20account_payment_intransit%0Aversion:%2012.0-add-account_payment_intransit%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
+`feedback <https://github.com/OCA/account-financial-tools/issues/new?body=module:%20account_payment_intransit%0Aversion:%2012.0%0A%0A**Steps%20to%20reproduce**%0A-%20...%0A%0A**Current%20behavior**%0A%0A**Expected%20behavior**>`_.
 
 Do not contact contributors directly about support or help with technical issues.
 
@@ -116,6 +115,6 @@ Current `maintainer <https://odoo-community.org/page/maintainer-role>`__:
 
 |maintainer-Saran440| 
 
-This module is part of the `OCA/account-financial-tools <https://github.com/OCA/account-financial-tools/tree/12.0-add-account_payment_intransit/account_payment_intransit>`_ project on GitHub.
+This module is part of the `OCA/account-financial-tools <https://github.com/OCA/account-financial-tools/tree/12.0/account_payment_intransit>`_ project on GitHub.
 
 You are welcome to contribute. To learn how please visit https://odoo-community.org/page/Contribute.

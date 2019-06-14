@@ -16,17 +16,14 @@ class AccountPaymentIntransitLine(models.Model):
     _inherit = 'account.payment.intransit.line'
 
     due_date = fields.Date()
-    bank_branch = fields.Char(
-        string='Bank/Branch',
-    )
     payment_id = fields.Many2one(
         comodel_name='account.payment',
         string='Payment Reference',
         copy=False,
     )
 
-    @api.onchange('receipt_type')
-    def onchange_receipt_type(self):
+    @api.onchange('payment_intransit_type')
+    def onchange_payment_intransit_type(self):
         payment_id = self._context.get('payment_id', False)
         if payment_id:
             self.move_line_id = self.env['account.move.line'].search([

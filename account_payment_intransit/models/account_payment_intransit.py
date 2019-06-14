@@ -9,7 +9,7 @@ from odoo.exceptions import ValidationError, UserError
 class AccountPaymentIntransit(models.Model):
     _name = 'account.payment.intransit'
     _description = 'Account Payment Intransit'
-    _order = 'receipt_date, id desc'
+    _order = 'intransit_date, id desc'
 
     name = fields.Char(
         size=64,
@@ -17,7 +17,8 @@ class AccountPaymentIntransit(models.Model):
         readonly=True,
         copy=False,
     )
-    receipt_date = fields.Date(
+    intransit_date = fields.Date(
+        string='Date',
         required=True,
         states={'done': [('readonly', '=', True)]},
         default=fields.Date.context_today,
@@ -78,54 +79,41 @@ class AccountPaymentIntransit(models.Model):
         store=True,
         digits=dp.get_precision('Product Price'),
     )
-    is_reconcile = fields.Boolean(
-        string='Reconcile',
-        compute='_compute_payment_intransit',
-        readonly=True,
-        store=True,
-    )
     partner_id = fields.Many2one(
         comodel_name='res.partner',
         domain="[('customer', '=', True)]",
         required=True,
         states={'done': [('readonly', True)]},
     )
-    receipt_line_ids = fields.One2many(
+    intransit_line_ids = fields.One2many(
         comodel_name='account.payment.intransit.line',
         inverse_name='intransit_id',
         states={'done': [('readonly', True)]},
     )
 
-    @api.depends('company_id', 'currency_id', 'receipt_line_ids')
+    @api.depends('company_id', 'currency_id', 'intransit_line_ids')
     def _compute_payment_intransit(self):
         for bank_transit in self:
-            reconcile = False
             currency_none_same_company_id = False
             if bank_transit.company_id.currency_id != bank_transit.currency_id:
                 currency_none_same_company_id = bank_transit.currency_id.id
-            if bank_transit.move_id:
-                for line in bank_transit.move_id.line_ids:
-                    if line.debit > 0 and line.reconciled:
-                        reconcile = True
-            total = sum(bank_transit.receipt_line_ids.mapped('allocation'))
+            total = sum(bank_transit.intransit_line_ids.mapped('allocation'))
             bank_transit.total_amount = total
-            bank_transit.is_reconcile = reconcile
             bank_transit.currency_none_same_company_id =\
                 currency_none_same_company_id
 
-    @api.constrains('receipt_line_ids')
+    @api.constrains('intransit_line_ids')
     def _check_allocation(self):
         for rec in self:
-            payments = rec.receipt_line_ids.mapped('move_line_id')
-            for payment in payments:
-                allocation = sum(rec.receipt_line_ids.filtered(
-                    lambda l: l.move_line_id.id == payment.id
-                    ).mapped('allocation'))
-                residual = payment.amount_residual
+            move_line = rec.intransit_line_ids.mapped('move_line_id')
+            for ml in move_line:
+                allocation = sum(rec.intransit_line_ids.filtered(
+                    lambda l: l.move_line_id.id == ml.id).mapped('allocation'))
+                residual = ml.amount_residual
                 if allocation > residual:
                     raise ValidationError(_(
-                        '%s has sum Allocation > Residual'
-                        ) % (payment.move_id.name))
+                        '%s has sum allocation more than residual'
+                        ) % (ml.payment_id.name))
 
     def unlink(self):
         for rec in self:
@@ -154,7 +142,7 @@ class AccountPaymentIntransit(models.Model):
     def create(self, vals):
         if vals.get('name', '/') == '/':
             vals['name'] = self.env['ir.sequence'].\
-                with_context(ir_sequence_date=vals.get('receipt_date')).\
+                with_context(ir_sequence_date=vals.get('intransit_date')).\
                 next_by_code('account.payment.intransit')
         return super(AccountPaymentIntransit, self).create(vals)
 
@@ -168,7 +156,7 @@ class AccountPaymentIntransit(models.Model):
             journal_id = bank_transit.journal_id.id
         move_vals = {
             'journal_id': journal_id,
-            'date': bank_transit.receipt_date,
+            'date': bank_transit.intransit_date,
             'ref': _('Payment Intransit %s') % bank_transit.name,
         }
         return move_vals
@@ -247,7 +235,7 @@ class AccountPaymentIntransit(models.Model):
         am_obj = self.env['account.move']
         move_line_obj = self.env['account.move.line']
         for bank_transit in self:
-            if not bank_transit.receipt_line_ids:
+            if not bank_transit.intransit_line_ids:
                 raise ValidationError(_('No lines!'))
             move_vals = self._prepare_account_move_vals(bank_transit)
             move = am_obj.create(move_vals)
@@ -260,7 +248,7 @@ class AccountPaymentIntransit(models.Model):
             if bank_transit.company_id.currency_id != bank_transit.currency_id:
                 rate_currency = self.currency_id._get_conversion_rate(
                     self.company_id.currency_id, self.currency_id,
-                    self.company_id, self.receipt_date)
+                    self.company_id, self.intransit_date)
             # check if rate = 0
             if rate_currency:
                 total_amount = bank_transit.total_amount/rate_currency
@@ -268,7 +256,7 @@ class AccountPaymentIntransit(models.Model):
             else:
                 total_amount = bank_transit.total_amount
 
-            for line in bank_transit.receipt_line_ids:
+            for line in bank_transit.intransit_line_ids:
                 line_vals = self._prepare_move_line_vals(line, rate_currency)
                 line_vals['move_id'] = move.id
                 move_line = move_line_obj.with_context(
@@ -329,10 +317,6 @@ class AccountPaymentIntransitLine(models.Model):
         string='Date',
         related='move_line_id.date',
     )
-    due_date_payment = fields.Date(
-        string='Due Date',
-        related='move_line_id.date_maturity',
-    )
     ref_payment = fields.Char(
         string='Reference',
         related='move_line_id.ref',
@@ -352,7 +336,7 @@ class AccountPaymentIntransitLine(models.Model):
         related='move_line_id.currency_id',
         store=True,
     )
-    receipt_type = fields.Selection([
+    payment_intransit_type = fields.Selection([
         ('cash', 'Cash'),
         ('transfer', 'Transfer'),
         ('check', 'Check')],
@@ -361,6 +345,11 @@ class AccountPaymentIntransitLine(models.Model):
     )
     check_number = fields.Char(
         string='Check No.',
+        help='Record number of check',
+    )
+    bank_branch = fields.Char(
+        string='Bank/Branch',
+        help='Record bank/branch of origin',
     )
     allocation = fields.Monetary(
         string='Allocation',

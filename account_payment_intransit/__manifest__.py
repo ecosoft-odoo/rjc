@@ -6,7 +6,7 @@
     'version': '12.0.1.0.0',
     'category': 'Accounting',
     'license': 'AGPL-3',
-    'summary': 'Manage deposit to the bank',
+    'summary': 'Manage process the payment in-transit',
     'description': 'This module based on account_check_deposit',
     'author': 'Ecosoft, Odoo Community Association (OCA)',
     'website': 'https://github.com/OCA/account-financial-tools',

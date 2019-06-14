@@ -18,7 +18,7 @@ class AccountMoveLine(models.Model):
 
     @api.multi
     def name_get(self):
-        """Return special label when showing fields in Journal Entry"""
+        """Return special label when showing fields in move line"""
         res = []
         for record in self:
             res.append((record.id, "%s" % (record.payment_id.name)))
