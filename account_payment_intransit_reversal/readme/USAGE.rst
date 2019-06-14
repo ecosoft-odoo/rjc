@@ -1,4 +1,4 @@
-After configure document journal to allow cancel with reversal, it is ready to use.
+After configure bank document journal to allow cancel with reversal, it is ready to use.
 
 - Cancel document as normally do, system will show new cancel wizard
 - User can select cancel date and new journal (if different from the document)
