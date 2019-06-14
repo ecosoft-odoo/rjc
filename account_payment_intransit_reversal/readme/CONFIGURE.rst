@@ -1,4 +1,4 @@
-To use document reversal, setup the document's journal as following,
+To use payment intransit reversal, setup the bank journal as following,
 
 - Allow Cancelling = True
 - Cancel method = Reversal (create reversed journal entries)
