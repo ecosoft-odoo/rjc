@@ -18,7 +18,7 @@
             <xpath expr="/form/sheet" position="inside">
                 <notebook name="payment_intransit">
                     <page string="Payment Intransit" name="payment_intransit_line">
-                        <field name="payment_intransit_line_ids" context="{'payment_id': id}" attrs="{'readonly': [('has_intransit', '!=', False)]}">
+                        <field name="payment_intransit_line_ids" context="{'payment_id': id, 'name': name}" attrs="{'readonly': [('has_intransit', '!=', False)]}">
                             <tree editable="bottom">
                                 <field name="move_line_id" invisible="1"/>
                                 <field name="bank_branch"/>
