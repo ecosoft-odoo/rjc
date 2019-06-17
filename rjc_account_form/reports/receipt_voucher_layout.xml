@@ -1,17 +1,34 @@
 <odoo>
     <template id="rjc_payment_receipt_layout_report">
         <div class="header">
+            <div class="print_head">
+                <div class="row">
+                    <div class="col-4 text-left">
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y %H:%M')"/>
+                    </div>
+                    <div class="col-4 text-center">
+                        <span t-field="o.company_id.name"/>
+                    </div>
+                    <div class="col-4 text-right">
+                        <div t-if="report_type == 'pdf'">
+                            <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-4">
-                    <h4 t-field="o.company_id.name"/>
+                    <h4><b><span t-field="o.company_id.name"/></b></h4>
                 </div>
                 <div class="col-4 text-center">
-                    <h4>RECEIPT VOUCHER</h4>
+                    <h4><b>RECEIPT VOUCHER</b></h4>
                 </div>
                 <div class="col-1"/>
                 <div class="col-3">
-                    <span t-field="o.name"/><br/>
-                    <span>Status : <span t-field="o.state"/></span>
+                    <b>
+                        <span t-field="o.name"/><br/>
+                        <span>Status : <span t-field="o.state"/></span>
+                    </b>
                 </div>
             </div>
         </div>
@@ -19,10 +36,10 @@
             <div class="payment_receipt_form">
                 <div class="row">
                     <div class="col-9">
-                        <span>Customer Name : <span t-field="o.partner_id.name"/></span>
+                        <span><b>Customer Name : </b><span t-field="o.partner_id.name"/></span>
                     </div>
                     <div class="col-3">
-                        <span>RV Date : <span t-field="o.payment_date"/></span>
+                        <span><b>RV Date : </b><span t-field="o.payment_date"/></span>
                     </div>
                 </div>
                 <table class="table table-sm">
@@ -142,7 +159,7 @@
                     <table class="table table-sm">
                         <thead>
                             <tr class="text-center">
-                                <th>Bank/Branch Bank Account</th>
+                                <th>Bank/Branch</th>
                                 <th>Type</th>
                                 <th>Check No.</th>
                                 <th>Due Date</th>
@@ -164,7 +181,7 @@
                                 </t>
                                 <tr>
                                     <td>
-                                        <span t-field="line.intransit_id.bank_journal_id"/>
+                                        <span t-field="line.bank_branch"/>
                                     </td>
                                     <td>
                                         <span t-field="line.receipt_type"/>
@@ -173,13 +190,16 @@
                                         <span t-field="line.check_number"/>
                                     </td>
                                     <td>
-                                        <span t-field="line.due_date_payment"/>
+                                        <span t-field="line.due_date"/>
                                     </td>
                                     <td class="text-right">
                                         <span t-field="line.allocation" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                     </td>
                                     <td>
                                         <span t-field="line.date_payment"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="o.journal_id"/>
                                     </td>
                                     <!-- TODO : Waiting feedback -->
                                     <td/>
@@ -246,16 +266,16 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-3 horizontal_dotted_line" data-content="......................................">
+                    <div class="col-3 horizontal_dotted_line" data-content=".....................................">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content="......................................">
+                    <div class="col-3 horizontal_dotted_line" data-content=".....................................">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content="......................................">
+                    <div class="col-3 horizontal_dotted_line" data-content=".....................................">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content="......................................">
+                    <div class="col-3 horizontal_dotted_line" data-content=".....................................">
                         Date
                     </div>
                 </div>
