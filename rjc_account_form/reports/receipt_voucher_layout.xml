@@ -170,10 +170,10 @@
                         </thead>
                         <tbody>
                             <t t-foreach="payment_intransit" t-as="line">
-                                <t t-if="line.receipt_type == 'check'">
+                                <t t-if="line.payment_intransit_type == 'check'">
                                     <t t-set="check_amount" t-value="check_amount + line.allocation"/>
                                 </t>
-                                <t t-elif="line.receipt_type == 'cash'">
+                                <t t-elif="line.payment_intransit_type == 'cash'">
                                     <t t-set="cash_amount" t-value="cash_amount + line.allocation"/>
                                 </t>
                                 <t t-else="">
@@ -184,7 +184,7 @@
                                         <span t-field="line.bank_branch"/>
                                     </td>
                                     <td>
-                                        <span t-field="line.receipt_type"/>
+                                        <span t-field="line.payment_intransit_type"/>
                                     </td>
                                     <td>
                                         <span t-field="line.check_number"/>
