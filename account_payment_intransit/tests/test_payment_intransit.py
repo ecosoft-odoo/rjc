@@ -186,12 +186,15 @@ class TestAccountPaymentIntransit(SavepointCase):
             lambda l: l.reconciled is False and l.debit > 0 and
             l.account_id == self.intransit_account_id)
         payment_intransit = self.create_payment_intransit(check_aml)
+        move_line_name = payment_intransit.intransit_line_ids.move_line_id
+        move_line_name.name_search(move_line_name.name)
         payment_intransit.validate_payment_intransit()
         payment_intransit.move_id.action_post()
         payment_intransit.onchange_company_id()
         payment_intransit.onchange_journal_id()
         payment_intransit.action_intransit_cancel()
         payment_intransit.backtodraft()
+        payment_intransit.unlink()
 
     def test_3_create_diff_currency(self):
         inv_1 = self.create_invoice(
