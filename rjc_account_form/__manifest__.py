@@ -11,6 +11,7 @@
     'depends': [
         'web',
         'account',
+        'l10n_th_withholding_tax_cert_form',
     ],
     'data': [
         'data/paper_format.xml',
@@ -23,6 +24,7 @@
         'reports/voucher_layout.xml',
         'reports/payment_voucher_layout.xml',
         'reports/receipt_voucher_layout.xml',
+        'reports/wht_cert_layout.xml'
     ],
     'installable': True,
 }

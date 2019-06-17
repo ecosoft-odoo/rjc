@@ -45,9 +45,13 @@
             border-bottom:1px dotted #000;
         }
     }
+
     // style payment receipt
     .payment_receipt_form {
         table {
+            thead {
+                background-color: whitesmoke;
+            }
             tfoot {
                 tr td {
                     border-top: none;
@@ -57,5 +61,35 @@
                 }
             }
         }
+    }
+}
+//style wht
+.o_report_withholding_tax_cert{
+    .payment_transaction_name{
+        margin-left: 675px;
+        position: fixed;
+        top: 1412px;
+    }
+    .value_date_day{
+        margin-left: 660px;
+        position: fixed;
+        top: 1435px;
+    }
+    .value_date_month{
+        margin-left: 750px;
+        position: fixed;
+        top: 1435px;
+    }
+    .value_date_year{
+        margin-left: 840px;
+        position: fixed;
+        top: 1435px;
+    }
+}
+//head_receipt_voucher
+.header {
+    .print_head {
+        font-size: 12px;
+        border-bottom: 1px solid black;
     }
 }

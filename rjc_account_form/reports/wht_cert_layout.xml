@@ -1,0 +1,15 @@
+<odoo>
+    <template id="withholding_layout_report" inherit_id="l10n_th_withholding_tax_cert_form.withholding_layout_report">
+        <xpath expr="//div[hasclass('article', 'o_report_withholding_tax_cert')]" position="inside">
+            <div>
+                <p class="payment_transaction_name"><span t-field="o.payment_id.validate_by"/></p>
+                <t t-set="vdate_day" t-value="'%s' %((o.payment_id.value_date).strftime('%d'))"/>
+                <t t-set="vdate_month" t-value="'%s' %((o.payment_id.value_date).strftime('%m'))"/>
+                <t t-set="vdate_year" t-value="'%s' %(str(int((o.payment_id.value_date).strftime('%Y'))+543))"/>
+                <p class="value_date_day"><t t-esc="vdate_day"/></p>
+                <p class="value_date_month"><t t-esc="vdate_month"/></p>
+                <p class="value_date_year"><t t-esc="vdate_year"/></p>
+            </div>
+        </xpath>
+    </template>
+</odoo>
