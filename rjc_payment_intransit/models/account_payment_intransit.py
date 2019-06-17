@@ -25,8 +25,10 @@ class AccountPaymentIntransitLine(models.Model):
     @api.onchange('payment_intransit_type')
     def onchange_payment_intransit_type(self):
         payment_id = self._context.get('payment_id', False)
+        name = self._context.get('name', False)
         if payment_id:
             self.move_line_id = self.env['account.move.line'].search([
                 ('payment_id', '=', payment_id),
                 ('reconciled', '=', False),
-                ('debit', '>', 0)])
+                ('debit', '>', 0),
+                ('name', '=', name)])

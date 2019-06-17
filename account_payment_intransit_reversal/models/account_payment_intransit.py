@@ -14,7 +14,8 @@ class AccountPaymentIntransit(models.Model):
         * Draft Payment Intransit, fall back to standard cancel
         * Non draft to cancel
         """
-        cancel_reversal = all(self.mapped('journal_id.is_cancel_reversal'))
+        cancel_reversal = \
+            all(self.mapped('bank_journal_id.is_cancel_reversal'))
         states = self.mapped('state')
         if cancel_reversal and 'draft' not in states:
             return self.reverse_document_wizard()

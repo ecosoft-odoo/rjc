@@ -6,11 +6,12 @@ from odoo.exceptions import ValidationError, UserError
 import time
 
 
-class TestAccountPaymentIntransit(SavepointCase):
+class TestRJCAccountPaymentIntransit(SavepointCase):
 
     @classmethod
     def setUpClass(self):
         super().setUpClass()
+        # TODO: rjc payment intransit not create test script yet.
         self.invoice_model = self.env['account.invoice']
         self.register_payments_model = self.env['account.register.payments']
         self.payment_model = self.env['account.payment']
