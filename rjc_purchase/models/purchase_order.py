@@ -17,3 +17,9 @@ class PurchaseOrderLine(models.Model):
         for rec in self:
             res.update({'secondary_uom_id': rec.secondary_uom_id})
         return res
+
+    @api.onchange('product_qty', 'secondary_unit_price', 'secondary_uom_qty')
+    def _onchange_price_unit(self):
+        if self.secondary_uom_id:
+            price_per_unit = self.secondary_uom_qty / self.product_qty
+            self.price_unit = price_per_unit * self.secondary_unit_price
