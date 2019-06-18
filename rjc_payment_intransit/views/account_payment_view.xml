@@ -24,8 +24,9 @@
                                 <field name="bank_branch"/>
                                 <field name="payment_intransit_type"/>
                                 <field name="check_number"/>
+                                <field name="due_date"/>
                                 <field name="allocation"/>
-                                <field name="full_reconcile_id"/>
+                                <field name="full_reconcile_id" invisible="1"/>
                             </tree>
                         </field>
                         <group class="oe_subtotal_footer oe_right">

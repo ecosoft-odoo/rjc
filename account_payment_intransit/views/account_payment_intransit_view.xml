@@ -89,6 +89,7 @@
         <field name="arch" type="xml">
             <tree decoration-info="state == 'draft'" decoration-muted="state == 'cancel'">
                 <field name="name"/>
+                <field name="partner_id"/>
                 <field name="intransit_date"/>
                 <field name="journal_id"/>
                 <field name="bank_journal_id"/>
@@ -110,7 +111,15 @@
                         domain="[('state', '=', 'draft')]"/>
                 <filter name="done" string="Done"
                         domain="[('state', '=', 'done')]"/>
+                <filter name="cash" string="Cash"
+                        domain="[('intransit_line_ids.payment_intransit_type', '=', 'cash')]"/>
+                <filter name="transfer" string="Transfer"
+                        domain="[('intransit_line_ids.payment_intransit_type', '=', 'transfer')]"/>
+                <filter name="check" string="Check"
+                        domain="[('intransit_line_ids.payment_intransit_type', '=', 'check')]"/>
                 <group string="Group By" name="groupby">
+                    <filter name="partner_groupby" string="Partner Name"
+                            context="{'group_by': 'partner_id'}"/>
                     <filter name="date_groupby" string="Bank Transit Date"
                             context="{'group_by': 'intransit_date'}"/>
                     <filter name="journal_groupby" string="Journal"
