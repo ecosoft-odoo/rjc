@@ -1,6 +1,21 @@
 <odoo>
     <template id="rjc_payment_voucher_layout_report">
         <div class="header">
+            <div class="print_head">
+                <div class="row">
+                    <div class="col-4 text-left">
+                        <span t-esc="context_timestamp(datetime.datetime.now()).strftime('%d/%m/%Y %H:%M')"/>
+                    </div>
+                    <div class="col-4 text-center">
+                        <span t-field="o.company_id.name"/>
+                    </div>
+                    <div class="col-4 text-right">
+                        <div t-if="report_type == 'pdf'">
+                            <span class="page"/> / <span class="topage"/>
+                        </div>
+                    </div>
+                </div>
+            </div>
             <div class="row">
                 <div class="col-6">
                     <h4 t-field="o.company_id.name"/>

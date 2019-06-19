@@ -49,12 +49,19 @@ class account_payment(models.Model):
         hide_reports_base = [
             'account.action_report_payment_receipt',
         ]
+        hide_reports_vendor = [
+            'rjc_account_form.rjc_receipt_pdf_report',
+        ]
+        type = self._context.get('default_payment_type', False)
         res = super(account_payment, self).fields_view_get(
             view_id=view_id, view_type=view_type,
             toolbar=toolbar, submenu=submenu)
         if res and view_type in ['tree', 'form']:
             # del menu report customer and vendor
             self.remove_menu_print(res, hide_reports_base)
+            # del menu report vendor
+            if type and type not in ['inbound']:
+                self.remove_menu_print(res, hide_reports_vendor)
         return res
 
     def _get_payment_amount_diff(self):

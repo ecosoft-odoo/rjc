@@ -65,31 +65,259 @@
 }
 //style wht
 .o_report_withholding_tax_cert{
-    .payment_transaction_name{
-        margin-left: 675px;
+    font-family: 'THSarabun';
+    font-size: 30px;
+
+    .company_vat {
+        margin-left: 730px;
         position: fixed;
-        top: 1412px;
+        top: 153px;
+    }
+    .company_name {
+        margin-left: 107px;
+        position: fixed;
+        top: 183px;
+        box-sizing: content-box;
+        width: 650px;
+        height: 40px;
+        padding: 1px;
+    }
+    .company_address {
+        margin-left: 113px;
+        position: fixed;
+        top: 228px;
+        box-sizing: content-box;
+        width: 1000px;
+        height: 40px;
+        padding: 1px;
+    }
+    .supplier_vat {
+        margin-left: 730px;
+        position: fixed;
+        top: 285px;
+    }
+    .supplier_name {
+        margin-left: 107px;
+        position: fixed;
+        top: 322px;
+        box-sizing: content-box;
+        width: 650px;
+        height: 40px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .supplier_address {
+        margin-left: 113px;
+        position: fixed;
+        top: 372px;
+        box-sizing: content-box;
+        width: 1000px;
+        height: 40px;
+        padding: 1px;
+    }
+    .sequence_number {
+        margin-left: 150px;
+        position: fixed;
+        top: 430px;
+        box-sizing: content-box;
+        width: 110px;
+        height: 20px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .choice_pnd1a {
+        position: fixed;
+        top: 430px;
+        left: 420px;
+        font-size: 28px;
+    }
+    .choice_pnd3 {
+        position: fixed;
+        top: 426px;
+        right: 217px;
+        font-size: 28px;
+    }
+    .choice_pnd3a {
+        position: fixed;
+        top: 463px;
+        right: 568px;
+        font-size: 28px;
+    }
+    .choice_pnd53 {
+        position: fixed;
+        top: 463px;
+        right: 365px;
+        font-size: 28px;
+    }
+    .type_1_date {
+        position: fixed;
+        top: 555px;
+        right: 381px;
+    }
+    .type_1_base {
+        position: fixed;
+        top: 555px;
+        right: 204px;
+    }
+    .type_1_tax {
+        position: fixed;
+        top: 555px;
+        right: 67px;
+    }
+    .type_2_date {
+        position: fixed;
+        top: 582px;
+        right: 381px;
+    }
+    .type_2_base {
+        position: fixed;
+        top: 582px;
+        right: 204px;
+    }
+    .type_2_tax {
+        position: fixed;
+        top: 582px;
+        right: 67px;
+    }
+    .type_3_date {
+        position: fixed;
+        top: 612px;
+        right: 381px;
+    }
+    .type_3_base {
+        position: fixed;
+        top: 612px;
+        right: 204px;
+    }
+    .type_3_tax {
+        position: fixed;
+        top: 612px;
+        right: 67px;
+    }
+    .type_5_date {
+        position: fixed;
+        top: 1161px;
+        right: 381px;
+    }
+    .type_5_base {
+        position: fixed;
+        top: 1161px;
+        right: 204px;
+    }
+    .type_5_tax {
+        position: fixed;
+        top: 1161px;
+        right: 67px;
+    }
+    .type_6_description {
+        font-size: 27px;
+        position: fixed;
+        box-sizing: content-box;
+        width: 450px;
+        height: 40px;
+        top: 1197px;
+        left: 200px;
+    }
+    .type_6_date {
+        position: fixed;
+        top: 1191px;
+        right: 381px;
+    }
+    .type_6_base {
+        position: fixed;
+        top: 1191px;
+        right: 204px;
+    }
+    .type_6_tax {
+        position: fixed;
+        top: 1191px;
+        right: 67px;
+    }
+    .total_amount {
+        position: fixed;
+        top: 1230px;
+        right: 204px;
+    }
+    .total_tax {
+        position: fixed;
+        top: 1230px;
+        right: 67px;
+    }
+    .text_amount {
+        font-size: 27px;
+        position: fixed;
+        box-sizing: content-box;
+        width: 700px;
+        height: 40px;
+        top: 1269px;
+        right: 80px;
+        text-align: center;
+    }
+    .choich_withholding_tax {
+        position: fixed;
+        top: 1350px;
+        left: 180px;
+        font-size: 23px;
+        font-weight: bold;
+    }
+    .choich_paid_one_time {
+        position: fixed;
+        top: 1350px;
+        right: 577px;
+        font-size: 23px;
+        font-weight: bold;
+    }
+    .box-vat {
+        box-sizing: content-box;
+        width: 21px;
+        height: 23px;
+        text-align: center;
+        margin-bottom: 0px;
+        padding-left: 2px;
+    }
+    .vat_tab {
+        margin-left: 11px;
+    }
+    .payment_transaction_name{
+        font-size: 27px;
+        position: fixed;
+        box-sizing: content-box;
+        width: 270px;
+        height: 40px;
+        top: 1409px;
+        right: 210px;
+        text-align: center;
     }
     .value_date_day{
-        margin-left: 660px;
+        font-size: 27px;
         position: fixed;
-        top: 1435px;
+        top: 1432px;
+        right: 456px;
     }
     .value_date_month{
-        margin-left: 750px;
+        font-size: 27px;
         position: fixed;
-        top: 1435px;
+        box-sizing: content-box;
+        width: 141px;
+        height: 40px;
+        top: 1432px;
+        right: 306px;
+        text-align: center;
     }
     .value_date_year{
-        margin-left: 840px;
+        font-size: 27px;
         position: fixed;
-        top: 1435px;
+        top: 1432px;
+        right: 255px;
     }
+
 }
-//head_receipt_voucher
+// //head_date-company-page
 .header {
     .print_head {
         font-size: 12px;
         border-bottom: 1px solid black;
     }
-}
+ }
