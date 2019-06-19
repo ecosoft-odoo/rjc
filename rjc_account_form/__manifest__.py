@@ -16,6 +16,7 @@
     'data': [
         'data/paper_format.xml',
         'data/paper_format_tax_invoice.xml',
+        'data/paper_format_payment_voucher.xml',
         'data/report_data.xml',
         'reports/account_style.xml',
         'reports/invoice_preprint_layout.xml',
@@ -23,8 +24,9 @@
         'reports/invoice_tax_layout.xml',
         'reports/voucher_layout.xml',
         'reports/payment_voucher_layout.xml',
+        'reports/receipt_layout.xml',
         'reports/receipt_voucher_layout.xml',
-        'reports/wht_cert_layout.xml'
+        'reports/wht_cert_layout.xml',
     ],
     'installable': True,
 }
