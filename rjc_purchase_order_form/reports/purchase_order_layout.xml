@@ -3,13 +3,13 @@
         <div class="header">
             <div class="row">
                 <div class="col-4">
-                    <h4 t-field="o.partner_id.company_id.name"/>
-                    <span t-field="o.partner_id.street"/>
-                    <span t-field="o.partner_id.street2"/>
-                    <span t-field="o.partner_id.city"/>
-                    <span t-field="o.partner_id.state_id.name"/>
-                    <span t-field="o.partner_id.country_id.name"/>
-                    <span t-field="o.partner_id.zip"/><br/>
+                    <h4 t-field="o.company_id.name"/>
+                    <span t-field="o.company_id.street"/>
+                    <span t-field="o.company_id.street2"/>
+                    <span t-field="o.company_id.city"/>
+                    <span t-field="o.company_id.state_id.name"/>
+                    <span t-field="o.company_id.country_id.name"/>
+                    <span t-field="o.company_id.zip"/><br/>
                 </div>
                 <div class="col-4 text-center">
                     <h4>
