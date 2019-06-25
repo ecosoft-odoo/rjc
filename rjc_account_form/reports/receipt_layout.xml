@@ -19,7 +19,6 @@
             <div class="row">
                 <div class="col-4">
                     <h4><b><span t-field="o.company_id.name"/></b></h4>
-                    <span>Phone : <span t-field="o.company_id.phone"/></span>
                 </div>
                 <div class="col-4 text-center">
                     <h4><b>ใบเสร็จรับเงิน/RECEIPT</b></h4>
@@ -32,6 +31,7 @@
                     </b>
                 </div>
             </div>
+            <span>Phone : <span t-field="o.company_id.phone"/></span>
         </div>
         <div class="article payment">
             <div class="payment_receipt_form">
