@@ -1,0 +1,232 @@
+@font-face {
+    font-family: 'Garuda';
+    src: url('../fonts/Garuda.ttf') format('truetype');
+}
+
+//style wht
+.o_report_withholding_tax_cert_inherit{
+    font-size: 21px;
+
+    .company_vat {
+        margin-left: 730px;
+        position: fixed;
+        top: 157px;
+    }
+    .company_name {
+        margin-left: 107px;
+        position: fixed;
+        top: 185px;
+        box-sizing: content-box;
+        width: 650px;
+        height: 40px;
+        padding: 1px;
+    }
+    .company_address {
+        margin-left: 113px;
+        position: fixed;
+        top: 230px;
+        box-sizing: content-box;
+        width: 1000px;
+        height: 40px;
+        padding: 1px;
+    }
+    .supplier_vat {
+        margin-left: 730px;
+        position: fixed;
+        top: 287px;
+    }
+    .supplier_name {
+        margin-left: 107px;
+        position: fixed;
+        top: 324px;
+        box-sizing: content-box;
+        width: 650px;
+        height: 40px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .supplier_address {
+        margin-left: 113px;
+        position: fixed;
+        top: 374px;
+        box-sizing: content-box;
+        width: 1000px;
+        height: 40px;
+        padding: 1px;
+    }
+    .choice_pnd1a {
+        position: fixed;
+        top: 428px;
+        left: 416px;
+        font-size: 28px;
+    }
+    .choice_pnd3 {
+        position: fixed;
+        top: 428px;
+        right: 212px;
+        font-size: 28px;
+    }
+    .choice_pnd3a {
+        position: fixed;
+        top: 463px;
+        right: 565px;
+        font-size: 28px;
+    }
+    .choice_pnd53 {
+        position: fixed;
+        top: 463px;
+        right: 360px;
+        font-size: 28px;
+    }
+    .type_1_date {
+        position: fixed;
+        top: 560px;
+        right: 381px;
+    }
+    .type_1_base {
+        position: fixed;
+        top: 560px;
+        right: 202px;
+    }
+    .type_1_tax {
+        position: fixed;
+        top: 560px;
+        right: 65px;
+    }
+    .type_2_date {
+        position: fixed;
+        top: 587px;
+        right: 381px;
+    }
+    .type_2_base {
+        position: fixed;
+        top: 587px;
+        right: 202px;
+    }
+    .type_2_tax {
+        position: fixed;
+        top: 587px;
+        right: 65px;
+    }
+    .type_3_date {
+        position: fixed;
+        top: 614px;
+        right: 381px;
+    }
+    .type_3_base {
+        position: fixed;
+        top: 614px;
+        right: 202px;
+    }
+    .type_3_tax {
+        position: fixed;
+        top: 614px;
+        right: 65px;
+    }
+    .type_5_date {
+        position: fixed;
+        top: 1161px;
+        right: 381px;
+    }
+    .type_5_base {
+        position: fixed;
+        top: 1161px;
+        right: 202px;
+    }
+    .type_5_tax {
+        position: fixed;
+        top: 1161px;
+        right: 65px;
+    }
+    .type_6_description {
+        position: fixed;
+        box-sizing: content-box;
+        width: 450px;
+        height: 40px;
+        top: 1194px;
+        left: 200px;
+    }
+    .type_6_date {
+        position: fixed;
+        top: 1194px;
+        right: 381px;
+    }
+    .type_6_base {
+        position: fixed;
+        top: 1194px;
+        right: 202px;
+    }
+    .type_6_tax {
+        position: fixed;
+        top: 1193px;
+        right: 65px;
+    }
+    .total_amount {
+        position: fixed;
+        top: 1230px;
+        right: 204px;
+    }
+    .total_tax {
+        position: fixed;
+        top: 1230px;
+        right: 67px;
+    }
+    .text_amount {
+        position: fixed;
+        box-sizing: content-box;
+        width: 700px;
+        height: 40px;
+        top: 1269px;
+        right: 80px;
+        text-align: center;
+    }
+    .choich_withholding_tax {
+        font-size: 28px;
+        position: fixed;
+        top: 1345px;
+        left: 175px;
+    }
+    .choich_paid_one_time {
+        font-size: 28px;
+        position: fixed;
+        top: 1345px;
+        right: 573px;
+    }
+    .box-vat {
+        box-sizing: content-box;
+        width: 21px;
+        height: 23px;
+        text-align: center;
+        margin-bottom: 0px;
+        padding-left: 2px;
+    }
+    .vat_tab {
+        margin-left: 11px;
+    }
+    .payment_transaction_name{
+        position: fixed;
+        box-sizing: content-box;
+        width: 270px;
+        height: 40px;
+        top: 1410px;
+        right: 210px;
+        text-align: center;
+    }
+    .value_date_day{
+        position: fixed;
+        top: 1434px;
+        right: 456px;
+    }
+    .value_date_month{
+        position: fixed;
+        top: 1434px;
+        right: 340px;
+    }
+    .value_date_year{
+        position: fixed;
+        top: 1434px;
+        right: 255px;
+    }
+
+}
