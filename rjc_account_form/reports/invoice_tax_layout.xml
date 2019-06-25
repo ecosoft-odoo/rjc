@@ -10,7 +10,6 @@
                 <span t-field="o.partner_id.street2"/>
                 <span t-field="o.partner_id.city"/>
                 <span t-field="o.partner_id.state_id.name"/>
-                <span t-field="o.partner_id.country_id.name"/>
                 <span t-field="o.partner_id.zip"/>
             </div>
             <div class="row pt32">

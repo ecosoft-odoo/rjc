@@ -3,8 +3,69 @@
 }
 // style invoice preprint
 .invoice_preprint_form {
-    body {
-        font-size: 22px;
+    .partner_name {
+        margin-left: 107px;
+        position: fixed;
+        top: 60px;
+        box-sizing: content-box;
+        width: 650px;
+        height: 40px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .address_partner {
+        margin-left: 107px;
+        position: fixed;
+        top: 85px;
+        box-sizing: content-box;
+        width: 400px;
+        height: 90px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .phone_number {
+        margin-left: 107px;
+        position: fixed;
+        top: 135px;
+        box-sizing: content-box;
+        width: 400px;
+        height: 30px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .date_and_origin {
+        right: 100px;
+        position: fixed;
+        top: 60px;
+        box-sizing: content-box;
+        width: 200px;
+        height: 60px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    td.line_column {
+      table-layout: fixed;
+      width: 50px;
+    }
+    td.line_description {
+      table-layout: fixed;
+      width: 470px;
+    }
+    td.line_qty {
+      table-layout: fixed;
+      width: 75px;
+    }
+    td.line_uom {
+      table-layout: fixed;
+      width: 70px;
+    }
+    td.line_price_unit {
+      table-layout: fixed;
+      width: 80px;
     }
 }
 // style invoice tax

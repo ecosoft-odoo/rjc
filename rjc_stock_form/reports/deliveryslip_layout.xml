@@ -58,7 +58,6 @@
                                     <t t-if="o.shipper_id.street2"><span t-field="o.shipper_id.street2"/></t>
                                     <span t-field="o.shipper_id.city"/>
                                     <span t-field="o.shipper_id.state_id.name"/>
-                                    <span t-field="o.shipper_id.country_id.name"/>
                                     <span t-field="o.shipper_id.zip"/>
                                 </td>
                             </tr>

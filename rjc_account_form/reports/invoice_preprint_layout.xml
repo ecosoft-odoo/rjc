@@ -1,22 +1,28 @@
 <odoo>
     <template id="rjc_invoice_preprint_layout_report">
         <div class="header">
-            <div class="col-12 text-right">
-                (<strong><span t-field="o.state"/></strong>)
-            </div>
-            <div class="row">
-                <div class="col-1"/>
-                <div class="col-7">
-                    <span t-field="o.partner_id"/><br/>
+            <div class="invoice_preprint_form">
+                <div class="col-12 text-right">
+                    (<strong><span t-field="o.state"/></strong>)
+                </div>
+                <div class="partner_name">
+                    <span t-field="o.partner_id"/>
+                </div>
+                <div class="address_partner">
                     <span t-field="o.partner_id.street"/>
                     <span t-field="o.partner_id.street2"/>
                     <span t-field="o.partner_id.city"/>
                     <span t-field="o.partner_id.state_id.name"/>
-                    <span t-field="o.partner_id.country_id.name"/>
-                    <span t-field="o.partner_id.zip"/><br/>
-                    <span t-field="o.number"/>
+                    <span t-field="o.partner_id.zip"/>
                 </div>
-                <div class="col-4">
+                <div class="phone_number">
+                    <span>โทร. <span t-field="o.partner_id.phone"/>
+                        <t t-if="o.partner_id.mobile">
+                            ,<span t-field="o.partner_id.mobile"/>
+                        </t>
+                    </span>
+                </div>
+                <div class="date_and_origin">
                     <span t-field="o.date_invoice"/><br/>
                     <span t-field="o.origin"/>
                 </div>
@@ -25,27 +31,27 @@
         <div class="article invoice_preprint_form">
             <table class="table table-sm">
                 <tbody>
-                    <t t-set="i" t-value="1"/>
+                    <t t-set="column" t-value="1"/>
                     <t t-foreach="o.invoice_line_ids" t-as="line">
                         <tr>
-                            <td>
-                                <span t-esc="i"/>
-                                <t t-set="i" t-value="i+1"/>
+                            <td class="line_column">
+                                <span t-esc="column"/>
+                                <t t-set="column" t-value="column+1"/>
                             </td>
-                            <td>
+                            <td class="line_description">
                                 <span t-field="line.name"/>
                             </td>
-                            <td class="text-right">
-                                <span t-field="line.quantity"/>
+                            <td class="line_qty text-right">
+                                <span t-field="line.quantity" t-options='{"widget": "integer"}'/>
                             </td>
-                            <td class="text-right">
+                            <td class="line_uom text-right">
                                 <span t-field="line.uom_id" groups="uom.group_uom"/>
                             </td>
-                            <td class="text-right">
+                            <td class="line_price_unit text-right">
                                 <span t-field="line.price_unit"/>
                             </td>
-                            <td class="text-right o_price_total">
-                                <span t-field="line.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;False&quot;}"/>
+                            <td class="text-right">
+                                <span t-field="line.price_subtotal"/>
                             </td>
                         </tr>
                     </t>
@@ -53,12 +59,12 @@
             </table>
         </div>
         <div class="footer">
-            <div class="row">
+            <div class="row pb16">
                 <div class="col-6">
                     <span t-esc="o.comment"/>
                 </div>
             </div>
-            <div class="row">
+            <div class="row pt40">
                 <div class="col-8 last-page text-center">
                     (<span t-esc="o.amount_text(o.amount_total)"/>)
                 </div>
