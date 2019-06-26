@@ -2,24 +2,24 @@
     <template id="rjc_purchase_order_layout_report">
         <div class="header">
             <div class="row">
-                <div class="col-4">
+                <div class="col-5">
                     <h4 t-field="o.company_id.name"/>
                     <span t-field="o.company_id.street"/>
                     <span t-field="o.company_id.street2"/>
                     <span t-field="o.company_id.city"/>
                     <span t-field="o.company_id.state_id.name"/>
-                    <span t-field="o.company_id.zip"/>
+                    <span t-field="o.company_id.zip"/><br/>
+                    <span>โทร : <span t-field="o.company_id.phone"/></span>
                 </div>
-                <div class="col-4 text-center">
-                    <h4>
-                        ใบสั่งซื้อ<br/>Purchase Order
-                    </h4>
-                </div>
-                <div class="col-4 text-right">
+                <div class="col-2"/>
+                <div class="col-5 text-right">
                     <img src='/rjc_purchase_order_form/static/src/img/raja.jpg' style="max-height: 75px;"/>
                 </div>
             </div>
-            <span>โทร : <span t-field="o.company_id.phone"/></span>
+            <div class="text-center">
+                <h3><strong>ใบสั่งซื้อ</strong></h3>
+                <h3><strong>Purchase Order</strong></h3>
+            </div>
         </div>
         <div class="article purchase_order_form">
             <div class="row pb32">
@@ -177,47 +177,49 @@
                         <span>(<t t-esc="o.amount_text(o.amount_total)"/>)</span>
                     </div>
                 </div>
-                <div class="row pt32">
-                    <div class="col-6">
-                        <p class="text-center">
-                            <strong>กรุณาลงลายมือชื่อและโทรสารกลับเพื่อยืนยันการได้รับ</strong><br/>
-                            <strong>Please sign and send it back</strong>
-                        </p>
-                        <div class="horizontal_dotted_line" data-content="__________________________________________">
-                            ลงชื่อ Name
-                        </div>
-                        <div class="horizontal_dotted_line" data-content="____________________________________________">
-                            วันที่ Date
-                        </div>
+            </div>
+        </div>
+        <div class="footer purchase_order_form">
+            <div class="row pt8">
+                <div class="col-6">
+                    <p class="text-center">
+                        <strong>กรุณาลงลายมือชื่อและโทรสารกลับเพื่อยืนยันการได้รับ</strong><br/>
+                        <strong>Please sign and send it back</strong>
+                    </p>
+                    <div class="horizontal_dotted_line" data-content="____________________________________________">
+                        ลงชื่อ Name
                     </div>
-                    <div class="col-3 pt64">
-                        <table class="col-12 table-sm">
-                            <tr class="border-black text-center">
-                                <td>
-                                    <small><strong>สั่งซื้อโดย Order by</strong></small><br/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="horizontal_dotted_line" data-content="______________">
-                                    วันที่ Date
-                                </td>
-                            </tr>
-                        </table>
+                    <div class="horizontal_dotted_line" data-content="____________________________________________">
+                        วันที่ Date
                     </div>
-                    <div class="col-3 pt64">
-                        <table class="col-12 table-sm">
-                            <tr class="border-black">
-                                <td>
-                                    <small><strong>อนุมัติโดย Authorized by</strong></small><br/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td class="horizontal_dotted_line" data-content="______________">
-                                    วันที่ Date
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+                </div>
+                <div class="col-3 pt64">
+                    <table class="col-12 table-sm">
+                        <tr class="border-black text-center">
+                            <td>
+                                <small><strong>สั่งซื้อโดย Order by</strong></small><br/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="horizontal_dotted_line" data-content="___________________">
+                                วันที่ Date
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+                <div class="col-3 pt64">
+                    <table class="col-12 table-sm">
+                        <tr class="border-black">
+                            <td>
+                                <small><strong>อนุมัติโดย Authorized by</strong></small><br/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td class="horizontal_dotted_line" data-content="___________________">
+                                วันที่ Date
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
         </div>
