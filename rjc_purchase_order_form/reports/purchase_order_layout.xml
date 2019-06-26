@@ -105,82 +105,80 @@
                     </tr>
                 </tbody>
             </table>
-            <div class="clearfix">
-                <div class="row">
-                    <div class="col-6">
-                        <p><strong>หมายเหตุ (Memo) : </strong><span t-field="o.notes"/></p>
-                    </div>
-                    <div class="col-6">
-                        <t t-set="amount_before_discount" t-value="o.amount_before_discount()"/>
-                        <t t-set="amount_discount" t-value="o.amount_untaxed - amount_before_discount"/>
-                        <table class="table table-sm">
-                            <tr class="border-black">
-                                <td>
-                                    <strong>ราคาก่อนหักส่วนลด</strong>
-                                </td>
-                                <td>
-                                    <strong>Subtotal</strong>
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="amount_before_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>ส่วนลด</strong>
-                                </td>
-                                <td>
-                                    <strong>Discount</strong>
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="amount_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>ราคาหลังหักส่วนลด</strong>
-                                </td>
-                                <td>
-                                    <strong>Price after discount</strong>
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>
-                                    <strong>VAT</strong>
-                                </td>
-                                <td>
-                                    <strong>7%</strong>
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                            </tr>
-                            <tr class="border-black o_total">
-                                <td>
-                                    <strong>ยอดรวม</strong>
-                                </td>
-                                <td>
-                                    <strong>Grand Total</strong>
-                                </td>
-                                <td class="text-right">
-                                    <span t-field="o.amount_total" t-options='{"widget": "monetary"}'/>
-                                </td>
-                            </tr>
-                        </table>
-                    </div>
+        </div>
+        <div class="footer purchase_order_form last-page">
+            <div class="row">
+                <div class="col-6">
+                    <p><strong>หมายเหตุ (Memo) : </strong><span t-field="o.notes"/></p>
                 </div>
-                <div class="row">
-                    <div class="col-8 text-center" style="border: 1px solid;">
-                        <span>(<t t-esc="o.amount_text(o.amount_total)"/>)</span>
-                    </div>
+                <div class="col-6">
+                    <t t-set="amount_before_discount" t-value="o.amount_before_discount()"/>
+                    <t t-set="amount_discount" t-value="o.amount_untaxed - amount_before_discount"/>
+                    <table class="table table-sm">
+                        <tr class="border-black">
+                            <td>
+                                <strong>ราคาก่อนหักส่วนลด</strong>
+                            </td>
+                            <td>
+                                <strong>Subtotal</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="amount_before_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>ส่วนลด</strong>
+                            </td>
+                            <td>
+                                <strong>Discount</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-esc="amount_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>ราคาหลังหักส่วนลด</strong>
+                            </td>
+                            <td>
+                                <strong>Price after discount</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <strong>VAT</strong>
+                            </td>
+                            <td>
+                                <strong>7%</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </td>
+                        </tr>
+                        <tr class="border-black o_total">
+                            <td>
+                                <strong>ยอดรวม</strong>
+                            </td>
+                            <td>
+                                <strong>Grand Total</strong>
+                            </td>
+                            <td class="text-right">
+                                <span t-field="o.amount_total" t-options='{"widget": "monetary"}'/>
+                            </td>
+                        </tr>
+                    </table>
                 </div>
             </div>
-        </div>
-        <div class="footer purchase_order_form">
             <div class="row pt8">
+                <div class="col-8 text-center" style="border: 1px solid;">
+                    <span>(<t t-esc="o.amount_text(o.amount_total)"/>)</span>
+                </div>
+            </div>
+            <div class="row pt16">
                 <div class="col-6">
                     <p class="text-center">
                         <strong>กรุณาลงลายมือชื่อและโทรสารกลับเพื่อยืนยันการได้รับ</strong><br/>
