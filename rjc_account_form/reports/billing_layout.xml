@@ -1,0 +1,91 @@
+<odoo>
+    <template id="rjc_billing_layout_report">
+        <div class="header billing_form">
+            <div class="row">
+                <div class="col-5">
+                    <span t-field="o.company_id.street"/>
+                    <span t-field="o.company_id.street2"/>
+                    <span t-field="o.company_id.city"/>
+                    <span t-field="o.company_id.state_id.name"/>
+                    <span t-field="o.company_id.zip"/><br/>
+                    <span>โทร. <span t-field="o.company_id.phone"/></span>
+                </div>
+                <div class="col-2 text-center">
+                    <span>
+                        <h3><strong>ใบวางบิล</strong></h3>
+                        <h3><strong>Billing</strong></h3>
+                    </span>
+                </div>
+                <div class="col-5 text-right">
+                    <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height:75px;"/>
+                </div>
+            </div>
+            <div class="billing_state">
+                <span t-field="o.state"/>
+            </div>
+            <div class="row pt16">
+                <div class="col-2">
+                    <strong>ชื่อลูกค้า</strong><br/>
+                    <strong>ที่อยู่ลูกค้า</strong>
+                </div>
+                <div class="col-6">
+                    <span t-field="o.partner_id"/><br/>
+                    <span t-field="o.partner_id.street"/>
+                    <span t-field="o.partner_id.street2"/>
+                    <span t-field="o.partner_id.city"/>
+                    <span t-field="o.partner_id.state_id.name"/>
+                    <span t-field="o.partner_id.zip"/>
+                </div>
+                <div class="col-2">
+                    <strong>เลขที่เอกสาร</strong><br/>
+                    <strong>วันที่</strong>
+                </div>
+                <div class="col-2">
+                    <span t-field="o.name"/><br/>
+                    <span t-field="o.date"/>
+                </div>
+            </div>
+        </div>
+        <div class="article billing_form">
+            <t t-set="sum_amount" t-value="0"/>
+            <table class="table table-sm text-center">
+                <thead>
+                    <tr>
+                        <th><strong>เลขที่ใบแจ้งหนี้</strong></th>
+                        <th><strong>วันที่ใบแจ้งหนี้</strong></th>
+                        <th><strong>กำหนดชำระ</strong></th>
+                        <th class="text-right"><strong>จำนวนเงิน</strong></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr t-foreach="o.invoice_ids" t-as="line">
+                        <td><span t-field="line.number"/></td>
+                        <td><span t-field="line.date_invoice"/></td>
+                        <td><span t-field="line.date_due"/></td>
+                        <td class="text-right"><span t-field="line.amount_total"/></td>
+                        <t t-set="sum_amount" t-value="sum_amount + line.amount_total"/>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="clearfix">
+                <table class="table table-sm">
+                    <tr class="border-black bottom-border-black">
+                        <td class="amount_text text-center"><strong><span t-esc="o.amount_text(sum_amount)"/></strong></td>
+                        <td>รวม</td>
+                        <td class="text-right">
+                            <span t-esc="sum_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </template>
+
+    <template id="rjc_billing_pdf">
+        <t t-call="web.html_container">
+            <t t-foreach="docs" t-as="o">
+                <t t-call="rjc_account_form.rjc_billing_layout_report"/>
+            </t>
+        </t>
+    </template>
+</odoo>

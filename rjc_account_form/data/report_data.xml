@@ -1,46 +1,46 @@
 <odoo>
     <report string="Invoice"
-            id="rjc_invoice_preprint_pdf_report"
-            model="account.invoice"
-            name="rjc_account_form.rjc_invoice_preprint_pdf"
-            file="rjc_account_form.rjc_invoice_preprint_pdf"
-            report_type="qweb-pdf"
-            print_report_name="'Preprint - [%s]' % object.display_name"
-            paperformat="rjc_account_form.paperformat_rjc_invoice"/>
+        id="rjc_invoice_preprint_pdf_report"
+        model="account.invoice"
+        name="rjc_account_form.rjc_invoice_preprint_pdf"
+        file="rjc_account_form.rjc_invoice_preprint_pdf"
+        report_type="qweb-pdf"
+        print_report_name="'Preprint - [%s]' % object.display_name"
+        paperformat="rjc_account_form.paperformat_rjc_invoice"/>
 
     <report string="Credit Note"
-            id="rjc_invoice_credit_note_pdf_report"
-            model="account.invoice"
-            name="rjc_account_form.rjc_invoice_credit_note_pdf"
-            file="rjc_account_form.rjc_invoice_credit_note_pdf"
-            report_type="qweb-pdf"
-            print_report_name="'CN - [%s]' % object.display_name"/>
+        id="rjc_invoice_credit_note_pdf_report"
+        model="account.invoice"
+        name="rjc_account_form.rjc_invoice_credit_note_pdf"
+        file="rjc_account_form.rjc_invoice_credit_note_pdf"
+        report_type="qweb-pdf"
+        print_report_name="'CN - [%s]' % object.display_name"/>
 
     <report string="Tax Invoice"
-            id="rjc_tax_invoice_pdf_report"
-            model="account.invoice"
-            name="rjc_account_form.rjc_tax_invoice_pdf"
-            file="rjc_account_form.rjc_tax_invoice_pdf"
-            report_type="qweb-pdf"
-            print_report_name="'TAX - [%s]' % object.display_name"
-            paperformat="rjc_account_form.paperformat_rjc_tax_invoice"/>
+        id="rjc_tax_invoice_pdf_report"
+        model="account.invoice"
+        name="rjc_account_form.rjc_tax_invoice_pdf"
+        file="rjc_account_form.rjc_tax_invoice_pdf"
+        report_type="qweb-pdf"
+        print_report_name="'TAX - [%s]' % object.display_name"
+        paperformat="rjc_account_form.paperformat_rjc_tax_invoice"/>
 
     <report string="Voucher"
-            id="rjc_voucher_pdf_report"
-            model="account.payment"
-            name="rjc_account_form.rjc_voucher_pdf"
-            file="rjc_account_form.rjc_voucher_pdf"
-            report_type="qweb-pdf"
-            print_report_name="'Voucher - [%s]' % object.display_name"
-            paperformat="rjc_account_form.paperformat_rjc_payment_voucher"/>
+        id="rjc_voucher_pdf_report"
+        model="account.payment"
+        name="rjc_account_form.rjc_voucher_pdf"
+        file="rjc_account_form.rjc_voucher_pdf"
+        report_type="qweb-pdf"
+        print_report_name="'Voucher - [%s]' % object.display_name"
+        paperformat="rjc_account_form.paperformat_rjc_payment_voucher"/>
 
     <report string="Receipt"
-            id="rjc_receipt_pdf_report"
-            model="account.payment"
-            name="rjc_account_form.rjc_receipt_pdf"
-            file="rjc_account_form.rjc_receipt_pdf"
-            report_type="qweb-pdf"
-            print_report_name="'Receipt - [%s]' % object.display_name"/>
+        id="rjc_receipt_pdf_report"
+        model="account.payment"
+        name="rjc_account_form.rjc_receipt_pdf"
+        file="rjc_account_form.rjc_receipt_pdf"
+        report_type="qweb-pdf"
+        print_report_name="'Receipt - [%s]' % object.display_name"/>
 
     <report
         string="Withholding Cert (pdf)"
@@ -51,4 +51,13 @@
         report_type="qweb-pdf"
         print_report_name="'WHT - [%s]' % object.display_name"
         paperformat="l10n_th_withholding_tax_cert_form.paperformat_withholding_tax"/>
+
+    <report string="Billing"
+        id="rjc_billing_report"
+        model="account.billing"
+        name="rjc_account_form.rjc_billing_pdf"
+        file="rjc_account_form.rjc_billing_pdf"
+        report_type="qweb-pdf"
+        print_report_name="'BILL-%s%s' % (object.name, object.state == 'draft' and '-draft' or '')"
+        paperformat="rjc_account_form.paperformat_rjc_billing"/>
 </odoo>
