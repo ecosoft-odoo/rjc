@@ -70,8 +70,88 @@
 }
 // style invoice tax
 .tax_invoice_preprint_form {
-    body {
-        font-size: 22px;
+    .partner_info {
+        margin-left: 45px;
+        position: fixed;
+        top: 7px;
+        box-sizing: content-box;
+        width: 400px;
+        height: 90px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .inv_ref {
+        margin-left: 45px;
+        position: fixed;
+        top: 153px;
+        box-sizing: content-box;
+        width: 200px;
+        height: 40px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .inv_origin {
+        margin-left: 285px;
+        position: fixed;
+        top: 153px;
+        box-sizing: content-box;
+        width: 130px;
+        height: 40px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .inv_payment_term {
+        margin-left: 485px;
+        position: fixed;
+        top: 153px;
+        box-sizing: content-box;
+        width: 200px;
+        height: 40px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .inv_date {
+        margin-left: 765px;
+        position: fixed;
+        top: 153px;
+        box-sizing: content-box;
+        width: 100px;
+        height: 40px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    td.line_column {
+        table-layout: fixed;
+        width: 60px;
+    }
+    td.line_description {
+        table-layout: fixed;
+        width: 470px;
+    }
+    td.line_qty {
+        table-layout: fixed;
+        width: 60px;
+    }
+    td.line_uom {
+        table-layout: fixed;
+        width: 80px;
+    }
+    .text_amount {
+        margin-left: 20px;
+        position: fixed;
+        top: 40px;
+        box-sizing: content-box;
+        width: 500px;
+        height: 40px;
+        padding: 1px;
+        margin-top: 0px;
+        margin-bottom: 0px;
+        border: 1px solid red;
     }
 }
 

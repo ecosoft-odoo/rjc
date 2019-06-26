@@ -1,29 +1,31 @@
 <odoo>
     <template id="rjc_tax_invoice_layout_report">
-        <div class="header">
-            <div class="col-6">
-                <span t-field="o.partner_id"/><br/>
-                เลขประจำตัวผู้เสียภาษีลูกค้า
-                <span t-field="o.partner_id.vat"/> /
-                <span t-field="o.partner_id.branch"/><br/>
-                <span t-field="o.partner_id.street"/>
-                <span t-field="o.partner_id.street2"/>
-                <span t-field="o.partner_id.city"/>
-                <span t-field="o.partner_id.state_id.name"/>
-                <span t-field="o.partner_id.zip"/>
-            </div>
-            <div class="row pt32">
-                <div class="col-3">
-                    <span t-field="o.partner_id.ref"/>
-                </div>
-                <div class="col-3">
-                    <span t-field="o.origin"/>
-                </div>
-                <div class="col-3">
-                    <span t-field="o.payment_term_id.name"/>
-                </div>
-                <div class="col-3">
-                    <span t-field="o.date_invoice"/>
+        <div class="header tax_invoice_preprint_form">
+            <div class="row">
+                <div class="col">
+                    <div class="partner_info">
+                        <span t-field="o.partner_id"/><br/>
+                        เลขประจำตัวผู้เสียภาษีลูกค้า
+                        <span t-field="o.partner_id.vat"/> /
+                        <span t-field="o.partner_id.branch"/><br/>
+                        <span t-field="o.partner_id.street"/>
+                        <span t-field="o.partner_id.street2"/>
+                        <span t-field="o.partner_id.city"/>
+                        <span t-field="o.partner_id.state_id.name"/>
+                        <span t-field="o.partner_id.zip"/>
+                    </div>
+                    <div class="inv_ref">
+                        <span t-field="o.partner_id.ref"/>
+                    </div>
+                    <div class="inv_origin">
+                        <span t-field="o.origin"/>
+                    </div>
+                    <div class="inv_payment_term">
+                        <span t-field="o.payment_term_id.name"/>
+                    </div>
+                    <div class="inv_date">
+                        <span t-field="o.date_invoice"/>
+                    </div>
                 </div>
             </div>
         </div>
@@ -35,36 +37,36 @@
                     <t t-set="column" t-value="1"/>
                     <t t-foreach="o.invoice_line_ids" t-as="line">
                         <tr>
-                            <td>
+                            <td class="line_column text-center">
                                 <span t-esc="column"/>
                                 <t t-set="column" t-value="column+1"/>
                             </td>
-                            <td>
+                            <td class="line_description">
                                 <span t-field="line.name"/>
                             </td>
-                            <td class="text-right">
-                                <span t-field="line.quantity"/>
+                            <td class="line_qty text-right">
+                                <span t-field="line.quantity" t-options='{"widget": "integer"}'/>
                             </td>
-                            <td class="text-right">
+                            <td class="line_uom text-right">
                                 <span t-field="line.uom_id" groups="uom.group_uom"/>
                             </td>
                             <td class="text-right">
                                 <span t-field="line.price_unit"/>
                             </td>
-                            <td class="text-right o_price_total">
-                                <span t-field="line.price_subtotal" t-field-options="{&quot;widget&quot;: &quot;False&quot;}"/>
+                            <td class="text-right">
+                                <span t-field="line.price_subtotal"/>
                             </td>
                         </tr>
                     </t>
                 </tbody>
             </table>
         </div>
-        <div class="footer">
+        <div class="footer tax_invoice_preprint_form">
             <div class="row">
-                <div class="col-8 last-page text-center">
+                <div class="col last-page text_amount text-center">
                     (<span t-esc="o.amount_text(o.amount_total)"/>)
                 </div>
-                <div class="col-4 last-page text-right">
+                <div class="col last-page text-right">
                     <span t-esc="amount_before_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
                     <span t-esc="amount_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
                     <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
