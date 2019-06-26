@@ -28,6 +28,15 @@ class AccountBilling(models.Model):
         help='Partner Information',
         track_visibility='always',
     )
+    company_id = fields.Many2one(
+        'res.company',
+        string='Company',
+        default=lambda self: self.env['res.company']._company_default_get(
+            'account.billing'),
+        index=True,
+        help='Leave this field empty if this route is shared \
+            between all companies'
+    )
     date = fields.Date(
         string='Billing Date',
         readonly=True,

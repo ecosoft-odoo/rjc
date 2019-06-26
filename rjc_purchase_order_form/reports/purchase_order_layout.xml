@@ -8,7 +8,7 @@
                     <span t-field="o.company_id.street2"/>
                     <span t-field="o.company_id.city"/>
                     <span t-field="o.company_id.state_id.name"/>
-                    <span t-field="o.company_id.zip"/><br/>
+                    <span t-field="o.company_id.zip"/>
                 </div>
                 <div class="col-4 text-center">
                     <h4>
@@ -19,6 +19,7 @@
                     <img src='/rjc_purchase_order_form/static/src/img/raja.jpg' style="max-height: 75px;"/>
                 </div>
             </div>
+            <span>โทร : <span t-field="o.company_id.phone"/></span>
         </div>
         <div class="article purchase_order_form">
             <div class="row pb32">
@@ -59,6 +60,7 @@
                         <th>จำนวน<br/>Quantity</th>
                         <th>หน่วย<br/>Unit</th>
                         <th>หน่วยละ<br/>Unit Price</th>
+                        <th>ส่วนลด<br/>Discount (%)</th>
                         <th>จำนวนเงิน<br/>Amount</th>
                     </tr>
                 </thead>
@@ -93,6 +95,9 @@
                                 <span t-field="line.price_unit" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                             </td>
                         </t>
+                        <td class="text-right">
+                            <span t-field="line.discount"/>
+                        </td>
                         <td class="text-right">
                             <span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                         </td>

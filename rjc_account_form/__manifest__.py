@@ -3,7 +3,7 @@
 
 {
     'name': 'RJC Account Report',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.1.0',
     'author': 'Ecosoft',
     'license': 'AGPL-3',
     'website': 'https://github.com/ecosoft-odoo/rjc',
@@ -15,8 +15,6 @@
     ],
     'data': [
         'data/paper_format.xml',
-        'data/paper_format_tax_invoice.xml',
-        'data/paper_format_payment_voucher.xml',
         'data/report_data.xml',
         'reports/account_style.xml',
         'reports/invoice_preprint_layout.xml',
@@ -27,6 +25,7 @@
         'reports/receipt_layout.xml',
         'reports/receipt_voucher_layout.xml',
         'reports/wht_cert_layout.xml',
+        'reports/billing_layout.xml',
     ],
     'installable': True,
 }
