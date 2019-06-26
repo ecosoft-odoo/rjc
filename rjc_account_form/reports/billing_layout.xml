@@ -10,12 +10,7 @@
                     <span t-field="o.company_id.zip"/><br/>
                     <span>โทร. <span t-field="o.company_id.phone"/></span>
                 </div>
-                <div class="col-2 text-center">
-                    <span>
-                        <h3><strong>ใบวางบิล</strong></h3>
-                        <h3><strong>Billing</strong></h3>
-                    </span>
-                </div>
+                <div class="col-2"/>
                 <div class="col-5 text-right">
                     <img t-if="o.company_id.logo" t-att-src="image_data_uri(o.company_id.logo)" style="max-height:75px;"/>
                 </div>
@@ -23,7 +18,13 @@
             <div class="billing_state">
                 <span t-field="o.state"/>
             </div>
-            <div class="row pt16">
+            <div class="text-center">
+                <span>
+                    <h3><strong>ใบวางบิล</strong></h3>
+                    <h3><strong>Billing</strong></h3>
+                </span>
+            </div>
+            <div class="row">
                 <div class="col-2">
                     <strong>ชื่อลูกค้า</strong><br/>
                     <strong>ที่อยู่ลูกค้า</strong>
