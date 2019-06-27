@@ -18,12 +18,4 @@
         </field>
     </record>
 
-    <act_window
-        name="Create Invoice"
-        res_model="hr.expense.create.invoice"
-        src_model="hr.expense.sheet"
-        view_mode="form"
-        target="new"
-        id="action_expense_create_invoice" />
-
 </odoo>
