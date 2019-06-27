@@ -60,7 +60,7 @@
                 </thead>
                 <tbody>
                     <tr t-foreach="o.invoice_ids" t-as="line">
-                        <td><span t-field="line.number"/></td>
+                        <td><span t-field="line.number_preprint"/></td>
                         <td><span t-field="line.date_invoice"/></td>
                         <td><span t-field="line.date_due"/></td>
                         <td class="text-right"><span t-field="line.amount_total"/></td>
