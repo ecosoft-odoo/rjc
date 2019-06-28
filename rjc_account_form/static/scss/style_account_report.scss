@@ -11,8 +11,6 @@
         width: 650px;
         height: 40px;
         padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     .address_partner {
         margin-left: 107px;
@@ -22,8 +20,6 @@
         width: 500px;
         height: 90px;
         padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     .phone_number {
         margin-left: 107px;
@@ -33,8 +29,6 @@
         width: 400px;
         height: 30px;
         padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     .date_and_origin {
         right: 60px;
@@ -44,8 +38,6 @@
         width: 200px;
         height: 60px;
         padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     td.line_column {
       table-layout: fixed;
@@ -71,14 +63,13 @@
 // style invoice tax
 .tax_invoice_preprint_form {
     .partner_info {
-        margin-left: 40px;
         position: fixed;
+        margin-left: 40px;
+        top: 7px;
         box-sizing: content-box;
         width: 450px;
         height: 90px;
         padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     .inv_ref {
         margin-left: 45px;
@@ -88,43 +79,36 @@
         width: 200px;
         height: 40px;
         padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     .inv_origin {
-        margin-left: 285px;
+        margin-left: 300px;
         position: fixed;
         top: 185px;
         box-sizing: content-box;
         width: 130px;
         height: 40px;
         padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     .inv_payment_term {
-        margin-left: 485px;
         position: fixed;
+        margin-left: 470px;
+        text-align: center;
         top: 185px;
         box-sizing: content-box;
-        width: 200px;
+        width: 230px;
         height: 40px;
-        padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     .inv_date {
-        margin-left: 765px;
         position: fixed;
+        margin-left: 760px;
         top: 185px;
         box-sizing: content-box;
         width: 100px;
         height: 40px;
         padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     td.line_column {
+        padding-left: 20px;
         table-layout: fixed;
         width: 60px;
     }
@@ -138,7 +122,7 @@
     }
     td.line_uom {
         table-layout: fixed;
-        width: 80px;
+        width: 66px;
     }
     .text_amount {
         margin-left: 20px;
@@ -148,8 +132,6 @@
         width: 450px;
         height: 70px;
         padding: 1px;
-        margin-top: 0px;
-        margin-bottom: 0px;
     }
     .amount_before_discount {
         position: fixed;
@@ -164,17 +146,17 @@
     .amount_untaxed {
         position: fixed;
         right: 15px;
-        top: 70px;
+        top: 73px;
     }
     .amount_tax {
         position: fixed;
         right: 15px;
-        top: 95px;
+        top: 100px;
     }
     .amount_total {
         position: fixed;
         right: 15px;
-        top: 122px;
+        top: 127px;
     }
 }
 
