@@ -67,11 +67,11 @@
                     (<span t-esc="o.amount_text(o.amount_total)"/>)
                 </div>
                 <div class="col last-page text-right">
-                    <span t-esc="amount_before_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
-                    <span t-esc="amount_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
-                    <span t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
-                    <span t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
-                    <span t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                    <span class="amount_before_discount" t-esc="amount_before_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
+                    <span class="amount_discount" t-esc="amount_discount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
+                    <span class="amount_untaxed" t-field="o.amount_untaxed" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
+                    <span class="amount_tax" t-field="o.amount_tax" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/><br/>
+                    <span class="amount_total" t-field="o.amount_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                 </div>
             </div>
         </div>
