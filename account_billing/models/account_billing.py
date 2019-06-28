@@ -202,7 +202,10 @@ class AccountBilling(models.Model):
     @api.multi
     def invoice_relate_billing_tree_view(self):
         self.ensure_one()
-        action = self.env.ref('account.action_invoice_tree1')
+        if self.bill_type == 'out_invoice':
+            action = self.env.ref('account.action_invoice_tree1')
+        if self.bill_type == 'in_invoice':
+            action = self.env.ref('account.action_vendor_bill_template')
         result = action.read()[0]
         result.update({'domain': [('id', 'in', self.invoice_ids.ids)]})
         return result

@@ -6,8 +6,10 @@
                     <div class="partner_info">
                         <span t-field="o.partner_id"/><br/>
                         เลขประจำตัวผู้เสียภาษีลูกค้า
-                        <span t-field="o.partner_id.vat"/> /
-                        <span t-field="o.partner_id.branch"/><br/>
+                        <span t-field="o.partner_id.vat"/>
+                        <t t-if="o.partner_id.branch"> / สาขาที่
+                            <span t-field="o.partner_id.branch"/>
+                        </t><br/>
                         <span t-field="o.partner_id.street"/>
                         <span t-field="o.partner_id.street2"/>
                         <span t-field="o.partner_id.city"/>
@@ -37,7 +39,7 @@
                     <t t-set="column" t-value="1"/>
                     <t t-foreach="o.invoice_line_ids" t-as="line">
                         <tr>
-                            <td class="line_column text-center">
+                            <td class="line_column">
                                 <span t-esc="column"/>
                                 <t t-set="column" t-value="column+1"/>
                             </td>
