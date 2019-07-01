@@ -121,6 +121,7 @@ class TestAccountBilling(SavepointCase):
                'active_ids': [self.inv_1.id, self.inv_2.id],
                'bill_type': 'out_invoice'}
         customer_billing1 = self.billing_model.with_context(ctx).create({})
+        customer_billing1._onchange_bill_type()
         self.assertEqual(customer_billing1.state, 'draft')
         customer_billing1.validate_billing()
         self.assertEqual(customer_billing1.state, 'billed')
