@@ -16,15 +16,6 @@
                         <span t-field="o.partner_id.state_id.name"/>
                         <span t-field="o.partner_id.zip"/>
                     </div>
-                    <div class="inv_ref">
-                        <span t-field="o.partner_id.ref"/>
-                    </div>
-                    <div class="inv_origin">
-                        <span t-field="o.origin"/>
-                    </div>
-                    <div class="inv_payment_term">
-                        <span t-field="o.payment_term_id.name"/>
-                    </div>
                     <div class="inv_date">
                         <span t-field="o.date_invoice"/>
                     </div>

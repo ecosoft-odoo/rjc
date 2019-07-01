@@ -58,9 +58,9 @@
                 </tbody>
             </table>
         </div>
-        <div class="footer">
+        <div class="footer invoice_preprint_form">
             <div class="row pb16">
-                <div class="col-6">
+                <div class="col-6 inv_comment">
                     <span t-esc="o.comment"/>
                 </div>
             </div>

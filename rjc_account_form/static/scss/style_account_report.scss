@@ -15,16 +15,16 @@
     .address_partner {
         margin-left: 107px;
         position: fixed;
-        top: 85px;
+        top: 100px;
         box-sizing: content-box;
-        width: 500px;
+        width: 800px;
         height: 90px;
         padding: 1px;
     }
     .phone_number {
         margin-left: 107px;
         position: fixed;
-        top: 135px;
+        top: 145px;
         box-sizing: content-box;
         width: 400px;
         height: 30px;
@@ -33,11 +33,20 @@
     .date_and_origin {
         right: 60px;
         position: fixed;
-        top: 60px;
+        top: 55px;
         box-sizing: content-box;
         width: 200px;
         height: 60px;
         padding: 1px;
+    }
+    .inv_comment {
+        margin-left: 60px;
+        // position: fixed;
+        // top: 55px;
+        // box-sizing: content-box;
+        // width: 200px;
+        // height: 60px;
+        // padding: 1px;
     }
     td.line_column {
       table-layout: fixed;
@@ -64,39 +73,12 @@
 .tax_invoice_preprint_form {
     .partner_info {
         position: fixed;
-        margin-left: 40px;
-        top: 7px;
+        margin-left: 20px;
+        top: 10px;
         box-sizing: content-box;
-        width: 450px;
+        width: 480px;
         height: 90px;
         padding: 1px;
-    }
-    .inv_ref {
-        margin-left: 45px;
-        position: fixed;
-        top: 185px;
-        box-sizing: content-box;
-        width: 200px;
-        height: 40px;
-        padding: 1px;
-    }
-    .inv_origin {
-        margin-left: 300px;
-        position: fixed;
-        top: 185px;
-        box-sizing: content-box;
-        width: 130px;
-        height: 40px;
-        padding: 1px;
-    }
-    .inv_payment_term {
-        position: fixed;
-        margin-left: 470px;
-        text-align: center;
-        top: 185px;
-        box-sizing: content-box;
-        width: 230px;
-        height: 40px;
     }
     .inv_date {
         position: fixed;
