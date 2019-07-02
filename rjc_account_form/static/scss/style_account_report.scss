@@ -41,12 +41,6 @@
     }
     .inv_comment {
         margin-left: 60px;
-        // position: fixed;
-        // top: 55px;
-        // box-sizing: content-box;
-        // width: 200px;
-        // height: 60px;
-        // padding: 1px;
     }
     td.line_column {
       table-layout: fixed;
@@ -66,7 +60,7 @@
     }
     td.line_price_unit {
       table-layout: fixed;
-      width: 80px;
+      width: 90px;
     }
 }
 // style invoice tax
