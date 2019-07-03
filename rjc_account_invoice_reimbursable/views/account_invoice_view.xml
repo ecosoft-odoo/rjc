@@ -6,7 +6,6 @@
         <field name="arch" type="xml">
             <xpath expr="//page[@id='reimbursable']//field[@name='reimbursable_ids']/tree" position="inside">
                 <field name="account_line_tax_ids" />
-                <field name="sequence"/>
             </xpath>
         </field>
     </record>
