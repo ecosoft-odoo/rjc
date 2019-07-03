@@ -1,0 +1,13 @@
+<odoo>
+    <record id="invoice_supplier_form" model="ir.ui.view">
+        <field name="name">account.invoice.supplier.form</field>
+        <field name="model">account.invoice</field>
+        <field name="inherit_id" ref="account_invoice_reimbursable.invoice_supplier_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//page[@id='reimbursable']//field[@name='reimbursable_ids']/tree" position="inside">
+                <field name="account_line_tax_ids" />
+                <field name="sequence"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>
