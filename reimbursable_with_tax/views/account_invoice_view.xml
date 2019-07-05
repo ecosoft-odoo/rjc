@@ -4,8 +4,12 @@
         <field name="model">account.invoice</field>
         <field name="inherit_id" ref="account_invoice_reimbursable.invoice_supplier_form"/>
         <field name="arch" type="xml">
+            <xpath expr="//page[@id='reimbursable']//field[@name='reimbursable_ids']" position="attributes">
+                <attribute name="context">{'reimbursable_ids': reimbursable_ids}</attribute>
+            </xpath>
             <xpath expr="//page[@id='reimbursable']//field[@name='reimbursable_ids']/tree" position="inside">
-                <field name="account_line_tax_ids" />
+                <field name="tax_id"/>
+                <field name="sequence" invisible="1"/>
             </xpath>
         </field>
     </record>

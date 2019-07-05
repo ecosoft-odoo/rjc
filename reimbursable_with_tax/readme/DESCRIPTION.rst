@@ -1,4 +1,4 @@
-This module adds the option to add reimbursables to supplier invoices.
+This module adds the option to add tax on tab reimbursables.
 
 Reimbursables are payments for services that your supplier has made on behalf
 of your company as part of an agreement.

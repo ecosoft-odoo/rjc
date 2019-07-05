@@ -2,14 +2,15 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 {
-    'name': 'RJC Reimbursables management',
+    'name': 'Reimbursables with Tax',
     'version': '12.0.1.0.0',
     'author': 'Ecosoft',
     'category': 'Accounting & Finance',
-    'website': 'https://github.com/ecosoft-odoo/rjc',
+    'website': 'https://github.com/ecosoft-odoo/addons',
     'license': 'AGPL-3',
     'depends': [
         'account_invoice_reimbursable',
+        'l10n_th_account_report',
     ],
     'data': [
         'views/account_invoice_view.xml',

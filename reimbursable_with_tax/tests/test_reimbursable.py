@@ -1,4 +1,5 @@
 from odoo.tests.common import TransactionCase
+from odoo.exceptions import UserError
 from odoo import fields
 
 
@@ -33,6 +34,7 @@ class TestReimbursable(TransactionCase):
             'name': 'Reimbursable',
             'type': 'service',
         })
+        self.reimbursable_tax = self.env['account.tax'].search([], limit=1)
 
     def create_invoice_vals(self):
         return {
@@ -50,60 +52,20 @@ class TestReimbursable(TransactionCase):
             })]
         }
 
-    def test_none(self):
-        invoice = self.complete_check_invoice(0)
-        invoice.action_invoice_open()
-        move = invoice.move_id
-        lines = move.line_ids.filtered(
-            lambda r: r.partner_id == self.reimbursable_partner)
-        self.assertFalse(lines)
-
-    def test_simple(self):
+    def test_create_reimbursable_with_tax(self):
         invoice = self.complete_check_invoice(100)
+        self.assertFalse(invoice.tax_line_ids)
+        invoice._onchange_invoice_line_reimbursable_ids()
+        self.assertTrue(invoice.tax_line_ids)
+        with self.assertRaises(UserError):
+            invoice.action_invoice_open()
+        for tax in invoice.tax_line_ids:
+            self.assertEqual(1000, tax.sequence)
+            tax.write({
+                'tax_invoice_manual': 'invoice number',
+                'tax_date_manual': fields.Date.today(),
+            })
         invoice.action_invoice_open()
-        move = invoice.move_id
-        lines = move.line_ids.filtered(
-            lambda r: r.partner_id == self.reimbursable_partner)
-        self.assertTrue(lines)
-        self.assertEqual(100, sum(lines.mapped('debit')))
-        self.assertEqual(200, invoice.executable_total)
-
-    def test_grouped(self):
-        self.journal.group_invoice_lines = True
-        invoice = self.complete_check_invoice(100)
-        invoice.action_invoice_open()
-        move = invoice.move_id
-        lines = move.line_ids.filtered(
-            lambda r: r.partner_id == self.reimbursable_partner)
-        self.assertTrue(lines)
-        self.assertEqual(100, sum(lines.mapped('debit')))
-        self.assertEqual(200, invoice.executable_total)
-
-    def test_refund(self):
-        invoice = self.complete_check_invoice(100)
-        invoice.action_invoice_open()
-        refund_action = self.env['account.invoice.refund'].with_context(
-            active_ids=invoice.ids
-        ).create({
-            'description': 'Testing'
-        }).invoice_refund()
-        self.assertTrue(refund_action['domain'])
-        refund = self.env['account.invoice'].search(refund_action['domain'])
-        self.assertEqual(len(refund), 1)
-        self.assertTrue(refund.reimbursable_ids)
-        self.assertEqual(refund.amount_total, 100)
-        self.assertEqual(refund.reimbursable_count, 1)
-        self.assertEqual(refund.executable_total, 200)
-
-    def test_currency(self):
-        invoice = self.complete_check_invoice(60)
-        invoice.write({'currency_id': self.currency_usd.id})
-        # Invoice amount 100 usd reimburs 60 usd
-        invoice.action_invoice_open()
-        currency = invoice.currency_id._convert(
-            invoice.amount_total, self.currency_eur,
-            invoice.company_id, fields.Date.today())
-        self.assertEqual(invoice.amount_total_company_signed, currency)
 
     def complete_check_invoice(self, amount):
         invoice = self.env['account.invoice'].with_context(
@@ -125,6 +87,8 @@ class TestReimbursable(TransactionCase):
         self.assertFalse(reimbursable.name)
         reimbursable._onchange_product_id()
         self.assertTrue(reimbursable.name)
+        reimbursable.tax_id = self.reimbursable_tax
+        invoice._onchange_invoice_line_reimbursable_ids()
         reimbursable = reimbursable.create(reimbursable._convert_to_write(
             reimbursable._cache))
         self.assertTrue(reimbursable.description)
