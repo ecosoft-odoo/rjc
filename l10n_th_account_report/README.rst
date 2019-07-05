@@ -39,6 +39,7 @@ Changelog
 ~~~~~~~~~~~~~~~~~~~~~~~
 
 * Fix excel get wrong tax date, tax id and branch id
+* Order by tax date, partner and number tax date
 
 12.0.1.0.0 (2019-03-07)
 ~~~~~~~~~~~~~~~~~~~~~~~
