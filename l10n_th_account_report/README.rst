@@ -35,6 +35,11 @@ This module add new Thailand's account report, on following menus,
 Changelog
 =========
 
+12.0.1.0.1 (2019-07-05)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Fix excel get wrong tax date, tax id and branch id
+
 12.0.1.0.0 (2019-03-07)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
@@ -63,6 +68,7 @@ Contributors
 ~~~~~~~~~~~~
 
 * Kitti Upariphutthiphong. <kittiu@gmail.com> (http://ecosoft.co.th)
+* Saran Lim. <saranl@ecosoft.co.th> (http://ecosoft.co.th)
 
 Maintainers
 ~~~~~~~~~~~
