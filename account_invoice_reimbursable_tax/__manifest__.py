@@ -10,7 +10,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account_invoice_reimbursable',
-        'l10n_th_account_report',
+        'l10n_th_vendor_tax_invoice',
     ],
     'data': [
         'views/account_invoice_view.xml',
