@@ -49,7 +49,7 @@ class AccountInvoice(models.Model):
                 }
                 tax_lines += tax_lines.new(val)
                 line.sequence = sequence
-            self.tax_line_ids = tax_lines
+        self.tax_line_ids = tax_lines
         return
 
 
