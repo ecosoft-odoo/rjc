@@ -9,7 +9,7 @@
             </xpath>
             <xpath expr="//page[@id='reimbursable']//field[@name='reimbursable_ids']/tree" position="inside">
                 <field name="tax_id"/>
-                <field name="sequence" invisible="0"/>
+                <field name="sequence" invisible="1"/>
             </xpath>
         </field>
     </record>
