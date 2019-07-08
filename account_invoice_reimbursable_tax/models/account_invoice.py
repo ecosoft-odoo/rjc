@@ -29,13 +29,15 @@ class AccountInvoice(models.Model):
         for tax in taxes_grouped.values():
             tax_lines += tax_lines.new(tax)
         # check reimbursable
-        reimbursable_ids = self._context.get('reimbursable_ids')
-        try:
-            sequence = reimbursable_ids[0][2]['sequence']
-        except Exception:
-            sequence = 1000
+        reimbursable_ids = self._context.get('reimbursable_ids', False)
+        sequence = False
+        if reimbursable_ids:
+            sequence = max(list(map(
+                lambda x: x[0] == 0 and x[2] and x[2]['sequence'],
+                reimbursable_ids)))
         for line in self.reimbursable_ids:
-            if line.tax_id:
+            if line.tax_id and sequence:
+                sequence += 1
                 amount_tax = line.amount * (line.tax_id.amount/100)
                 val = {
                     'invoice_id': self.id,
@@ -46,10 +48,8 @@ class AccountInvoice(models.Model):
                     'sequence': sequence,
                 }
                 tax_lines += tax_lines.new(val)
-            if sequence:
                 line.sequence = sequence
-                sequence += 1
-        self.tax_line_ids = tax_lines
+            self.tax_line_ids = tax_lines
         return
 
 
@@ -57,8 +57,12 @@ class AccountInvoiceReimbursable(models.Model):
     _inherit = 'account.invoice.reimbursable'
 
     tax_id = fields.Many2one(
-        'account.tax',
-        string='Tax',
+        comodel_name='account.tax',
+        domain=[
+            ('type_tax_use', '=', 'purchase'),
+            ('tax_exigibility', '=', 'on_invoice')
+        ],
+        ondelete='restrict',
     )
     sequence = fields.Integer(
         default=1000,
