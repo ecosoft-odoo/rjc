@@ -3,7 +3,7 @@ from odoo.exceptions import UserError
 from odoo import fields
 
 
-class TestReimbursable(TransactionCase):
+class TestReimbursableTax(TransactionCase):
     def setUp(self):
         super().setUp()
         self.currency_eur = self.env.ref('base.EUR')
