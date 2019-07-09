@@ -12,7 +12,7 @@ class AccountAssetCompute(models.TransientModel):
     asset_id = fields.Many2one(
         comodel_name='account.asset',
         default=lambda self: self.env['account.asset'].search([
-            ('id', '=', self._context.get('active_ids', []))
+            ('id', 'in', self._context.get('active_ids', []))
         ])
     )
 
