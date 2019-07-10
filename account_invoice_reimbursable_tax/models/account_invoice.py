@@ -35,6 +35,8 @@ class AccountInvoice(models.Model):
             sequence = max(list(map(
                 lambda x: x[0] == 0 and x[2] and x[2]['sequence'],
                 reimbursable_ids)))
+        elif self.reimbursable_ids:
+            self.reimbursable_ids = False
         for line in self.reimbursable_ids:
             if line.tax_id and sequence:
                 sequence += 1
@@ -69,6 +71,12 @@ class AccountInvoiceReimbursable(models.Model):
         help="This sequence start with 1000, to ensure it is specially used \
         to keep relation with account.invoice.tax",
     )
+
+    @api.multi
+    def _invoice_reimbursable_move_line_get(self):
+        res = super()._invoice_reimbursable_move_line_get()
+        res['tax_ids'] = [(4, self.tax_id.id)]
+        return res
 
 
 class AccountInvoiceTax(models.Model):

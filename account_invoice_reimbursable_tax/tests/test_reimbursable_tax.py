@@ -74,25 +74,19 @@ class TestReimbursableTax(TransactionCase):
         self.assertFalse(invoice.tax_line_ids)
         invoice._onchange_invoice_line_reimbursable_ids()
         self.assertTrue(invoice.tax_line_ids)
-        with self.assertRaises(UserError):
-            invoice.action_invoice_open()
         for tax in invoice.tax_line_ids:
             reimburse_id = invoice.reimbursable_ids.filtered(
                 lambda l: l.sequence == tax.sequence)
-            # check sequence is must be 1 only
+            # sequence between tax line and reimburse are must be 1 only
             self.assertEqual(1, len(reimburse_id))
             self.assertEqual(
                 reimburse_id.amount*(tax.tax_id.amount/100), tax.amount)
             self.assertEqual(reimburse_id.amount, tax.base)
-            tax.write({
-                'tax_invoice_manual': 'invoice number',
-                'tax_date_manual': fields.Date.today(),
-            })
         invoice.action_invoice_open()
-        move_line_tax = invoice.move_id.line_ids.filtered(
+        move_line_reimburse_tax = invoice.move_id.line_ids.filtered(
             lambda l: l.invoice_tax_line_id.tax_id == self.reimbursable_tax)
-        self.assertEqual(2, len(move_line_tax))
-        for ml in move_line_tax:
+        self.assertEqual(2, len(move_line_reimburse_tax))
+        for ml in move_line_reimburse_tax:
             # check partner from reimbursable
             self.assertEqual(self.reimbursable_partner, ml.partner_id)
 

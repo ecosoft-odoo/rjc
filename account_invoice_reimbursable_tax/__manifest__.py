@@ -4,13 +4,12 @@
 {
     'name': 'Reimbursables with Tax',
     'version': '12.0.1.0.0',
-    'author': 'Ecosoft',
+    'author': 'Ecosoft, Odoo Community Association (OCA)',
     'category': 'Accounting & Finance',
     'website': 'https://github.com/ecosoft-odoo/addons',
     'license': 'AGPL-3',
     'depends': [
         'account_invoice_reimbursable',
-        'l10n_th_vendor_tax_invoice',
     ],
     'data': [
         'views/account_invoice_view.xml',
