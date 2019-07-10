@@ -14,8 +14,5 @@
     'depends': [
         'account_asset_management',
     ],
-    'data': [
-        'views/account_asset_profile.xml',
-        'views/account_asset.xml',
-    ],
+    'data': [],
 }
