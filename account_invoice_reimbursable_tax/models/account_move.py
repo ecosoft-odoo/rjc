@@ -1,10 +1,16 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
-from odoo import api, models
+from odoo import api, models, fields
 
 
 class AccountMoveLine(models.Model):
     _inherit = 'account.move.line'
+
+    invoice_tax_line_id = fields.Many2one(
+        comodel_name='account.invoice.tax',
+        copy=True,
+        ondelete='restrict',
+    )
 
     @api.depends('move_id.line_ids', 'move_id.line_ids.tax_line_id',
                  'move_id.line_ids.debit', 'move_id.line_ids.credit')
