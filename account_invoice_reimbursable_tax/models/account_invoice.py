@@ -75,7 +75,8 @@ class AccountInvoiceReimbursable(models.Model):
     @api.multi
     def _invoice_reimbursable_move_line_get(self):
         res = super()._invoice_reimbursable_move_line_get()
-        res['tax_ids'] = [(4, self.tax_id.id)]
+        if self.tax_id:
+            res['tax_ids'] = [(4, self.tax_id.id)]
         return res
 
 
