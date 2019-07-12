@@ -6,6 +6,20 @@
         </xpath>
     </template>
 
+    <template id="external_layout_standard" inherit_id="web.external_layout_standard">
+        <xpath expr="//div[@name='company_address']" position="replace">
+            <div class="col-6" name="company_address">
+                <span t-field="company.partner_id"/><br/>
+                <span t-field="company.street"/>
+                <span t-field="company.street2"/><br/>
+                <span t-field="company.city"/>
+                <span t-field="company.state_id.name"/>
+                <span t-field="company.zip"/><br/>
+                <span>โทร : <span t-field="company.phone"/></span>
+            </div>
+        </xpath>
+    </template>
+
     <template id="rjc_report_delivery_document">
         <t t-call="web.html_container">
             <t t-call="web.external_layout">
@@ -13,8 +27,15 @@
                 <t t-set="partner" t-value="o.partner_id or (o.move_lines and o.move_lines[0].partner_id) or False"/>
                 <t t-if="partner" name="partner_header">
                     <t t-set="address">
-                        <div t-esc="partner"
-                        t-options='{"widget": "contact", "fields": ["address", "name", "phone"], "no_marker": True}'/>
+                        <p>
+                            <span t-field="o.partner_id.name"/><br/>
+                            <span t-field="o.partner_id.street"/>
+                            <span t-field="o.partner_id.street2"/><br/>
+                            <span t-field="o.partner_id.city"/>
+                            <span t-field="o.partner_id.state_id.name"/>
+                            <span t-field="o.partner_id.zip"/><br/>
+                            <span>โทร : <span t-field="o.partner_id.phone"/></span>
+                        </p>
                    </t>
                 </t>
 
@@ -67,6 +88,7 @@
                         <thead>
                             <tr>
                                 <th><strong>Product</strong></th>
+                                <th><strong>Description</strong></th>
                                 <th><strong>Quantity</strong></th>
                             </tr>
                         </thead>
@@ -81,6 +103,9 @@
                                     <p t-if="o.picking_type_code == 'incoming'">
                                         <span t-field="move.product_id.sudo().description_pickingin"/>
                                     </p>
+                                </td>
+                                <td>
+                                    <span t-field="move.name"/>
                                 </td>
                                 <td>
                                     <span t-field="move.product_uom_qty"/>

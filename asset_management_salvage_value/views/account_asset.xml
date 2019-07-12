@@ -11,8 +11,9 @@
                     <div class="o_row">
                         <field name="salvage_value" widget="monetary" options="{'currency_field': 'company_currency_id'}"
                             attrs="{'readonly': ['|', ('move_line_check', '=', True), ('state', '!=', 'draft')]}"/>
-                        <button name="button_edit_salvage"  type="object" icon="fa-pencil"
+                        <button name="button_edit_salvage"  type="object" icon="fa-pencil" aria-label="Edit" title="Edit Salvage Value"
                             attrs="{'invisible': ['|', ('move_line_check', '=', False), ('state', '!=', 'draft')]}"/>
+
                     </div>
                     <field name="date_remove"/>
                 </group>

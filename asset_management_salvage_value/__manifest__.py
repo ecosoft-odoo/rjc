@@ -8,7 +8,7 @@
         'account_asset_management',
     ],
     'author': "Ecosoft, Odoo Community Association (OCA)",
-    'website': 'https://github.com/ecosoft-odoo/addons',
+    'website': 'https://github.com/OCA/account-financial-tools',
     'category': 'Accounting & Finance',
     'data': [
         'views/account_asset.xml',
