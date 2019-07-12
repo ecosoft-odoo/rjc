@@ -198,9 +198,7 @@ class AccountAsset(models.Model):
         store=True, readonly=True)
     account_analytic_id = fields.Many2one(
         comodel_name='account.analytic.account',
-        string='Analytic account',
-        domain=[('type', '!=', 'view'),
-                ('state', 'not in', ('close', 'cancelled'))])
+        string='Analytic account')
 
     @api.model
     def _default_company_id(self):
@@ -834,8 +832,7 @@ class AccountAsset(models.Model):
             fy_amount_check = 0.0
             fy_amount = entry['fy_amount']
             li_max = len(line_dates) - 1
-            prev_date = max(entry['date_start'],
-                            depreciation_start_date)
+            prev_date = max(entry['date_start'], depreciation_start_date)
             for li, line_date in enumerate(line_dates):
                 line_days = (line_date - prev_date).days + 1
                 if round(remaining_value, digits) == 0.0:
@@ -1014,6 +1011,11 @@ class AccountAsset(models.Model):
         if self.days_calc:
             days = (depreciation_stop_date - depreciation_start_date).days + 1
             day_amount = round(self.depreciation_base / days, digits)
+            # print(days)
+            # print(day_amount)
+            # print(depreciation_stop_date)
+            # print(depreciation_start_date)
+            # print("=========================")
         for i, entry in enumerate(table):
 
             if self.method_time == 'year':
