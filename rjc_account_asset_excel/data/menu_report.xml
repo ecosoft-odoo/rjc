@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <menuitem
+        parent="account.menu_finance_reports"
+        id="menu_asset_reports"
+        name="Asset Reports"
+        groups="account.group_account_manager,account.group_account_user"
+        />
+
+    <menuitem
+        parent="menu_asset_reports"
+        action="action_xlsx_report_asset_form"
+        id="menu_asset_report_wizard"
+        sequence="10"
+        />
+</odoo>
