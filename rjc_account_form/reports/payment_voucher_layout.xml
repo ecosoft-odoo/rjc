@@ -172,6 +172,23 @@
                         </strong>
                     </div>
                 </div>
+                <div class="row">
+                    <div class="col-4 horizontal_dotted_line" data-content="............/............/...............">
+                        <strong>
+                            วันที่
+                        </strong>
+                    </div>
+                    <div class="col-4 horizontal_dotted_line" data-content="............/............/...............">
+                        <strong>
+                            วันที่
+                        </strong>
+                    </div>
+                    <div class="col-4 horizontal_dotted_line" data-content="............/............/...............">
+                        <strong>
+                            วันที่
+                        </strong>
+                    </div>
+                </div>
             </div>
         </div>
     </template>
