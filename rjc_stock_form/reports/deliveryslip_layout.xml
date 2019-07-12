@@ -11,7 +11,7 @@
             <div class="col-6" name="company_address">
                 <span t-field="company.partner_id"/><br/>
                 <span t-field="company.street"/>
-                <span t-field="company.street2"/><br/>
+                <span t-field="company.street2"/>
                 <span t-field="company.city"/>
                 <span t-field="company.state_id.name"/>
                 <span t-field="company.zip"/><br/>
