@@ -54,6 +54,11 @@
         <field name="view_type">form</field>
         <field name="view_mode">form</field>
         <field name="target">new</field>
+        <field name="context">
+            {'template_domain': [('res_model', '=', 'xlsx.report.asset'),
+                                 ('fname', '=', 'report_asset.xlsx')],
+             'default_choose_template': False}
+        </field>
     </record>
 
 </odoo>
