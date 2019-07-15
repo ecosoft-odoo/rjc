@@ -10,7 +10,6 @@
     'category': 'Report',
     'depends': [
         'excel_import_export',
-        # 'account_asset_management',
         'account',
     ],
     'data': [
