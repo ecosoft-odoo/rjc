@@ -4,7 +4,7 @@
 {
     'name': 'RJC Stock',
     'summary': 'Modify field in stock module',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.1.1',
     'category': 'Warehouse',
     'website': 'https://github.com/ecosoft-odoo/rjc',
     'author': 'Ecosoft',
@@ -17,5 +17,6 @@
     ],
     'data': [
         'views/stock_picking_views.xml',
+        'views/stock_move_views.xml',
     ],
 }
