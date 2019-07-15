@@ -11,6 +11,10 @@ class AccountPaymentIntransit(models.Model):
         required=False,
     )
 
+    manual_total_amount = fields.Monetary(
+        default=lambda self: self._context.get('total_amount', 0.0)
+    )
+
 
 class AccountPaymentIntransitLine(models.Model):
     _inherit = 'account.payment.intransit.line'
