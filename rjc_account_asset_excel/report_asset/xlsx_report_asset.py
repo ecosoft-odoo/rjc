@@ -4,8 +4,8 @@
 from odoo import models, fields, api, _
 
 
-class AssetView(models.AbstractModel):
-    # _name = 'account.view'
+class AssetView(models.TransientModel):
+    _name = 'asset.view'
     _inherit = 'account.asset'
     _order = 'id'
 
@@ -53,7 +53,7 @@ class XLSXReportAsset(models.TransientModel):
         string='Asset Code',
     )
     asset_profile_ids = fields.Many2many(
-        'account.asset.profile',
+        comodel_name='account.asset.profile',
         string='Asset Profile',
     )
     date_filter = fields.Char(
@@ -62,21 +62,21 @@ class XLSXReportAsset(models.TransientModel):
     )
     # Note: report setting
     accum_depre_account_type = fields.Many2one(
-        'account.account.type',
+        comodel_name='account.account.type',
         string='Account Type for Accum.Depre.',
         required=True,
         help="Define account type for accumulated depreciation account, "
         "to be used in report query SQL."
     )
     depre_account_type = fields.Many2one(
-        'account.account.type',
+        comodel_name='account.account.type',
         string='Account Type for Depre.',
         required=True,
         help="Define account type for depreciation account, "
         "to be used in report query SQL."
     )
     results = fields.Many2many(
-        'account.asset',
+        comodel_name='asset.view',
         string='Results',
         compute='_compute_results',
         help='Use compute fields, so there is nothing store in database',
@@ -101,21 +101,13 @@ class XLSXReportAsset(models.TransientModel):
         self.ensure_one()
         dom = []
         # Prepare DOM to filter assets
-        # if self.asset_status_draft:
-        #     status += ['draft']
-        # if self.asset_status_open:
-        #     status += ['open']
-        # if self.asset_status_close:
-        #     status += ['close']
-        # if self.asset_status_removed:
-        #     status += ['removed']
         if self.asset_ids:
             dom += [('id', 'in', tuple(self.asset_ids.ids + [0]))]
         if self.asset_profile_ids:
             dom += [('profile_id', 'in',
                     tuple(self.asset_profile_ids.ids + [0]))]
         if self.asset_status:
-            dom += [('state', '=', tuple(self.asset_status))]
+            dom += [('state', '=', self.asset_status)]
         # Prepare fixed params
         date_start = self.date_from
         date_end = self.date_to
@@ -158,9 +150,7 @@ class XLSXReportAsset(models.TransientModel):
                           fiscalyear_start,
                           tuple(accum_depre_account_ids), fiscalyear_start))
         asset_results = self._cr.dictfetchall()
-        ReportLine = self.env['account.asset']
-        # Result = self.env['account.asset']
-        # self.results = Result.search(dom)
+        ReportLine = self.env['asset.view']
         for line in asset_results:
             self.results += ReportLine.new(line)
 
@@ -168,13 +158,6 @@ class XLSXReportAsset(models.TransientModel):
     def _compute_date_filter(self):
         self.date_filter = _(
             ('ตั้งแต่วันที่ %s ถึง %s') % (self.date_from, self.date_to))
-
-    # @api.multi
-    # def action_get_report(self):
-    #     action = self.env.ref(
-    #         'cmo_account_report.action_xlsx_report_asset_form')
-    #     action.sudo().write({'context': {'wizard_id': self.id}})
-    #     return super(XLSXReportAsset, self).action_get_report()
 
     @api.onchange('asset_status')
     def _onchange_asset_status(self):
