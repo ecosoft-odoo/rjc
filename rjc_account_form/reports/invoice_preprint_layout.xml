@@ -33,26 +33,35 @@
                 <tbody>
                     <t t-set="column" t-value="1"/>
                     <t t-foreach="o.invoice_line_ids" t-as="line">
-                        <tr>
-                            <td class="line_column">
-                                <span t-esc="column"/>
-                                <t t-set="column" t-value="column+1"/>
-                            </td>
-                            <td class="line_description">
-                                <span t-field="line.name"/>
-                            </td>
-                            <td class="line_qty text-right">
-                                <span t-field="line.quantity" t-options='{"widget": "integer"}'/>
-                            </td>
-                            <td class="line_uom text-right">
-                                <span t-field="line.uom_id" groups="uom.group_uom"/>
-                            </td>
-                            <td class="line_price_unit text-right">
-                                <span t-field="line.price_unit"/>
-                            </td>
-                            <td class="text-right">
-                                <span t-field="line.price_subtotal"/>
-                            </td>
+                        <tr t-att-class="'font-weight-bold o_line_section' if line.display_type == 'line_section' else 'font-italic o_line_note' if line.display_type == 'line_note' else ''">
+                            <t t-if="not line.display_type" name="account_invoice_line_accountable">
+                                <td class="line_column">
+                                    <span t-esc="column"/>
+                                    <t t-set="column" t-value="column+1"/>
+                                </td>
+                                <td class="line_description">
+                                    <span t-field="line.name"/>
+                                </td>
+                                <td class="line_qty text-right">
+                                    <span t-field="line.quantity" t-options='{"widget": "integer"}'/>
+                                </td>
+                                <td class="line_uom text-right">
+                                    <span t-field="line.uom_id" groups="uom.group_uom"/>
+                                </td>
+                                <td class="line_price_unit text-right">
+                                    <span t-field="line.price_unit"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="line.price_subtotal"/>
+                                </td>
+                            </t>
+                            <t t-if="line.display_type">
+                                <td/>
+                                <td t-att-colspan="colspan">
+                                    <span t-field="line.name"/>
+                                </td>
+                                <td/><td/><td/><td/>
+                            </t>
                         </tr>
                     </t>
                 </tbody>
