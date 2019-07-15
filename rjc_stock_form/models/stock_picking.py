@@ -5,7 +5,7 @@ from odoo import models, api
 
 
 class Picking(models.Model):
-    _inherit = "stock.picking"
+    _inherit = 'stock.picking'
 
     @api.multi
     def remove_menu_print(self, res, reports):
