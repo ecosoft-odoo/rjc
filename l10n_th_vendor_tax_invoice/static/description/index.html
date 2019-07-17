@@ -387,7 +387,7 @@ and Remove required field Base Tax Received Account.</p>
 <li><a class="reference internal" href="#id2" id="id10">12.0.1.0.1 (2019-06-04)</a></li>
 <li><a class="reference internal" href="#id3" id="id11">12.0.1.1.0 (2019-06-11)</a></li>
 <li><a class="reference internal" href="#id4" id="id12">12.0.2.0.0 (2019-06-22)</a></li>
-<li><a class="reference internal" href="#id5" id="id13">12.0.2.0.1 (2019-07-17)</a></li>
+<li><a class="reference internal" href="#id5" id="id13">12.0.2.1.0 (2019-07-17)</a></li>
 </ul>
 </li>
 <li><a class="reference internal" href="#bug-tracker" id="id14">Bug Tracker</a></li>
@@ -448,6 +448,16 @@ But we should still now see the new <tt class="docutils literal">Tax Invoice Num
 <li>Click on Clear VAT button, the journal entry (cash basis) for clear undue will now be <strong>Posted</strong></li>
 <li>To check Tax Invoice Number and Date in relevant journal items, go to Invoicing &gt; Accounting &gt; Journal Items, then click to expand</li>
 </ul>
+<p><strong>Preparing Tax Adjustments</strong></p>
+<ul class="simple">
+<li>Use Developer Mode</li>
+<li>As admin, add access rights <tt class="docutils literal">Show Full Accounting Features</tt></li>
+<li>Go to Invoicing &gt; Configuration &gt; Accounting &gt; Taxes, create new Tax Scope <tt class="docutils literal">Adjustment</tt></li>
+</ul>
+<p><strong>Case Tax Adjustments</strong></p>
+<ul class="simple">
+<li>Go to Invoicing &gt; Accounting &gt; Tax Adjustments, create journal entry directly new tax</li>
+</ul>
 </div>
 <div class="section" id="changelog">
 <h1><a class="toc-backref" href="#id8">Changelog</a></h1>
@@ -478,8 +488,9 @@ But we should still now see the new <tt class="docutils literal">Tax Invoice Num
 </ul>
 </div>
 <div class="section" id="id5">
-<h2><a class="toc-backref" href="#id13">12.0.2.0.1 (2019-07-17)</a></h2>
+<h2><a class="toc-backref" href="#id13">12.0.2.1.0 (2019-07-17)</a></h2>
 <ul class="simple">
+<li>Add partne_id and fields Tax Thailand in Tax Adjustments Wizard (case Tax Adjustments)</li>
 <li>Fix bug Tax Base amount in move line is 0 (case undue vat)</li>
 </ul>
 </div>

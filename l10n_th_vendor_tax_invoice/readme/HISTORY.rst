@@ -20,7 +20,8 @@
 * Applicable to HR Expense too, when it also use Undue Tax (add depends on hr_expense)
 * Add partner_id in account.payment.tax, to allow changing partner (mostly for expense case)
 
-12.0.2.0.1 (2019-07-17)
+12.0.2.1.0 (2019-07-17)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
+* Add partne_id and fields Tax Thailand in Tax Adjustments Wizard (case Tax Adjustments)
 * Fix bug Tax Base amount in move line is 0 (case undue vat)
