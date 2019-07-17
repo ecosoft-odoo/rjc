@@ -13,4 +13,4 @@
     'installable': True,
     'development_status': 'alpha',
     'maintainers': ['kittiu'],
- }
+}
