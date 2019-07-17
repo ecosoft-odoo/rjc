@@ -7,10 +7,15 @@
         <field name="inherit_id" ref="account.tax_adjustments_wizard"/>
         <field name="arch" type="xml">
             <field name="amount" position="replace"/>
+            <field name="debit_account_id" position="after">
+                <field name="debit_partner_id"/>
+            </field>
+            <field name="credit_account_id" position="after">
+                <field name="credit_partner_id"/>
+            </field>
             <xpath expr="/form/group" position="after">
                 <group string="Tax">
                     <group name="information">
-                        <field name="partner_id"/>
                         <field name="tax_invoice"/>
                         <field name="tax_date"/>
                     </group>

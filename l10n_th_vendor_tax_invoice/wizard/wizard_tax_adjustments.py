@@ -6,7 +6,12 @@ from odoo import models, fields, api
 class TaxAdjustments(models.TransientModel):
     _inherit = 'tax.adjustments.wizard'
 
-    partner_id = fields.Many2one(
+    debit_partner_id = fields.Many2one(
+        string='Partner (Debit Account)',
+        comodel_name='res.partner',
+    )
+    credit_partner_id = fields.Many2one(
+        string='Partner (Credit Account)',
         comodel_name='res.partner',
     )
     tax_date = fields.Date()
@@ -25,7 +30,10 @@ class TaxAdjustments(models.TransientModel):
         move_line = self.env['account.move.line'].search(
             [('move_id', '=', res)])
         for line in move_line:
-            line.partner_id = self.partner_id
+            if line.debit:
+                line.partner_id = self.debit_partner_id
+            else:
+                line.partner_id = self.credit_partner_id
             line.tax_invoice_manual = self.tax_invoice
             line.tax_date_manual = self.tax_date
             line.tax_base_amount = self.amount_tax_base
