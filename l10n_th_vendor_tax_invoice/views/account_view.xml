@@ -30,8 +30,8 @@
         <field name="model">account.tax</field>
         <field name="inherit_id" ref="account.view_tax_form"/>
         <field name="arch" type="xml">
-            <field name="cash_basis_base_account_id" position="replace">
-                <field name="cash_basis_base_account_id" attrs="{'invisible': [('tax_exigibility', '=', 'on_invoice')]}" groups="account.group_account_user"/>
+            <field name="cash_basis_base_account_id" position="attributes">
+                <attribute name="attrs">{'invisible': True}</attribute>
             </field>
         </field>
     </record>

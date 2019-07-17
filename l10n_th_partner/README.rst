@@ -22,7 +22,7 @@ Thai Localization - Partner
 
 |badge1| |badge2| |badge3| |badge4| 
 
-This module add more features/fields for partners for Thailand context
+This module add more features/fields for partners for Thailand
 
 **Table of contents**
 
