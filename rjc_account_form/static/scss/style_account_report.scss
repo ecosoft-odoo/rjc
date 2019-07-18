@@ -30,10 +30,19 @@
         height: 30px;
         padding: 1px;
     }
-    .invoice_and_origin {
+    .invoice_number {
         margin-left: 107px;
         position: fixed;
-        top: 169px;
+        top: 172px;
+        box-sizing: content-box;
+        width: 400px;
+        height: 30px;
+        padding: 1px;
+    }
+    .origin {
+        margin-left: 250px;
+        position: fixed;
+        top: 172px;
         box-sizing: content-box;
         width: 400px;
         height: 30px;
@@ -75,7 +84,7 @@
     }
     td.line_price_unit {
       table-layout: fixed;
-      width: 90px;
+      width: 102px;
     }
 }
 // style invoice tax

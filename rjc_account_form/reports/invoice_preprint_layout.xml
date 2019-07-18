@@ -23,8 +23,10 @@
                         </t>
                     </span>
                 </div>
-                <div class="invoice_and_origin">
+                <div class="invoice_number">
                     <span t-field="o.number"/>
+                </div>
+                <div class="origin">
                     <span t-field="o.origin"/>
                 </div>
                 <div class="date_invoice">
