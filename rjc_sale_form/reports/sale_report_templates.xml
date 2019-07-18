@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_saleorder_document" inherit_id="sale.report_saleorder_document">
+        <span t-field="line.price_unit" position="replace">
+            <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
+        </span>
+    </template>
+</odoo>
