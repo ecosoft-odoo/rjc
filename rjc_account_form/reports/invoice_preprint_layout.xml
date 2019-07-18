@@ -3,6 +3,7 @@
         <div class="header">
             <div class="invoice_preprint_form">
                 <div class="col-12 text-right">
+                    <br/>
                     (<strong><span t-field="o.state"/></strong>)
                 </div>
                 <div class="partner_name">
@@ -71,12 +72,10 @@
             </table>
         </div>
         <div class="footer invoice_preprint_form">
-            <div class="row pb16">
-                <div class="col-6 inv_comment">
-                    <span t-esc="o.comment"/>
-                </div>
+            <div class="col-6 inv_comment">
+                <span t-esc="o.comment"/>
             </div>
-            <div class="row pt40">
+            <div class="row pt80">
                 <div class="col-8 last-page text-center">
                     (<span t-esc="o.amount_text(o.amount_total)"/>)
                 </div>
