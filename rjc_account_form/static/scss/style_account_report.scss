@@ -15,7 +15,7 @@
     .address_partner {
         margin-left: 107px;
         position: fixed;
-        top: 100px;
+        top: 102px;
         box-sizing: content-box;
         width: 800px;
         height: 90px;
@@ -33,7 +33,7 @@
     .invoice_and_origin {
         margin-left: 107px;
         position: fixed;
-        top: 168px;
+        top: 169px;
         box-sizing: content-box;
         width: 400px;
         height: 30px;
@@ -42,7 +42,7 @@
     .date_invoice {
         right: 60px;
         position: fixed;
-        top: 58px;
+        top: 60px;
         box-sizing: content-box;
         width: 200px;
         height: 60px;
@@ -50,6 +50,12 @@
     }
     .inv_comment {
         margin-left: 60px;
+        position: fixed;
+        top: 1px;
+        box-sizing: content-box;
+        width: 450px;
+        height: 60px;
+        padding: 1px;
     }
     td.line_column {
       table-layout: fixed;
