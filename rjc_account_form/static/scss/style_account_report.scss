@@ -30,10 +30,19 @@
         height: 30px;
         padding: 1px;
     }
-    .date_and_origin {
+    .invoice_and_origin {
+        margin-left: 107px;
+        position: fixed;
+        top: 168px;
+        box-sizing: content-box;
+        width: 400px;
+        height: 30px;
+        padding: 1px;
+    }
+    .date_invoice {
         right: 60px;
         position: fixed;
-        top: 55px;
+        top: 58px;
         box-sizing: content-box;
         width: 200px;
         height: 60px;
