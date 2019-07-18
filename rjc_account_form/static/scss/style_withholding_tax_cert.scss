@@ -5,17 +5,17 @@
 
 //style wht
 .o_report_withholding_tax_cert_inherit{
-    font-size: 21px;
+    font-size: 19px;
 
     .company_vat {
         margin-left: 730px;
         position: fixed;
-        top: 157px;
+        top: 160px;
     }
     .company_name {
         margin-left: 107px;
         position: fixed;
-        top: 187px;
+        top: 190px;
         box-sizing: content-box;
         width: 650px;
         height: 40px;
@@ -24,7 +24,7 @@
     .company_address {
         margin-left: 113px;
         position: fixed;
-        top: 232px;
+        top: 235px;
         box-sizing: content-box;
         width: 1000px;
         height: 40px;
@@ -33,12 +33,12 @@
     .supplier_vat {
         margin-left: 730px;
         position: fixed;
-        top: 287px;
+        top: 290px;
     }
     .supplier_name {
         margin-left: 107px;
         position: fixed;
-        top: 326px;
+        top: 329px;
         box-sizing: content-box;
         width: 650px;
         height: 40px;
@@ -49,9 +49,9 @@
     .supplier_address {
         margin-left: 113px;
         position: fixed;
-        top: 376px;
+        top: 379px;
         box-sizing: content-box;
-        width: 1000px;
+        width: 960px;
         height: 40px;
         padding: 1px;
     }
@@ -87,12 +87,12 @@
     .type_1_base {
         position: fixed;
         top: 560px;
-        right: 201px;
+        right: 205px;
     }
     .type_1_tax {
         position: fixed;
         top: 560px;
-        right: 65px;
+        right: 69px;
     }
     .type_2_date {
         position: fixed;
@@ -102,27 +102,27 @@
     .type_2_base {
         position: fixed;
         top: 587px;
-        right: 201px;
+        right: 205px;
     }
     .type_2_tax {
         position: fixed;
         top: 587px;
-        right: 65px;
+        right: 69px;
     }
     .type_3_date {
         position: fixed;
-        top: 614px;
+        top: 616px;
         right: 381px;
     }
     .type_3_base {
         position: fixed;
-        top: 614px;
-        right: 201px;
+        top: 616px;
+        right: 205px;
     }
     .type_3_tax {
         position: fixed;
-        top: 614px;
-        right: 65px;
+        top: 616px;
+        right: 69px;
     }
     .type_5_date {
         position: fixed;
@@ -132,52 +132,52 @@
     .type_5_base {
         position: fixed;
         top: 1161px;
-        right: 201px;
+        right: 205px;
     }
     .type_5_tax {
         position: fixed;
         top: 1161px;
-        right: 65px;
+        right: 69px;
     }
     .type_6_description {
         position: fixed;
         box-sizing: content-box;
         width: 450px;
         height: 40px;
-        top: 1197px;
+        top: 1200px;
         left: 200px;
     }
     .type_6_date {
         position: fixed;
-        top: 1194px;
+        top: 1195px;
         right: 381px;
     }
     .type_6_base {
         position: fixed;
-        top: 1194px;
-        right: 201px;
+        top: 1195px;
+        right: 205px;
     }
     .type_6_tax {
         position: fixed;
-        top: 1193px;
-        right: 65px;
+        top: 1195px;
+        right: 69px;
     }
     .total_amount {
         position: fixed;
-        top: 1230px;
-        right: 201px;
+        top: 1235px;
+        right: 205px;
     }
     .total_tax {
         position: fixed;
-        top: 1230px;
-        right: 65px;
+        top: 1235px;
+        right: 69px;
     }
     .text_amount {
         position: fixed;
         box-sizing: content-box;
         width: 700px;
         height: 40px;
-        top: 1271px;
+        top: 1273px;
         right: 80px;
         text-align: center;
     }
@@ -209,23 +209,23 @@
         box-sizing: content-box;
         width: 270px;
         height: 40px;
-        top: 1410px;
+        top: 1413px;
         right: 210px;
         text-align: center;
     }
     .value_date_day{
         position: fixed;
-        top: 1434px;
+        top: 1437px;
         right: 456px;
     }
     .value_date_month{
         position: fixed;
-        top: 1434px;
+        top: 1437px;
         right: 340px;
     }
     .value_date_year{
         position: fixed;
-        top: 1434px;
+        top: 1437px;
         right: 255px;
     }
 

@@ -53,4 +53,5 @@ But we should still now see the new ``Tax Invoice Number`` and ``Tax Date`` fiel
 
 **Case Tax Adjustments**
 
-- Go to Invoicing > Accounting > Tax Adjustments, create journal entry directly new tax
+- Go to Invoicing > Accounting > Tax Adjustments
+- Create journal entry directly to adjust tax (manually by accountant)

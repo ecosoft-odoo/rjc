@@ -30,13 +30,13 @@ class TaxAdjustments(models.TransientModel):
     def _check_amount(self):
         if not self.amount or not self.amount_tax_base:
             raise ValidationError(_(
-                'Tax Amount or Tax Base can\'t have a 0 amount.'))
+                'Tax Amount or Tax Base can\'t have a zero amount.'))
 
     @api.multi
     def _create_move(self):
-        res = super()._create_move()
+        move_id = super()._create_move()
         move_line = self.env['account.move.line'].search(
-            [('move_id', '=', res)])
+            [('move_id', '=', move_id)])
         for line in move_line:
             if line.debit:
                 line.partner_id = self.debit_partner_id
@@ -45,4 +45,4 @@ class TaxAdjustments(models.TransientModel):
             line.tax_invoice_manual = self.tax_invoice
             line.tax_date_manual = self.tax_date
             line.tax_base_amount = self.amount_tax_base
-        return res
+        return move_id

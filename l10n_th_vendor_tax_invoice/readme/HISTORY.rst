@@ -23,5 +23,5 @@
 12.0.2.1.0 (2019-07-17)
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-* Add partne_id and fields Tax Thailand in Tax Adjustments Wizard (case Tax Adjustments)
+* Add partner, invoice date/number and amount fields in Tax Adjustments Wizard (to comply with Thai tax report)
 * Fix bug Tax Base amount in move line is 0 (case undue vat)
