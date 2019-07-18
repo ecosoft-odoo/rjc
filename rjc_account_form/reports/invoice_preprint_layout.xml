@@ -22,9 +22,12 @@
                         </t>
                     </span>
                 </div>
-                <div class="date_and_origin">
-                    <span t-field="o.date_invoice"/><br/>
+                <div class="invoice_and_origin">
+                    <span t-field="o.number"/>
                     <span t-field="o.origin"/>
+                </div>
+                <div class="date_invoice">
+                    <span t-field="o.date_invoice"/>
                 </div>
             </div>
         </div>
@@ -49,7 +52,7 @@
                                     <span t-field="line.uom_id" groups="uom.group_uom"/>
                                 </td>
                                 <td class="line_price_unit text-right">
-                                    <span t-field="line.price_unit"/>
+                                    <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
                                 </td>
                                 <td class="text-right">
                                     <span t-field="line.price_subtotal"/>
