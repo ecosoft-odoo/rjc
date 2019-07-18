@@ -1,0 +1,211 @@
+@font-face {
+    font-family: 'Lato';
+}
+// style invoice preprint
+.invoice_preprint_form {
+    .partner_name {
+        margin-left: 107px;
+        position: fixed;
+        top: 60px;
+        box-sizing: content-box;
+        width: 650px;
+        height: 40px;
+        padding: 1px;
+    }
+    .address_partner {
+        margin-left: 107px;
+        position: fixed;
+        top: 100px;
+        box-sizing: content-box;
+        width: 800px;
+        height: 90px;
+        padding: 1px;
+    }
+    .phone_number {
+        margin-left: 107px;
+        position: fixed;
+        top: 145px;
+        box-sizing: content-box;
+        width: 400px;
+        height: 30px;
+        padding: 1px;
+    }
+    .date_and_origin {
+        right: 60px;
+        position: fixed;
+        top: 55px;
+        box-sizing: content-box;
+        width: 200px;
+        height: 60px;
+        padding: 1px;
+    }
+    .inv_comment {
+        margin-left: 60px;
+    }
+    td.line_column {
+      table-layout: fixed;
+      width: 50px;
+    }
+    td.line_description {
+      table-layout: fixed;
+      width: 470px;
+    }
+    td.line_qty {
+      table-layout: fixed;
+      width: 75px;
+    }
+    td.line_uom {
+      table-layout: fixed;
+      width: 70px;
+    }
+    td.line_price_unit {
+      table-layout: fixed;
+      width: 90px;
+    }
+}
+// style invoice tax
+.tax_invoice_preprint_form {
+    .partner_info {
+        position: fixed;
+        margin-left: 20px;
+        top: 10px;
+        box-sizing: content-box;
+        width: 480px;
+        height: 90px;
+        padding: 1px;
+    }
+    .inv_date {
+        position: fixed;
+        margin-left: 760px;
+        top: 185px;
+        box-sizing: content-box;
+        width: 100px;
+        height: 40px;
+        padding: 1px;
+    }
+    td.line_column {
+        padding-left: 20px;
+        table-layout: fixed;
+        width: 60px;
+    }
+    td.line_description {
+        table-layout: fixed;
+        width: 480px;
+    }
+    td.line_qty {
+        table-layout: fixed;
+        width: 60px;
+    }
+    td.line_uom {
+        table-layout: fixed;
+        width: 66px;
+    }
+    .text_amount {
+        margin-left: 20px;
+        position: fixed;
+        top: 40px;
+        box-sizing: content-box;
+        width: 450px;
+        height: 70px;
+        padding: 1px;
+    }
+    .amount_before_discount {
+        position: fixed;
+        right: 15px;
+        top: 13px;
+    }
+    .amount_discount {
+        position: fixed;
+        right: 15px;
+        top: 45px;
+    }
+    .amount_untaxed {
+        position: fixed;
+        right: 15px;
+        top: 73px;
+    }
+    .amount_tax {
+        position: fixed;
+        right: 15px;
+        top: 100px;
+    }
+    .amount_total {
+        position: fixed;
+        right: 15px;
+        top: 127px;
+    }
+}
+
+// style payment
+.payment {
+    .horizontal_dotted_line {
+      display: flex;
+      padding: 5px;
+    }
+    .horizontal_dotted_line::after {
+        content: attr(data-content);
+        // border-bottom: 1px dotted black !important;
+    }
+    body {
+        font-size: 22px;
+    }
+    // style payment voucher
+    .payment_voucher_form {
+        thead {
+            background-color: whitesmoke;
+        }
+        tfoot {
+            tr td {
+                border-top: none;
+            }
+            tr .border-black td {
+                border-top: 1px solid black !important;
+            }
+            background-color: whitesmoke;
+        }
+        .line_dot {
+            border-bottom:1px dotted #000;
+        }
+    }
+
+    // style payment receipt
+    .payment_receipt_form {
+        table {
+            thead {
+                background-color: whitesmoke;
+            }
+            tfoot {
+                tr td {
+                    border-top: none;
+                }
+                tr .border-black td {
+                    border-top: 1px solid black !important;
+                }
+            }
+        }
+    }
+}
+
+// style account billing
+.billing_form {
+    .billing_state {
+        position: fixed;
+        top: 50px;
+        right: 100px;
+    }
+    td.amount_text {
+        table-layout: fixed;
+        width: 80%;
+    }
+    .bottom-border-black {
+        border-bottom: 1px solid black !important;
+    }
+}
+
+//head_date-company-page
+.header {
+    .print_head {
+        font-size: 12px;
+        border-bottom: 1px solid black;
+    }
+ }
