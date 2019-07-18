@@ -1,6 +1,7 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
-from odoo import models, fields, api
+from odoo import models, fields, api, _
+from odoo.exceptions import ValidationError
 
 
 class TaxAdjustments(models.TransientModel):
@@ -23,6 +24,13 @@ class TaxAdjustments(models.TransientModel):
         currency_field='company_currency_id',
         required=True,
     )
+
+    @api.one
+    @api.constrains('amount', 'amount_tax_base')
+    def _check_amount(self):
+        if not self.amount or not self.amount_tax_base:
+            raise ValidationError(_(
+                'Tax Amount or Tax Base can\'t have a 0 amount.'))
 
     @api.multi
     def _create_move(self):
