@@ -3,6 +3,7 @@
         <div class="header billing_form">
             <div class="row">
                 <div class="col-5">
+                    <span t-field="o.company_id.name"/><br/>
                     <span t-field="o.company_id.street"/>
                     <span t-field="o.company_id.street2"/>
                     <span t-field="o.company_id.city"/>
@@ -19,10 +20,13 @@
                 <span t-field="o.state"/>
             </div>
             <div class="text-center">
-                <span>
-                    <h3><strong>ใบวางบิล</strong></h3>
-                    <h3><strong>Billing</strong></h3>
+                <span t-if="o.bill_type == 'in_invoice'">
+                    <h3><strong>ใบรับวางบิล</strong></h3>
                 </span>
+                <span t-if="o.bill_type == 'out_invoice'">
+                    <h3><strong>ใบวางบิล</strong></h3>
+                </span>
+                <h3><strong>Billing</strong></h3>
             </div>
             <div class="row">
                 <div class="col-2">
