@@ -23,6 +23,7 @@ class AccountPayment(models.Model):
     def post(self):
         for payment in self:
             if payment.taxinv_ready:
+                payment.pending_tax_cash_basis_entry = True
                 payment._check_tax_invoice_manual()
         res = super().post()
         # self._update_tax_invoice_move()
@@ -68,15 +69,14 @@ class AccuntAbstractPayment(models.AbstractModel):
             for p in payment.tax_line_ids:
                 move_lines = self.env['account.move.line'].search([
                     ('payment_tax_line_id', '=', p.id),
-                    ('tax_line_id', '!=', False)])
+                    ('tax_line_id', '!=', False)], order='id desc', limit=1)
                 # Update new tax invoice info
-                for m in move_lines:
-                    vals = {'tax_invoice_manual': p.tax_invoice_manual,
-                            'tax_date_manual': p.tax_date_manual,
-                            'partner_id': p.partner_id.id,
-                            'tax_base_amount':
-                            m.tax_base_amount or m.invoice_tax_line_id.base}
-                    m.write(vals)
+                vals = {'tax_invoice_manual': p.tax_invoice_manual,
+                        'tax_date_manual': p.tax_date_manual,
+                        'partner_id': p.partner_id.id,
+                        'tax_base_amount': move_lines.tax_base_amount
+                        or move_lines.invoice_tax_line_id.base}
+                move_lines.write(vals)
                 # Find move for this payment tax to clear, post it
                 move_lines.mapped('move_id').\
                     filtered(lambda m: m.state == 'draft').post()
@@ -162,6 +162,7 @@ class AccountPaymentTax(models.Model):
     def _compute_move_line_id(self):
         MoveLine = self.env['account.move.line']
         for rec in self:
-            move_line = MoveLine.search([('payment_tax_line_id', '=', rec.id),
-                                         ('tax_line_id', '!=', False)])
+            move_line = MoveLine.search([
+                ('payment_tax_line_id', '=', rec.id),
+                ('tax_line_id', '!=', False)], order='id desc', limit=1)
             rec.move_line_id = move_line
