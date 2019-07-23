@@ -11,6 +11,12 @@ class AccountInvoice(models.Model):
     number_preprint = fields.Char(
         string='Preprint Number',
         )
+    comment = fields.Text(
+        readonly=False,
+    )
+    reference = fields.Char(
+        readonly=False,
+    )
 
     @api.multi
     def action_invoice_open(self):
