@@ -7,6 +7,11 @@ class WithholdingTaxCert(models.Model):
     _inherit = 'withholding.tax.cert'
 
     @api.multi
+    def _get_line_wht_type(self, type):
+        type_5 = self.wt_line.filtered(lambda l: l.wt_cert_income_type == '5')
+        return type_5
+
+    @api.multi
     def remove_menu_print(self, res, reports):
         # Remove reports menu
         for report in reports:

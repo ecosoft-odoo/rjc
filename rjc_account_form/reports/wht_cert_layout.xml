@@ -92,12 +92,24 @@
                     <p class="type_3_base"><t t-esc="'{0:,.2f}'.format(line_id.base)"/></p>
                     <p class="type_3_tax"><t t-esc="'{0:,.2f}'.format(line_id.amount)"/></p>
                 </t>
-                <t t-if="line_id.wt_cert_income_type == '5'">
-                    <p class="type_5_date"><t t-esc="date"/></p>
-                    <p class="type_5_base"><t t-esc="'{0:,.2f}'.format(line_id.base)"/></p>
-                    <p class="type_5_tax"><t t-esc="'{0:,.2f}'.format(line_id.amount)"/></p>
-                </t>
             </t>
+            <!-- support multi line in type 5 -->
+            <t t-set="line_type_5" t-value="o._get_line_wht_type(5)"/>
+            <span class="type_5_date text-right">
+                <t t-foreach="line_type_5" t-as="line_5">
+                    <t t-esc="date"/><br/>
+                </t>
+            </span>
+            <span class="type_5_base text-right">
+                <t t-foreach="line_type_5" t-as="line_5">
+                    <t t-esc="'{0:,.2f}'.format(line_5.base)"/><br/>
+                </t>
+            </span>
+            <span class="type_5_tax text-right">
+                <t t-foreach="line_type_5" t-as="line_5">
+                    <t t-esc="'{0:,.2f}'.format(line_5.amount)"/><br/>
+                </t>
+            </span>
             <!-- check in line type other (6, 7, 8) -->
             <t t-if="o._compute_sum_type_other(o.wt_line, 'base')">
                 <p class="type_6_description"><t t-esc="o._compute_desc_type_other(o.wt_line, 'wt_cert_income_desc')"/></p>

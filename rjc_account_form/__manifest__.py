@@ -3,7 +3,7 @@
 
 {
     'name': 'RJC Account Report',
-    'version': '12.0.1.1.0',
+    'version': '12.0.1.2.0',
     'author': 'Ecosoft',
     'license': 'AGPL-3',
     'website': 'https://github.com/ecosoft-odoo/rjc',
