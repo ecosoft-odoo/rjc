@@ -37,7 +37,7 @@
                 <field name="currency_id"/>
                 <field name="date_invoice"/>
                 <field name="date_due"/>
-                <field name="amount_total" sum="Total Amount"/>
+                <field name="amount_total_signed" string="Total" sum="Total Amount"/>
                 <field name="state"/>
             </tree>
         </field>
@@ -93,6 +93,7 @@
                         <group>
                             <field name="partner_id" attrs="{'readonly': [('state', '!=', 'draft')]}" context="{'default_supplier': bill_type == 'in_invoice', 'default_customer': bill_type == 'out_invoice'}"/>
                             <field name="bill_type" invisible="1"/>
+                            <field name="bill_refund_type" invisible="1"/>
                         </group>
                         <group>
                             <field name="date"/>
@@ -107,7 +108,7 @@
                                 domain="[
                                     ('partner_id', '=', partner_id),
                                     ('state', '=', 'open'),
-                                    ('type', '=', bill_type),
+                                    ('type', 'in', (bill_type, bill_refund_type)),
                                     ('billing_id', '=', False),
                                     ('currency_id', '=', currency_id)
                                 ]">
@@ -116,7 +117,7 @@
                                     <field name="date_invoice"/>
                                     <field name="date_due"/>
                                     <field name="origin"/>
-                                    <field name="amount_total" sum="Total Amount"/>
+                                    <field name="amount_total_signed" string="Total" sum="Total Amount"/>
                                     <field name="state"/>
                                 </tree>
                             </field>
