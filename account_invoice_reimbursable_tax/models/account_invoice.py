@@ -21,6 +21,46 @@ class AccountInvoice(models.Model):
                 res['partner_id'] = part.id
         return res
 
+    @api.multi
+    def compute_invoice_totals(self, company_currency, invoice_move_lines):
+        total = 0
+        total_currency = 0
+        for line in invoice_move_lines:
+            if self.currency_id != company_currency:
+                currency = self.currency_id
+                date = self._get_currency_rate_date() or \
+                    fields.Date.context_today(self)
+                if not (line.get('currency_id') and
+                        line.get('amount_currency')):
+                    line['currency_id'] = currency.id
+                    line['amount_currency'] = currency.round(line['price'])
+                    line['price'] = currency._convert(
+                        line['price'], company_currency, self.company_id, date)
+            else:
+                line['currency_id'] = False
+                line['amount_currency'] = False
+                line['price'] = self.currency_id.round(line['price'])
+            if self.type in ('out_invoice', 'in_refund'):
+                total += line['price']
+                total_currency += line['amount_currency'] or line['price']
+                line['price'] = - line['price']
+            else:
+                total -= line['price']
+                total_currency -= line['amount_currency'] or line['price']
+        return total, total_currency, invoice_move_lines
+
+    @api.multi
+    def finalize_invoice_move_lines(self, move_lines):
+        res = super().finalize_invoice_move_lines(move_lines)
+        for reimbursable in self.reimbursable_ids.filtered(
+            lambda r: r.amount != 0
+        ):
+            res.append((0, 0, self.line_get_convert(
+                reimbursable._invoice_reimbursable_credit_move_line_get(),
+                reimbursable.partner_id.id
+            )))
+        return res
+
     @api.onchange('invoice_line_ids', 'reimbursable_ids')
     def _onchange_invoice_line_reimbursable_ids(self):
         taxes_grouped = self.get_taxes_values()
@@ -78,6 +118,37 @@ class AccountInvoiceReimbursable(models.Model):
         if self.tax_id:
             res['tax_ids'] = [(4, self.tax_id.id)]
         return res
+
+    @api.multi
+    def _invoice_reimbursable_credit_move_line_get(self):
+        self.ensure_one()
+        amount = False
+        currency_id = False
+        amount_currency = False
+        if self.currency_id != self.company_id.currency_id:
+            amount = self.currency_id._convert(
+                self.amount, self.company_id.currency_id,
+                self.company_id, fields.Date.today())
+            currency_id = self.currency_id.id
+            amount_currency = self.amount
+        return {
+            'reimbursable_id': self.id,
+            'type': 'reimbursable',
+            'partner_id': self.partner_id.id,
+            'name': self.name.split('\n')[0][:64],
+            'price_unit': self.amount,
+            'quantity': 1,
+            'price': -amount or -self.amount,
+            'currency_id': currency_id or False,
+            'amount_currency': amount_currency or False,
+            'account_id': self.account_id.id,
+            'product_id': self.product_id.id,
+            'uom_id': self.product_id.uom_id.id,
+            'account_analytic_id': self.account_analytic_id.id,
+            'invoice_id': self.invoice_id.id,
+            'analytic_tag_ids': [(4, analytic_tag.id, None)
+                                 for analytic_tag in self.analytic_tag_ids]
+        }
 
 
 class AccountInvoiceTax(models.Model):
