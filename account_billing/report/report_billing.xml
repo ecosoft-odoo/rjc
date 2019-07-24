@@ -48,7 +48,7 @@
                                 <td t-attf-class="text-left"><span t-field="line.date_invoice"/></td>
                                 <td t-attf-class="text-left"><span t-field="line.date_due"/></td>
                                 <td t-attf-class="text-left"><span t-field="line.origin"/></td>
-                                <td class="text-right"><span t-field="line.amount_total"/></td>
+                                <td class="text-right"><span t-field="line.amount_total_signed"/></td>
                                 <td class="text-left"><span t-field="line.state"/></td>
                             </tr>
                         </t>

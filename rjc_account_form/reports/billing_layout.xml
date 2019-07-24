@@ -33,7 +33,7 @@
                     <strong>ชื่อลูกค้า</strong><br/>
                     <strong>ที่อยู่ลูกค้า</strong>
                 </div>
-                <div class="col-6">
+                <div class="col-5">
                     <span t-field="o.partner_id"/><br/>
                     <span t-field="o.partner_id.street"/>
                     <span t-field="o.partner_id.street2"/>
@@ -45,7 +45,7 @@
                     <strong>เลขที่เอกสาร</strong><br/>
                     <strong>วันที่</strong>
                 </div>
-                <div class="col-2">
+                <div class="col-3">
                     <span t-field="o.name"/><br/>
                     <span t-field="o.date"/>
                 </div>
@@ -67,8 +67,8 @@
                         <td><span t-field="line.number_preprint"/></td>
                         <td><span t-field="line.date_invoice"/></td>
                         <td><span t-field="line.date_due"/></td>
-                        <td class="text-right"><span t-field="line.amount_total"/></td>
-                        <t t-set="sum_amount" t-value="sum_amount + line.amount_total"/>
+                        <td class="text-right"><span t-field="line.amount_total_signed"/></td>
+                        <t t-set="sum_amount" t-value="sum_amount + line.amount_total_signed"/>
                     </tr>
                 </tbody>
             </table>

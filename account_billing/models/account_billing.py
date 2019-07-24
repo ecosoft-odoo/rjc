@@ -93,6 +93,14 @@ class AccountBilling(models.Model):
         default=lambda self: self._context.get('bill_type', False),
         help='Type of invoice',
     )
+    bill_refund_type = fields.Selection(
+        [('out_refund', 'Customer Refund'),
+         ('in_invoice', 'Vendor Bill')],
+        readonly=True,
+        states={'draft': [('readonly', False)]},
+        default=lambda self: self._get_refund_type(),
+        help='Type of invoice',
+    )
     currency_id = fields.Many2one(
         comodel_name='res.currency',
         string='Currency',
@@ -100,6 +108,13 @@ class AccountBilling(models.Model):
         default=lambda self: self._get_currency_id(),
         help='Currency',
     )
+
+    @api.multi
+    def _get_refund_type(self):
+        bill_type = self._context.get('bill_type', False)
+        if bill_type == 'out_invoice':
+            return 'out_refund'
+        return bill_type
 
     @api.model
     def fields_view_get(self, view_id=None, view_type='form',
