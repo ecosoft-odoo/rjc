@@ -73,8 +73,8 @@
                                     <td><span t-esc="column"/></td>
                                     <td><span t-field="line.product_id.default_code"/></td>
                                     <td><span t-field="line.name"/></td>
-                                    <td class="text-right"><span t-field="line.quantity"/></td>
-                                    <td class="text-right"><span t-field="line.price_unit"/></td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(line.quantity)"/></td>
+                                    <td class="text-right"><span t-esc="'{0:,.2f}'.format(line.price_unit)"/></td>
                                     <td class="text-right"><span t-field="line.price_subtotal" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/></td>
                                     <t t-set="column" t-value="column+1"/>
                                 </t>
