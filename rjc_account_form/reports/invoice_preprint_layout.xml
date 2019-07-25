@@ -48,15 +48,21 @@
                                 <td class="line_description">
                                     <span t-field="line.name"/>
                                 </td>
-                                <td class="line_qty text-right">
-                                    <span t-field="line.quantity" t-options='{"widget": "integer"}'/>
-                                </td>
-                                <td class="line_uom text-right">
-                                    <span t-field="line.uom_id" groups="uom.group_uom"/>
-                                </td>
-                                <td class="line_price_unit text-right">
-                                    <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
-                                </td>
+                                <t t-if="line.price_subtotal_signed >= 0">
+                                    <td class="line_qty text-right">
+                                        <span t-field="line.quantity" t-options='{"widget": "integer"}'/>
+                                    </td>
+                                    <td class="line_uom text-right">
+                                        <span t-field="line.uom_id" groups="uom.group_uom"/>
+                                    </td>
+                                    <td class="line_price_unit text-right">
+                                        <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
+                                    </td>
+                                </t>
+                                <t t-else="">
+                                    <td/><td/><td/>
+                                </t>
+
                                 <td class="text-right">
                                     <span t-field="line.price_subtotal"/>
                                 </td>
