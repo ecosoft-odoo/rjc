@@ -22,7 +22,7 @@ RJC HR Expense Form
 
 |badge1| |badge2| |badge3| |badge4| 
 
-This module inherit expense form to show report 2 decimal.
+This module inherit expense form.
 
 **Table of contents**
 

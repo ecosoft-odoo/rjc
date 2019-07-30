@@ -13,6 +13,7 @@
     ],
     'data': [
         'reports/hr_expense_report.xml',
+        'data/report_data.xml',
     ],
     'installable': True,
 }
