@@ -67,18 +67,18 @@ class AccuntAbstractPayment(models.AbstractModel):
     def _update_tax_invoice_move(self):
         for payment in self:
             for p in payment.tax_line_ids:
-                move_lines = self.env['account.move.line'].search([
+                move_line = self.env['account.move.line'].search([
                     ('payment_tax_line_id', '=', p.id),
                     ('tax_line_id', '!=', False)], order='id desc', limit=1)
                 # Update new tax invoice info
                 vals = {'tax_invoice_manual': p.tax_invoice_manual,
                         'tax_date_manual': p.tax_date_manual,
                         'partner_id': p.partner_id.id,
-                        'tax_base_amount': move_lines.tax_base_amount
-                        or move_lines.invoice_tax_line_id.base}
-                move_lines.write(vals)
+                        'tax_base_amount': move_line.tax_base_amount
+                        or move_line.invoice_tax_line_id.base}
+                move_line.write(vals)
                 # Find move for this payment tax to clear, post it
-                move_lines.mapped('move_id').\
+                move_line.mapped('move_id').\
                     filtered(lambda m: m.state == 'draft').post()
 
     @api.multi
