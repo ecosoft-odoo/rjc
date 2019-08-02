@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+    <record model="account.account.type" id="data_account_type_depreciation">
+      <field name="name">Accumulated Depreciation</field>
+      <field name="type">other</field>
+      <field name="internal_group">expense</field>
+    </record>
+
     <menuitem
         parent="account.menu_finance_reports"
         id="menu_asset_reports"
