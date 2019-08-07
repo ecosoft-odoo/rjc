@@ -50,7 +50,7 @@
                                 </td>
                                 <t t-if="line.price_subtotal_signed >= 0">
                                     <td class="line_qty text-right">
-                                        <span t-field="line.quantity" t-options='{"widget": "integer"}'/>
+                                        <span t-esc="abs(line.quantity)" t-options='{"widget": "integer"}'/>
                                     </td>
                                     <td class="line_uom text-right">
                                         <span t-field="line.uom_id" groups="uom.group_uom"/>
@@ -58,14 +58,16 @@
                                     <td class="line_price_unit text-right">
                                         <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
                                     </td>
+                                    <td class="text-right">
+                                        <span t-esc="abs(line.price_subtotal)"/>
+                                    </td>
                                 </t>
                                 <t t-else="">
                                     <td/><td/><td/>
+                                    <td class="text-right">
+                                        <span t-esc="line.price_subtotal*-1"/>
+                                    </td>
                                 </t>
-
-                                <td class="text-right">
-                                    <span t-field="line.price_subtotal"/>
-                                </td>
                             </t>
                             <t t-if="line.display_type">
                                 <td/>
