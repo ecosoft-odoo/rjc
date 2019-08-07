@@ -18,6 +18,9 @@ $psql -c "delete from stock_inventory";
 $psql -c "delete from stock_picking";
 $psql -c "delete from stock_move";
 $psql -c "delete from stock_scrap";
+# serial number
+$psql -c "delete from stock_quant";
+$psql -c "delete from stock_production_lot";
 
 # Expense
 $psql -c "delete from hr_expense_sheet";
