@@ -4,7 +4,7 @@
 {
     'name': 'RJC Expense',
     'summary': 'Modify field in expense module',
-    'version': '12.0.1.0.0',
+    'version': '12.0.1.1.0',
     'category': 'Human Resources',
     'website': 'https://github.com/ecosoft-odoo/rjc',
     'author': 'Ecosoft',
@@ -16,5 +16,6 @@
     ],
     'data': [
         'views/hr_expense_sheet_register_payment.xml',
+        'views/account_payment_view.xml',
     ],
 }

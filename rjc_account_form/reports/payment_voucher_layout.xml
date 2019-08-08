@@ -64,6 +64,7 @@
                     </thead>
                     <tbody>
                         <t t-set="total_payment" t-value="0"/>
+                        <!-- Invoice Case -->
                         <t t-foreach="o.reconciled_invoice_ids" t-as="line">
                             <t t-set="type" t-value="'in_invoice'"/>
                             <t t-set="payment_widget" t-value="line._get_payments_vals()"/>
@@ -109,6 +110,22 @@
                                 <td/>
                                 <td class="text-right">
                                     <t t-esc="payment_diff" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </td>
+                            </tr>
+                        </t>
+
+                        <!-- Expense Case -->
+                        <t t-if="o.expense_sheet_id">
+                            <tr>
+                                <td/>
+                                <td>
+                                    <span t-field="o.expense_sheet_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-field="o.expense_sheet_id.accounting_date"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.expense_sheet_id.total_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                 </td>
                             </tr>
                         </t>
