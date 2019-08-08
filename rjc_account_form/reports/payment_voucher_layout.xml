@@ -129,6 +129,22 @@
                                 </td>
                             </tr>
                         </t>
+                        <!-- Tax Adjustment Case -->
+                        <t t-if="not o.expense_sheet_id and not o.reconciled_invoice_ids">
+                            <t t-set="move_id" t-value="o._get_move_line()"/>
+                            <tr>
+                                <td/>
+                                <td>
+                                    <span t-esc="move_id.name"/>
+                                </td>
+                                <td>
+                                    <span t-esc="move_id.date"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-field="o.amount"/>
+                                </td>
+                            </tr>
+                        </t>
                     </tbody>
                     <tfoot>
                         <tr>
