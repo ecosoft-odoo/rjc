@@ -19,12 +19,13 @@ class HrExpenseSheetRegisterPaymentWizard(models.TransientModel):
     )
 
     def _get_payment_vals(self):
-        res = super(
-            HrExpenseSheetRegisterPaymentWizard, self)._get_payment_vals()
+        res = super()._get_payment_vals()
+        active_id = self._context.get('active_id', False)
         res.update({
             'value_date': self.value_date,
             'payment_ref': self.payment_ref,
             'cheque_no': self.cheque_no,
             'notes': self.notes,
+            'expense_sheet_id': active_id,
         })
         return res
