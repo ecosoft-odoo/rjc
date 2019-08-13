@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+
+    <record id="mis_report_style_l10n_th_base" model="mis.report.style">
+      <field name="name">l10n_th base</field>
+      <field name="dp_inherit" eval="0"/>
+      <field name="dp">2</field>
+      <field name="font_weight_inherit" eval="0"/>
+      <field name="font_weight">bold</field>
+    </record>
+
+    <record id="mis_report_style_l10n_th_1" model="mis.report.style">
+      <field name="name">l10n_th 1</field>
+      <field name="dp_inherit" eval="0"/>
+      <field name="dp">2</field>
+      <field name="font_weight_inherit" eval="0"/>
+      <field name="font_weight">bold</field>
+      <field name="indent_level_inherit" eval="0"/>
+      <field name="indent_level">1</field>
+    </record>
+
+    <record id="mis_report_style_l10n_th_2" model="mis.report.style">
+      <field name="name">l10n_th 2</field>
+      <field name="dp_inherit" eval="0"/>
+      <field name="dp">2</field>
+      <field name="font_weight_inherit" eval="0"/>
+      <field name="font_weight">bold</field>
+      <field name="indent_level_inherit" eval="0"/>
+      <field name="indent_level">2</field>
+    </record>
+
+    <record id="mis_report_style_l10n_th_3" model="mis.report.style">
+      <field name="name">l10n_th 3</field>
+      <field name="dp_inherit" eval="0"/>
+      <field name="dp">2</field>
+      <field name="indent_level_inherit" eval="0"/>
+      <field name="indent_level">3</field>
+    </record>
+
+    <record id="mis_report_style_l10n_th_detail" model="mis.report.style">
+      <field name="name">l10n_th detail</field>
+      <field name="dp_inherit" eval="0"/>
+      <field name="dp">2</field>
+      <field name="font_style_inherit" eval="0"/>
+      <field name="font_style">italic</field>
+      <field name="font_size_inherit" eval="0"/>
+      <field name="font_size">small</field>
+      <field name="indent_level_inherit" eval="0"/>
+      <field name="indent_level">4</field>
+      <field name="hide_empty_inherit" eval="0"/>
+      <field name="hide_empty" eval="True"/>
+    </record>
+
+</odoo>
