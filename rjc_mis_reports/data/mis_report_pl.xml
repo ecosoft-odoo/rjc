@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="mis.report" id="mis_report_pl">
+        <field name="name">Profit and Loss Template</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_pl_th40000">
+        <field name="report_id" ref="mis_report_pl"/>
+        <field name="name">th40000</field>
+        <field name="description">รวมรายได้</field>
+        <field name="expression">balp[4%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_base"/>
+        <field name="sequence">10</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_pl_th41000">
+        <field name="report_id" ref="mis_report_pl"/>
+        <field name="name">th41000</field>
+        <field name="description">รายได้จากการขายและบริการ</field>
+        <field name="expression">balp[41%]+balp[42%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">20</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_pl_th43000">
+        <field name="report_id" ref="mis_report_pl"/>
+        <field name="name">th43000</field>
+        <field name="description">รายได้อื่น</field>
+        <field name="expression">balp[43%]+balp[44000]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">30</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_pl_th50000">
+        <field name="report_id" ref="mis_report_pl"/>
+        <field name="name">th50000</field>
+        <field name="description">ต้นทุนซื้อสินค้าและการบริการ</field>
+        <field name="expression">balp[5%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_base"/>
+        <field name="sequence">40</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_pl_net_profit">
+        <field name="report_id" ref="mis_report_pl"/>
+        <field name="name">Net_Profit</field>
+        <field name="description">กำไรขั้นต้น</field>
+        <field name="expression">th40000-th50000</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_base"/>
+        <field name="sequence">50</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_pl_th60000">
+        <field name="report_id" ref="mis_report_pl"/>
+        <field name="name">th60000</field>
+        <field name="description">ค่าใช้จ่ายขายและบริหาร</field>
+        <field name="expression">balp[60%]+balp[61%]+balp[62%]+balp[63%]+balp[64%]+balp[65%]+balp[66%]+balp[67%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_base"/>
+        <field name="sequence">60</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_pl_th68000">
+        <field name="report_id" ref="mis_report_pl"/>
+        <field name="name">th68000</field>
+        <field name="description">ค่าใช้จ่ายทางการเงิน</field>
+        <field name="expression">balp[68%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">70</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_pl_th69000">
+        <field name="report_id" ref="mis_report_pl"/>
+        <field name="name">th69000</field>
+        <field name="description">ค่าใช้จ่ายบวกกลับ</field>
+        <field name="expression">balp[69%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="sequence">80</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_pl_thprofitloss">
+        <field name="report_id" ref="mis_report_pl"/>
+        <field name="name">thprofitloss</field>
+        <field name="description">กำไร(ขาดทุน)สุทธิ</field>
+        <field name="expression">Net_Profit-th60000-th68000-th69000</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_base"/>
+        <field name="sequence">90</field>
+    </record>
+</odoo>

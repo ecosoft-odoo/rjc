@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record model="mis.report" id="mis_report_bs">
+        <field name="name">Balance Sheet Template</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th10000">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th10000</field>
+        <field name="description">รวมสินทรัพย์</field>
+        <field name="expression">balp[1%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_base"/>
+        <field name="sequence">10</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th11000">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th11000</field>
+        <field name="description">สินทรัพย์หมุนเวียน</field>
+        <field name="expression">balp[11%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="sequence">20</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th11100">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th11000</field>
+        <field name="description">เงินสดและรายการเทียบเท่าเงินสด</field>
+        <field name="expression">balp[111%]-balp[11100]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_2"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">30</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th11200">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th11200</field>
+        <field name="description">เงินลงทุนชั่วคราว</field>
+        <field name="expression">balp[112%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_2"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">40</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th11300">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th11300</field>
+        <field name="description">ลูกหนี้การค้าและลูกหนี้อื่น</field>
+        <field name="expression">balp[113%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_2"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">50</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th11400">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th11400</field>
+        <field name="description">เงินให้กู้ยืมระยะสั้น</field>
+        <field name="expression">balp[114%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_2"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">60</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th11500">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th11500</field>
+        <field name="description">สินค้าคงเหลือ</field>
+        <field name="expression">balp[115%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_2"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">70</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th11600">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th11600</field>
+        <field name="description">สินทรัพย์หมุนเวียนอื่น</field>
+        <field name="expression">balp[116%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">80</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th12000">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th12000</field>
+        <field name="description">สินทรัพย์ไม่หมุนเวียน</field>
+        <field name="expression">balp[12%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">90</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th12100">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th12100</field>
+        <field name="description">ที่ดิน อาคารและอุปกรณ์ - สุทธิ</field>
+        <field name="expression">balp[121%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_2"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">100</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th12200">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th12200</field>
+        <field name="description">สินทรัพย์อื่น</field>
+        <field name="expression">balp[122%,129%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">110</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th20003000">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th20003000</field>
+        <field name="description">รวมหนี้สินและส่วนของผู้ถือหุ้น</field>
+        <field name="expression">th20000+th30000</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_base"/>
+        <field name="sequence">120</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th20000">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th20000</field>
+        <field name="description">หนี้สิน</field>
+        <field name="expression">balp[2%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_base"/>
+        <field name="sequence">130</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th21000">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th21000</field>
+        <field name="description">หนี้สินหมุนเวียน</field>
+        <field name="expression">balp[21%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">140</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th30000">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th30000</field>
+        <field name="description">ส่วนของผู้ถือหุ้น</field>
+        <field name="expression">balp[3%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_base"/>
+        <field name="sequence">150</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th31000">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th31000</field>
+        <field name="description">ทุน</field>
+        <field name="expression">balp[31%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">160</field>
+    </record>
+    <record model="mis.report.kpi" id="mis_report_bs_th32000">
+        <field name="report_id" ref="mis_report_bs"/>
+        <field name="name">th32000</field>
+        <field name="description">ส่วนได้เสียผู้ถือหุ้น</field>
+        <field name="expression">balp[32%]</field>
+        <field name="type">num</field>
+        <field name="compare_method">pct</field>
+        <field name="style_id" ref="mis_report_style_l10n_th_1"/>
+        <field name="auto_expand_accounts" eval="True"/>
+        <field name="auto_expand_accounts_style_id" ref="mis_report_style_l10n_th_detail"/>
+        <field name="sequence">170</field>
+    </record>
+</odoo>
