@@ -12,7 +12,6 @@ class AssetRegisterReportWizard(models.TransientModel):
 
     _name = 'asset.register.report.wizard'
     _description = 'Asset Register Report Wizard'
-    _inherit = 'asset_register_report_abstract_wizard'
 
     company_id = fields.Many2one(
         comodel_name='res.company',
@@ -92,7 +91,7 @@ class AssetRegisterReportWizard(models.TransientModel):
         context1 = action_data.get('context', {})
         if isinstance(context1, pycompat.string_types):
             context1 = safe_eval(context1)
-        model = self.env['report_asset_register']
+        model = self.env['report.asset.register']
         report = model.create(self._prepare_report_asset_register())
         context1['active_id'] = report.id
         context1['active_ids'] = report.ids
@@ -126,6 +125,6 @@ class AssetRegisterReportWizard(models.TransientModel):
 
     def _export(self, report_type):
         """Default export is PDF."""
-        model = self.env['report_asset_register']
+        model = self.env['report.asset.register']
         report = model.create(self._prepare_report_asset_register())
         return report.print_report(report_type)

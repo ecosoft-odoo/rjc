@@ -1,6 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <template id="l10n_th_asset_register_report.internal_layout">
+        <div class="article">
+            <link href="/l10n_th_asset_register_report/static/src/css/report.css" rel="stylesheet"/>
+          <t t-raw="0" />
+        </div>
+    </template>
+
     <template id="l10n_th_asset_register_report.report_asset_register_qweb">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">

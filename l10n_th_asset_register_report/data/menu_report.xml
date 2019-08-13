@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
 
+    <!-- Menu Reports -->
     <menuitem
         parent="account.menu_finance_reports"
         id="menu_asset_register_reports"
@@ -18,46 +19,26 @@
     <!-- PDF/HMTL REPORTS -->
     <report
       id="action_report_asset_register_qweb"
-      model="report_asset_register"
+      model="report.asset.register"
       string="Asset Register"
       report_type="qweb-pdf"
       name="l10n_th_asset_register_report.report_asset_register_qweb"
       file="l10n_th_asset_register_report.report_asset_register_qweb"
+      paperformat="l10n_th_asset_register_report.report_asset_qweb_paperformat"
       />
     <report
       id="action_report_asset_register_html"
-      model="report_asset_register"
+      model="report.asset.register"
       string="Asset Register"
       report_type="qweb-html"
       name="l10n_th_asset_register_report.report_asset_register_qweb"
       file="l10n_th_asset_register_report.report_asset_register_html"
       />
 
-    <!-- PDF REPORTS : paperformat -->
-    <record id="report_qweb_paperformat" model="report.paperformat">
-        <field name="name">Asset Register report qweb paperformat</field>
-        <field name="default" eval="True"/>
-        <field name="format">custom</field>
-        <field name="page_height">297</field>
-        <field name="page_width">210</field>
-        <field name="orientation">Portrait</field>
-        <field name="margin_top">12</field>
-        <field name="margin_bottom">8</field>
-        <field name="margin_left">5</field>
-        <field name="margin_right">5</field>
-        <field name="header_line" eval="False"/>
-        <field name="header_spacing">10</field>
-        <field name="dpi">110</field>
-    </record>
-
-    <record id="action_report_asset_register_qweb" model="ir.actions.report">
-        <field name="paperformat_id" ref="report_qweb_paperformat"/>
-    </record>
-
     <!-- XLSX REPORTS -->
     <record id="action_report_asset_register_xlsx" model="ir.actions.report">
         <field name="name">Asset Register XLSX</field>
-        <field name="model">report_asset_register</field>
+        <field name="model">report.asset.register</field>
         <field name="type">ir.actions.report</field>
         <field name="report_name">a_r_r.report_asset_register_xlsx</field>
         <field name="report_type">xlsx</field>

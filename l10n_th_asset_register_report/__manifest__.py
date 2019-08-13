@@ -17,8 +17,8 @@
     ],
     'data': [
         'wizard/asset_register_wizard_view.xml',
+        'data/paper_format.xml',
         'data/menu_report.xml',
-        'report/templates/layouts.xml',
         'report/templates/asset_register.xml',
         'view/report_template.xml',
         'view/report_asset_register.xml',

@@ -19,8 +19,8 @@ class AssetView(models.TransientModel):
 
 
 class AssetRegisterReport(models.TransientModel):
-    _name = 'report_asset_register'
-    _inherit = 'l10n_th_asset_register_report_abstract'
+    _name = 'report.asset.register'
+    _description = 'Report Asset Register'
 
     # Filters fields, used for data computation
     company_id = fields.Many2one(
@@ -135,7 +135,7 @@ class AssetRegisterReport(models.TransientModel):
 
 
 class AssetRegisterReportCompute(models.TransientModel):
-    _inherit = 'report_asset_register'
+    _inherit = 'report.asset.register'
 
     @api.multi
     def print_report(self, report_type):
