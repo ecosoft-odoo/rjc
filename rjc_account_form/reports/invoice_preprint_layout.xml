@@ -59,13 +59,13 @@
                                         <span t-esc="'{0:,.2f}'.format(line.price_unit)"/>
                                     </td>
                                     <td class="text-right">
-                                        <span t-esc="abs(line.price_subtotal)"/>
+                                        <span t-esc="'{0:,.2f}'.format(abs(line.price_subtotal))"/>
                                     </td>
                                 </t>
                                 <t t-else="">
                                     <td/><td/><td/>
                                     <td class="text-right">
-                                        <span t-esc="line.price_subtotal*-1"/>
+                                        <span t-esc="'{0:,.2f}'.format(line.price_subtotal*-1)"/>
                                     </td>
                                 </t>
                             </t>
