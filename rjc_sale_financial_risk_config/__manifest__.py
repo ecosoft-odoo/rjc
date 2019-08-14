@@ -11,7 +11,7 @@
     'website': 'https://github.com/ecosoft-odoo/rjc',
     'depends': [
         'sale',
-        'account_financial_risk'
+        'sale_financial_risk'
     ],
     'data': [
         'views/res_config_settings_views.xml',
