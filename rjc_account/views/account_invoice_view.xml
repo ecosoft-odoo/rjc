@@ -28,6 +28,7 @@
         <field name="arch" type="xml">
             <field name="number" position="after">
                 <field name="number_preprint" string="Preprint Number"/>
+                <field name="billing_id" string="Billing Number"/>
             </field>
         </field>
     </record>
