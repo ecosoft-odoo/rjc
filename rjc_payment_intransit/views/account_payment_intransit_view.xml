@@ -26,4 +26,8 @@
             </xpath>
         </field>
     </record>
+
+    <record id="account_payment_intransit.menu_payment_intransit_tree" model="ir.ui.menu">
+        <field name="parent_id" eval="ref('account.menu_finance_receivables')"/>
+    </record>
 </odoo>
