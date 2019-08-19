@@ -17,7 +17,6 @@ class account_payment(models.Model):
 
     @api.multi
     def _get_move_line(self):
-        # TODO: fix bug when not reconcile
         move_line_id = self.env['account.move.line']
         full_reconcile_id = move_line_id.search(
             [('payment_id', '=', self.id)]).filtered(

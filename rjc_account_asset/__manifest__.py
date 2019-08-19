@@ -14,5 +14,7 @@
     'depends': [
         'account_asset_management',
     ],
-    'data': [],
+    'data': [
+        'views/menuitems.xml',
+    ],
 }
