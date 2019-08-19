@@ -33,10 +33,9 @@
         </field>
     </record>
 
-    <menuitem action="account_payment_netting.action_invoice_all_tree"
-              id="menu_action_invoice_all_tree1"
-              parent="account.menu_finance_receivables"
-              sequence="50"/>
+    <record id="account_payment_netting.menu_action_invoice_all_tree" model="ir.ui.menu">
+        <field name="parent_id" eval="ref('account.menu_finance_receivables')"/>
+    </record>
 
     <menuitem action="account_payment_netting.action_invoice_all_tree"
               id="menu_action_invoice_all_tree2"
