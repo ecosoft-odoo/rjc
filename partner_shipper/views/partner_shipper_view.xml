@@ -72,6 +72,6 @@
     </field>
   </record>
 
-  <menuitem id="partner_shipper_menu" parent="sale.menu_sale_config" action="partner_shipper_action" sequence="30"/>
+  <menuitem id="partner_shipper_menu" parent="sale.sale_order_menu" action="partner_shipper_action" sequence="30"/>
 
 </odoo>

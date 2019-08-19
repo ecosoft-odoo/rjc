@@ -32,4 +32,15 @@
             </field>
         </field>
     </record>
+
+    <menuitem action="account_payment_netting.action_invoice_all_tree"
+              id="menu_action_invoice_all_tree1"
+              parent="account.menu_finance_receivables"
+              sequence="50"/>
+
+    <menuitem action="account_payment_netting.action_invoice_all_tree"
+              id="menu_action_invoice_all_tree2"
+              parent="account.menu_finance_payables"
+              sequence="50"/>
+
 </odoo>
