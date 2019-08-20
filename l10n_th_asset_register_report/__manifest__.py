@@ -2,7 +2,7 @@
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
 
 {
-    'name': 'Thailand Localization - Asset Register Reports',
+    'name': 'Thailand Localization - Asset Register Report',
     'version': '12.0.1.0.0',
     'author': 'Ecosoft, Odoo Community Association (OCA)',
     'license': 'AGPL-3',
@@ -12,7 +12,6 @@
         'account',
         'account_asset_management',
         'date_range',
-        'report_xlsx',
         'report_xlsx_helper',
     ],
     'data': [

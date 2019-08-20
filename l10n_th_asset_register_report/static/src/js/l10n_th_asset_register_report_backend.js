@@ -4,10 +4,7 @@ odoo.define('l10n_th_asset_register_report.l10n_th_asset_register_report_backend
     var core = require('web.core');
     var Widget = require('web.Widget');
     var ControlPanelMixin = require('web.ControlPanelMixin');
-    var ReportWidget = require(
-        'l10n_th_asset_register_report.l10n_th_asset_register_report_widget'
-    );
-
+    var ReportWidget = require('web.Widget');
 
     var report_backend = Widget.extend(ControlPanelMixin, {
         // Stores all the parameters of the action.
