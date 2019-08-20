@@ -13,6 +13,8 @@
     'depends': [
         'account',
         'account_billing',
+        'account_payment_netting',
+        'account_payment_intransit',
     ],
     'data': [
         'views/account_invoice_view.xml',
