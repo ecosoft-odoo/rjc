@@ -83,6 +83,26 @@
                     </tr>
                 </table>
             </div>
+            <div class="row text-center pt40">
+                <div class="col-6">
+                    <strong>จำนวนบิล..........................................ฉบับ</strong>
+                </div>
+                <div class="col-6">
+                    <strong>วันที่รับเช็ค.......................................................</strong>
+                </div>
+            </div>
+            <div class="row text-center pt24">
+                <div class="col-6"/>
+                <div class="col-6">
+                    <strong>ลงชื่อ...............................................ผู้รับวางบิล</strong>
+                </div>
+            </div>
+            <div class="row text-center pt16">
+                <div class="col-6"/>
+                <div class="col-6">
+                    <strong>.............../................../.................</strong>
+                </div>
+            </div>
         </div>
     </template>
 
