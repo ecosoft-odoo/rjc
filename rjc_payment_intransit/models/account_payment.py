@@ -73,6 +73,7 @@ class AccountPayment(models.Model):
             for line in rec.payment_intransit_line_ids:
                 intransit = rec.env['account.payment.intransit']\
                     .with_context(total_amount=line.allocation).create({
+                        'payment_id': rec.id,
                         'partner_id': rec.partner_id.id,
                         'payment_date': rec.payment_date,
                         'journal_id': rec.journal_id.id,

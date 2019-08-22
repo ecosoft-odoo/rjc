@@ -13,6 +13,20 @@
             <field name="payment_intransit_type" position="after">
                 <field name="due_date"/>
             </field>
+            <xpath expr="//group[@name='right']" position="inside">
+                <field name="payment_id" attrs="{'invisible': [('payment_id', '=', False)]}"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="account_payment_intransit_view_tree" model="ir.ui.view">
+        <field name="name">account.payment.intransit.tree</field>
+        <field name="model">account.payment.intransit</field>
+        <field name="inherit_id" ref="account_payment_intransit.account_payment_intransit_view_tree"/>
+        <field name="arch" type="xml">
+            <field name="journal_id" position="after">
+                <field name="payment_id"/>
+            </field>
         </field>
     </record>
 
@@ -24,6 +38,9 @@
             <xpath expr="//search" position="inside">
                 <field name="partner_id" string="Partner Name"/>
             </xpath>
+            <field name="name" position="before">
+                <field name="payment_id" string="Payment Number"/>
+            </field>
         </field>
     </record>
 
