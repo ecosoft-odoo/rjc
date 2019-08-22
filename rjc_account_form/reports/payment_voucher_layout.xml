@@ -133,9 +133,11 @@
                         <t t-if="not o.expense_sheet_id and not o.reconciled_invoice_ids">
                             <t t-set="move_id" t-value="o._get_move_line()"/>
                             <tr t-if="move_id">
-                                <td/>
                                 <td>
-                                    <span t-esc="move_id.name"/>
+                                    <span t-esc="move_id.ref"/>
+                                </td>
+                                <td>
+                                    <span t-esc="move_id.narration"/>
                                 </td>
                                 <td>
                                     <span t-esc="move_id.date"/>
