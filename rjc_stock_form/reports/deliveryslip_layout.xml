@@ -34,7 +34,9 @@
                             <span t-field="o.partner_id.city"/>
                             <span t-field="o.partner_id.state_id.name"/>
                             <span t-field="o.partner_id.zip"/><br/>
-                            <span>โทร : <span t-field="o.partner_id.phone"/></span>
+                            <span>โทร : <span t-field="o.partner_id.phone"/>
+                                <t t-if="o.partner_id.mobile"><br/> <span t-field="o.partner_id.mobile"/></t>
+                            </span>
                         </p>
                    </t>
                 </t>
@@ -80,6 +82,9 @@
                                     <span t-field="o.shipper_id.city"/>
                                     <span t-field="o.shipper_id.state_id.name"/>
                                     <span t-field="o.shipper_id.zip"/>
+                                    <span>โทร : <span t-field="o.shipper_id.phone"/>
+                                        <t t-if="o.shipper_id.mobile">, <span t-field="o.shipper_id.mobile"/></t>
+                                    </span>
                                 </td>
                             </tr>
                         </tbody>
