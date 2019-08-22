@@ -7,10 +7,17 @@ from odoo import models, fields, api
 class AccountPaymentIntransit(models.Model):
     _inherit = 'account.payment.intransit'
 
+    intransit_line_ids = fields.One2many(
+        readonly=True,
+    )
     bank_journal_id = fields.Many2one(
         required=False,
     )
-
+    payment_id = fields.Many2one(
+        comodel_name='account.payment',
+        string='Payment Number',
+        readonly=True,
+    )
     manual_total_amount = fields.Monetary(
         default=lambda self: self._context.get('total_amount', 0.0)
     )
