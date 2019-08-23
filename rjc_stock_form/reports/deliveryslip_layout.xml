@@ -81,7 +81,7 @@
                                     <t t-if="o.shipper_id.street2"><span t-field="o.shipper_id.street2"/></t>
                                     <span t-field="o.shipper_id.city"/>
                                     <span t-field="o.shipper_id.state_id.name"/>
-                                    <span t-field="o.shipper_id.zip"/>
+                                    <span t-field="o.shipper_id.zip"/><br/>
                                     <span>โทร : <span t-field="o.shipper_id.phone"/>
                                         <t t-if="o.shipper_id.mobile">, <span t-field="o.shipper_id.mobile"/></t>
                                     </span>
