@@ -68,6 +68,12 @@ class AccountPayment(models.Model):
     @api.multi
     def action_payment_intransit(self):
         for rec in self:
+            if rec.journal_id.type == 'cash' or (
+                    rec.journal_id.bank_account_id and
+                    rec.journal_id.type == 'bank'):
+                raise ValidationError(_(
+                    "Payment Journal = 'Bank Intransit' only, "
+                    "can create payment intransit"))
             if not rec.payment_intransit_line_ids:
                 raise ValidationError(_('Line empty!'))
             for line in rec.payment_intransit_line_ids:
