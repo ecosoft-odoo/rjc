@@ -41,7 +41,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
 
     def _get_ws_params(self, wb, data, assets):
         asset_template = {
-            'profile_name': {
+            '01_profile_name': {
                 'header': {
                     'value': 'รหัสกลุ่มสินทรัพย์',
                 },
@@ -50,7 +50,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 25,
             },
-            'name': {
+            '02_name': {
                 'header': {
                     'value': 'ชื่อสินทรัพย์',
                 },
@@ -59,7 +59,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 20,
             },
-            'date_start': {
+            '03_date_start': {
                 'header': {
                     'value': 'วันที่เริ่มคำนวณค่าเสื่อม',
                 },
@@ -70,7 +70,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 13,
             },
-            'purchase_value': {
+            '04_purchase_value': {
                 'header': {
                     'value': 'ราคาทรัพย์สินที่ซื้อหรือได้มา',
                 },
@@ -81,7 +81,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 15,
             },
-            'accumulated_bf': {
+            '05_accumulated_bf': {
                 'header': {
                     'value': 'มูลคาตนทุนในวันสุดทายของรอบระยะบัญชีก่อน',
                 },
@@ -92,7 +92,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 15,
             },
-            'percent_depreciation': {
+            '06_percent_depreciation': {
                 'header': {
                     'value': 'อัตราร้อยละ',
                 },
@@ -103,7 +103,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 7,
             },
-            'depreciation_base': {
+            '07_depreciation_base': {
                 'header': {
                     'value': 'มูลค่าที่คิดค่าเสื่อม',
                 },
@@ -114,7 +114,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 15,
             },
-            'salvage_value': {
+            '08_salvage_value': {
                 'header': {
                     'value': 'ราคาซาก',
                 },
@@ -125,7 +125,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 15,
             },
-            'depreciation': {
+            '09_depreciation': {
                 'header': {
                     'value': 'ค่าเสื่อมราคาที่หักในรอบระยะเวลาบัญชีนี้',
                 },
@@ -136,7 +136,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 15,
             },
-            'accumulated_cf': {
+            '10_accumulated_cf': {
                 'header': {
                     'value': 'ค่าเสื่อมราคาสะสมจนถึงปัจจุบัน',
                 },
@@ -147,7 +147,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 15,
             },
-            'present_residual': {
+            '11_present_residual': {
                 'header': {
                     'value':
                         'มูลค่าต้นทุนหลังหักค่าเสื่อมราคาแล้ว จนถึงปัจจุบัน',
@@ -159,7 +159,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 15,
             },
-            'code': {
+            '12_code': {
                 'header': {
                     'value': 'เอกสารอ้างอิง',
                 },
@@ -168,7 +168,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                 },
                 'width': 15,
             },
-            'note': {
+            '13_note': {
                 'header': {
                     'value': 'หมายเหตุ',
                 },
@@ -180,7 +180,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
         }
 
         asset_filters = {
-            'filter1': {
+            '1_filter1': {
                 'header': {
                     'value': 'Date range filter',
                 },
@@ -188,7 +188,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                     'value': '%s to %s' % (assets.date_from, assets.date_to),
                 },
             },
-            'filter2': {
+            '2_filter2': {
                 'header': {
                     'value': 'Asset filter',
                 },
@@ -197,7 +197,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                     assets._get_asset_ids(assets.asset_ids) or '',
                 },
             },
-            'filter3': {
+            '3_filter3': {
                 'header': {
                     'value': 'Asset Profile filter',
                 },
@@ -206,7 +206,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
                     assets._get_asset_ids(assets.asset_profile_ids) or '',
                 },
             },
-            'filter4': {
+            '4_filter4': {
                 'header': {
                     'value': 'Asset Status',
                 },
@@ -222,9 +222,9 @@ class AssetRegisterExportXslx(models.AbstractModel):
             'title': 'Asset Register - %s - %s' % (
                 assets.company_id.name,
                 assets.company_id.currency_id.name),
-            'data_filters': [x for x in asset_filters],
+            'data_filters': [x for x in sorted(asset_filters.keys())],
             'col_filters': asset_filters,
-            'wanted_list': [x for x in asset_template],
+            'wanted_list': [x for x in sorted(asset_template.keys())],
             'col_specs': asset_template,
         }
 
@@ -250,7 +250,7 @@ class AssetRegisterExportXslx(models.AbstractModel):
         row_pos += 1
         row_pos = self._write_line(
             ws, row_pos, ws_params, col_specs_section='header',
-            default_format=self.format_theader_yellow_left)
+            default_format=self.format_theader_yellow_center)
         ws.freeze_panes(row_pos, 0)
 
         for asset in assets.results:
