@@ -14,7 +14,7 @@
                 <field name="due_date"/>
             </field>
             <xpath expr="//group[@name='right']" position="inside">
-                <field name="payment_id" attrs="{'invisible': [('payment_id', '=', False)]}"/>
+                <field name="payment_id"/>
             </xpath>
         </field>
     </record>
