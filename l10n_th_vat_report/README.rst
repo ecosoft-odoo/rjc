@@ -50,6 +50,11 @@ Changelog
 * Start of the history
 * Add Thai VAT Report
 
+12.0.1.0.1 (2019-08-23)
+~~~~~~~~~~~~~~~~~~~~~~~
+
+* Fix xlsx report
+
 Bug Tracker
 ===========
 
