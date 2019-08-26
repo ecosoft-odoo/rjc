@@ -5,6 +5,7 @@ from odoo import api, fields, models
 
 class VatReportView(models.TransientModel):
     _name = 'vat.report.view'
+    _description = 'Vat Report View'
     _inherit = 'account.move.line'
     _order = 'id'
 
@@ -19,7 +20,7 @@ class VatReportView(models.TransientModel):
 
 class VatReport(models.TransientModel):
     _name = 'report.vat.report'
-
+    _description = 'Report Vat Report'
     # Filters fields, used for data computation
     company_id = fields.Many2one(
         comodel_name='res.company',
@@ -35,7 +36,6 @@ class VatReport(models.TransientModel):
     )
     date_from = fields.Date()
     date_to = fields.Date()
-
     # Data fields, used to browse report data
     results = fields.Many2many(
         comodel_name='vat.report.view',
@@ -83,8 +83,7 @@ class VatReport(models.TransientModel):
         if report:
             rcontext['o'] = report
             result['html'] = self.env.ref(
-                'l10n_th_vat_report.report_vat_report_html').render(
-                    rcontext)
+                'l10n_th_vat_report.report_vat_report_html').render(rcontext)
         return result
 
     @api.model
