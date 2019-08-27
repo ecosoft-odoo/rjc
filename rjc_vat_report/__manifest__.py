@@ -8,8 +8,12 @@
     'license': 'AGPL-3',
     'category': 'Accounting',
     'depends': [
+        'base',
         'l10n_th_vat_report',
+        'l10n_th_account_report'
     ],
-    'data': [],
+    'data': [
+        'wizard/vat_report_wizard_view.xml'
+    ],
     'installable': True,
 }
