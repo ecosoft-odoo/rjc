@@ -1,0 +1,10 @@
+<odoo>
+    <record id="l10n_th_vat_report.menu_vat_report" model="ir.ui.menu">
+        <field name="parent_id" eval="ref('l10n_th_account_report.menu_l10n_th_account_report')"/>
+    </record>
+
+    <!-- TODO: Waiting new pnd module and delete this line -->
+    <record id="l10n_th_account_report.menu_report_vat" model="ir.ui.menu">
+        <field name="groups_id" eval="[(6, 0, [ref('base.group_erp_manager')])]"/>
+    </record>
+</odoo>
