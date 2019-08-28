@@ -15,6 +15,7 @@
         'account_billing',
         'account_payment_netting',
         'account_payment_intransit',
+        'l10n_th_withholding_tax_cert',
     ],
     'data': [
         'views/account_invoice_view.xml',

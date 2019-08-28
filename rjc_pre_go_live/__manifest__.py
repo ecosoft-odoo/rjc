@@ -7,6 +7,7 @@
     'license': 'AGPL-3',
     'depends': [
         'account_asset_management',
+        'account_payment_intransit',
     ],
     'author': "Ecosoft, Odoo Community Association (OCA)",
     'website': 'https://github.com/ecosoft-odoo/rjc/',
