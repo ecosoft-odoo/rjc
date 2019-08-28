@@ -1,3 +1,4 @@
 This Module for allow create / duplicate some fields:
 
-* asset line
+* asset line (day)
+* payment intransit (line)
