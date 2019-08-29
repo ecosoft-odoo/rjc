@@ -27,7 +27,7 @@ class VatReport(models.TransientModel):
         self._cr.execute("""
             SELECT aml.id as id, am.company_id, am.name, aml.account_id,
                 aml.tax_invoice, aml.partner_id, aml.date, aml.tax_date,
-                CASE WHEN ai.type = 'out_refund'
+                CASE WHEN ai.type in ('out_refund', 'in_refund')
                 then -aml.tax_base_amount
                 else aml.tax_base_amount end as base_amount,
                 CASE WHEN aa.internal_group = 'asset'
