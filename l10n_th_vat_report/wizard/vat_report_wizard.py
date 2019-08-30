@@ -20,7 +20,9 @@ class VatReportWizard(models.TransientModel):
         comodel_name='account.tax',
         string='Tax',
         required=True,
-        domain=[('tax_exigibility', '=', 'on_invoice')],
+        domain=[('tax_exigibility', '=', 'on_invoice'),
+                ('type_tax_use', 'in', ['sale', 'purchase']),
+                ('include_base_amount', '=', False)],
     )
     account_id = fields.Many2one(
         comodel_name='account.account',

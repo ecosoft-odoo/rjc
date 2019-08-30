@@ -1,5 +1,6 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
+
 import logging
 from odoo import models
 _logger = logging.getLogger(__name__)
