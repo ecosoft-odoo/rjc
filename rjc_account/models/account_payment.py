@@ -1,13 +1,13 @@
 # Copyright 2019 Ecosoft Co., Ltd (http://ecosoft.co.th/)
 # License AGPL-3.0 or later (https://www.gnu.org/licenses/agpl.html)
-from odoo import fields, models, api
+from odoo import fields, models, api, _
+from odoo.exceptions import ValidationError
 
 
 class AccountPayment(models.Model):
     _inherit = 'account.payment'
 
     value_date = fields.Date(
-        required=True,
         states={'draft': [('readonly', False)]},
         readonly=True,
     )
@@ -27,6 +27,11 @@ class AccountPayment(models.Model):
         states={'draft': [('readonly', False)]},
         readonly=True,
         )
+
+    @api.constrains('value_date')
+    def _check_value_date(self):
+        if not self.value_date:
+            raise ValidationError(_("Please select date in Value Date."))
 
     @api.multi
     def post(self):
