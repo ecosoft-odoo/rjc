@@ -7,9 +7,7 @@ from odoo import fields, models
 class HrExpenseSheetRegisterPaymentWizard(models.TransientModel):
     _inherit = 'hr.expense.sheet.register.payment.wizard'
 
-    value_date = fields.Date(
-        required=True
-    )
+    value_date = fields.Date()
     payment_ref = fields.Char()
     cheque_no = fields.Char(
         string='Cheque No.'
