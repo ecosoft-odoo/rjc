@@ -129,7 +129,7 @@
                                 </td>
                             </tr>
                         </t>
-                        <!-- Tax Adjustment Case and Direct Payment difference-->
+                        <!-- Tax Adjustment Case, Direct Payment difference and Import-->
                         <t t-if="not o.expense_sheet_id and not o.reconciled_invoice_ids">
                             <t t-set="move_line" t-value="o._get_move_line()"/>
                             <t t-foreach="move_line" t-as="line">
@@ -144,12 +144,7 @@
                                         <span t-esc="line.move_id.date"/>
                                     </td>
                                     <td class="text-right">
-                                        <t t-if="line.credit">
-                                            <span t-esc="'{0:,.2f}'.format(abs(line.balance))"/>
-                                        </t>
-                                        <t t-else="">
-                                            <span t-esc="'{0:,.2f}'.format(line.balance)"/>
-                                        </t>
+                                        <span t-esc="'{0:,.2f}'.format(line.balance*-1)"/>
                                     </td>
                                 </tr>
                             </t>
