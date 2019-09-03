@@ -81,7 +81,7 @@
                                     <span t-field="line.date_invoice"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="payment_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-esc="'{0:,.2f}'.format(payment_amount)"/>
                                 </td>
                             </tr>
                         </t>
@@ -95,7 +95,7 @@
                                     </td>
                                     <td/>
                                     <td class="text-right">
-                                        <t t-esc="diff_line.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        <t t-esc="'{0:,.2f}'.format(diff_line.amount)"/>
                                     </td>
                                 </tr>
                             </t>
@@ -109,7 +109,7 @@
                                 </td>
                                 <td/>
                                 <td class="text-right">
-                                    <t t-esc="payment_diff" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <t t-esc="'{0:,.2f}'.format(payment_diff)"/>
                                 </td>
                             </tr>
                         </t>
@@ -125,7 +125,7 @@
                                     <span t-field="o.expense_sheet_id.accounting_date"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-field="o.expense_sheet_id.total_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-esc="'{0:,.2f}'.format(o.expense_sheet_id.total_amount)"/>
                                 </td>
                             </tr>
                         </t>
@@ -144,7 +144,12 @@
                                         <span t-esc="line.move_id.date"/>
                                     </td>
                                     <td class="text-right">
-                                        <span t-field="line.move_id.amount"/>
+                                        <t t-if="line.credit">
+                                            <span t-esc="'{0:,.2f}'.format(abs(line.balance))"/>
+                                        </t>
+                                        <t t-else="">
+                                            <span t-esc="'{0:,.2f}'.format(line.balance)"/>
+                                        </t>
                                     </td>
                                 </tr>
                             </t>
@@ -162,7 +167,7 @@
                                 Date : <span t-field="o.value_date"/>
                             </td>
                             <td class="text-right">
-                                <span t-field="o.amount"/>
+                                <span t-esc="'{0:,.2f}'.format(o.amount)"/>
                             </td>
                         </tr>
                     </tfoot>
