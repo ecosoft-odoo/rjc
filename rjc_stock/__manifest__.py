@@ -18,5 +18,6 @@
     'data': [
         'views/stock_picking_views.xml',
         'views/stock_move_views.xml',
+        'views/product_views.xml',
     ],
 }
