@@ -26,6 +26,7 @@ class account_payment(models.Model):
                 ('full_reconcile_id', '=', full_reconcile_id.id)]).filtered(
                 lambda l: not l.payment_id)
             return move_reconcile_id
+        return move_line_id
 
     @api.multi
     def _get_payment_intransit(self):
