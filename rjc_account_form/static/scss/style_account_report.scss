@@ -190,6 +190,9 @@
         .line_dot {
             border-bottom:1px dotted #000;
         }
+        .border-black-bottom {
+            border-top: 1px solid black !important;
+        }
     }
 
     // style payment receipt
