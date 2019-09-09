@@ -59,6 +59,7 @@
                     <tbody>
                         <t t-set="column" t-value="0"/>
                         <t t-set="invoice_payment_total" t-value="0"/>
+                        <!-- Invoice Case -->
                         <t t-foreach="o.reconciled_invoice_ids" t-as="line">
                             <t t-set="column" t-value="column + 1"/>
                             <t t-set="type" t-value="'out_invoice'"/>
@@ -100,6 +101,31 @@
                                 </td>
                             </tr>
                         </t>
+                        <!-- Tax Adjustment Case, Direct Payment difference and Import-->
+                        <t t-if="not o.reconciled_invoice_ids">
+                            <t t-set="move_line" t-value="o._get_move_line()"/>
+                            <t t-foreach="move_line" t-as="line">
+                                <t t-set="column" t-value="column + 1"/>
+                                <tr>
+                                    <td>
+                                        <span t-esc="column"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.date_maturity"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.name"/>
+                                    </td>
+                                    <td/>
+                                    <td/>
+                                    <td/>
+                                    <td class="text-right">
+                                        <span t-field="line.balance" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    </td>
+                                    <td/>
+                                </tr>
+                            </t>
+                        </t>
                     </tbody>
                     <tfoot>
                         <tr class="border-black">
@@ -108,7 +134,12 @@
                                 รวม
                             </td>
                             <td class="text-right">
-                                <span t-esc="invoice_payment_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                <t t-if="o.reconciled_invoice_ids">
+                                    <span t-esc="invoice_payment_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </t>
+                                <t t-else="">
+                                    <span t-esc="sum(move_line.mapped('balance'))" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                </t>
                             </td>
                             <td/>
                         </tr>
@@ -201,50 +232,42 @@
                                 </tr>
                             </t>
                         </tbody>
-                        <tfoot>
-                            <t t-set="total_amount" t-value="check_amount + cash_amount + transfer_amount"/>
-                            <tr class="border-black">
-                                <td/><td/><td/><td/>
-                                <td class="text-right">
-                                    รวมเช็ค
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="check_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                                <td/>
-                            </tr>
-                            <tr>
-                                <td/><td/><td/><td/>
-                                <td class="text-right">
-                                    รวมเงินสด
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="cash_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                                <td/>
-                            </tr>
-                            <tr>
-                                <td/><td/><td/><td/>
-                                <td class="text-right">
-                                    รวมเงินโอน
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="transfer_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                                <td/>
-                            </tr>
-                            <tr>
-                                <td/><td/><td/><td/>
-                                <td class="text-right">
-                                    รวมทั้งหมด
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="total_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                                <td/>
-                            </tr>
-                        </tfoot>
                     </table>
+                    <div class="pt8 border-black-bottom">
+                        <t t-set="total_amount" t-value="check_amount + cash_amount + transfer_amount"/>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <span>รวมเช็ค</span>
+                            </div>
+                            <div class="col-3 text-right">
+                                <span t-esc="check_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <span>รวมเงินสด</span>
+                            </div>
+                            <div class="col-3 text-right">
+                                <span t-esc="cash_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <span>รวมเงินโอน</span>
+                            </div>
+                            <div class="col-3 text-right">
+                                <span t-esc="transfer_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <span>รวมทั้งหมด</span>
+                            </div>
+                            <div class="col-3 text-right">
+                                <span t-esc="total_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                    </div>
                 </t>
             </div>
         </div>
