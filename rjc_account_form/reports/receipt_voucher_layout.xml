@@ -231,50 +231,42 @@
                                 </tr>
                             </t>
                         </tbody>
-                        <tfoot>
-                            <t t-set="total_amount" t-value="check_amount + cash_amount + transfer_amount"/>
-                            <tr class="border-black">
-                                <td/><td/><td/><td/>
-                                <td class="text-right">
-                                    รวมเช็ค
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="check_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                                <td/>
-                            </tr>
-                            <tr>
-                                <td/><td/><td/><td/>
-                                <td class="text-right">
-                                    รวมเงินสด
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="cash_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                                <td/>
-                            </tr>
-                            <tr>
-                                <td/><td/><td/><td/>
-                                <td class="text-right">
-                                    รวมเงินโอน
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="transfer_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                                <td/>
-                            </tr>
-                            <tr>
-                                <td/><td/><td/><td/>
-                                <td class="text-right">
-                                    รวมทั้งหมด
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="total_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                                </td>
-                                <td/>
-                            </tr>
-                        </tfoot>
                     </table>
+                    <div class="pt8 border-black-bottom">
+                        <t t-set="total_amount" t-value="check_amount + cash_amount + transfer_amount"/>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <span>รวมเช็ค</span>
+                            </div>
+                            <div class="col-3 text-right">
+                                <span t-esc="check_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <span>รวมเงินสด</span>
+                            </div>
+                            <div class="col-3 text-right">
+                                <span t-esc="cash_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <span>รวมเงินโอน</span>
+                            </div>
+                            <div class="col-3 text-right">
+                                <span t-esc="transfer_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-9 text-right">
+                                <span>รวมทั้งหมด</span>
+                            </div>
+                            <div class="col-3 text-right">
+                                <span t-esc="total_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                            </div>
+                        </div>
+                    </div>
                 </t>
                 <div class="row">
                     <div class="col-3 horizontal_dotted_line" data-content=".........................">
