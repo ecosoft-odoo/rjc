@@ -102,18 +102,15 @@
                             </div>
                         </div>
                         <div class="expense_form">
-                            <div class="row pt32">
+                            <div class="row mt64">
                                 <div class="col-4">
-                                    <div class="horizontal_dotted_line" data-content="_________________________________"/>
-                                    <div class="text-center">Approved By</div>
+                                    <div class="top_line text-center">Approved By</div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="horizontal_dotted_line" data-content="_________________________________"/>
-                                    <div class="text-center">Account By</div>
+                                    <div class="top_line text-center">Account By</div>
                                 </div>
                                 <div class="col-4">
-                                    <div class="horizontal_dotted_line" data-content="_________________________________"/>
-                                    <div class="text-center">Booked By</div>
+                                    <div class="top_line text-center">Booked By</div>
                                 </div>
                             </div>
                             <div class="row pt8">

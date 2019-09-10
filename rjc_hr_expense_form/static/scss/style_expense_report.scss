@@ -8,4 +8,7 @@
         content: attr(data-content);
         // border-bottom: 1px dotted black !important;
     }
+    .top_line {
+        border-top: 1px solid black !important;
+    }
 }
