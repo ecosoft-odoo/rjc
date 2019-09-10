@@ -177,6 +177,14 @@
     .payment_voucher_form {
         thead {
             background-color: whitesmoke;
+            tr th {
+                border-bottom: 1px solid black !important;
+            }
+        }
+        tbody {
+            tr td {
+                border-bottom: 1px solid black !important;
+            }
         }
         tfoot {
             tr td {
@@ -187,8 +195,8 @@
             }
             background-color: whitesmoke;
         }
-        .line_dot {
-            border-bottom:1px dotted #000;
+        .line_solid {
+            border-bottom:1px solid black !important;
         }
         .border-black-bottom {
             border-top: 1px solid black !important;
@@ -200,6 +208,9 @@
         table {
             thead {
                 background-color: whitesmoke;
+                tr th {
+                    border-bottom: 1px solid black !important;
+                }
             }
             tbody {
                 tr td {

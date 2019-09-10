@@ -175,7 +175,7 @@
                         </strong>
                     </div>
                     <div class="col-9">
-                        <p class="line_dot"><span t-esc="o.amount_text(o.amount)"/></p>
+                        <p class="line_solid"><span t-esc="o.amount_text(o.amount)"/></p>
                     </div>
                 </div>
                 <div class="row">
@@ -190,19 +190,19 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4 horizontal_dotted_line" data-content="...........................">
+                    <div class="col-4 horizontal_dotted_line" data-content="__________________">
                         <strong class="mr32">
                             ลายเซ็นผู้อนุมัติ <br/>
                             Authorized
                         </strong>
                     </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="....................................">
+                    <div class="col-4 horizontal_dotted_line" data-content="________________________">
                         <strong class="mr8">
                             ผู้จ่ายเงิน <br/>
                             Paid by
                         </strong>
                     </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="....................................">
+                    <div class="col-4 horizontal_dotted_line" data-content="________________________">
                         <strong>
                             ผู้รับเงิน <br/>
                             Received by
@@ -210,17 +210,17 @@
                     </div>
                 </div>
                 <div class="row">
-                    <div class="col-4 horizontal_dotted_line" data-content="............/............/...............">
+                    <div class="col-4 horizontal_dotted_line" data-content="_________/_________/____________">
                         <strong>
                             วันที่
                         </strong>
                     </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="............/............/...............">
+                    <div class="col-4 horizontal_dotted_line" data-content="_________/_________/____________">
                         <strong>
                             วันที่
                         </strong>
                     </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="............/............/...............">
+                    <div class="col-4 horizontal_dotted_line" data-content="_________/_________/____________">
                         <strong>
                             วันที่
                         </strong>
