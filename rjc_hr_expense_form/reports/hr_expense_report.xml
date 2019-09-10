@@ -1,5 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <odoo>
+
+    <template id="report_assets_common" name="Expense common assets" inherit_id="web.report_assets_common">
+        <xpath expr="." position="inside">
+            <link rel="stylesheet" type="text/scss" href="/rjc_hr_expense_form/static/scss/style_expense_report.scss"/>
+        </xpath>
+    </template>
+
     <template id="rjc_expense_report">
         <t t-call="web.html_container">
             <t t-foreach="docs" t-as="o">
@@ -51,7 +58,7 @@
                                         <span t-field="line.description"/><br/>
                                         <span t-field="line.analytic_account_id.name"/>
                                     </td>
-                                    <td style="text-center">
+                                    <td class="text-center">
                                         <span t-field="line.reference"/>
                                     </td>
                                     <td class="text-right">
@@ -94,7 +101,33 @@
                                 </table>
                             </div>
                         </div>
-                        <p>Certified honest and conform,<br/>(Date and signature).<br/><br/></p>
+                        <div class="expense_form">
+                            <div class="row pt32">
+                                <div class="col-4">
+                                    <div class="horizontal_dotted_line" data-content="_________________________________"/>
+                                    <div class="text-center">Approved By</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="horizontal_dotted_line" data-content="_________________________________"/>
+                                    <div class="text-center">Account By</div>
+                                </div>
+                                <div class="col-4">
+                                    <div class="horizontal_dotted_line" data-content="_________________________________"/>
+                                    <div class="text-center">Booked By</div>
+                                </div>
+                            </div>
+                            <div class="row pt8">
+                                <div class="col-4 horizontal_dotted_line" data-content="_________________________">
+                                    Date
+                                </div>
+                                <div class="col-4 horizontal_dotted_line" data-content="_________________________">
+                                    Date
+                                </div>
+                                <div class="col-4 horizontal_dotted_line" data-content="_________________________">
+                                    Date
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </t>
             </t>
