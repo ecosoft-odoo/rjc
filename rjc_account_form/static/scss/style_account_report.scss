@@ -201,17 +201,16 @@
             thead {
                 background-color: whitesmoke;
             }
+            tbody {
+                tr td {
+                    border-bottom: 1px solid black !important;
+                }
+            }
             tfoot {
                 tr td {
                     border-top: none;
                 }
-                tr .border-black td {
-                    border-top: 1px solid black !important;
-                }
             }
-        }
-        .border-black-bottom {
-            border-top: 1px solid black !important;
         }
     }
 }

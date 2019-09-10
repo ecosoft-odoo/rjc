@@ -128,7 +128,7 @@
                         </t>
                     </tbody>
                     <tfoot>
-                        <tr class="border-black">
+                        <tr>
                             <td/><td/><td/><td/><td/>
                             <td class="text-right">
                                 รวม
@@ -233,7 +233,7 @@
                             </t>
                         </tbody>
                     </table>
-                    <div class="pt8 border-black-bottom">
+                    <div class="pt8">
                         <t t-set="total_amount" t-value="check_amount + cash_amount + transfer_amount"/>
                         <div class="row">
                             <div class="col-9 text-right">
