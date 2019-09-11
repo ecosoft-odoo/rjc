@@ -149,6 +149,10 @@
                                 </tr>
                             </t>
                         </t>
+                        <tr style="color: rgba(255,255,255,0);">
+                            <td>.</td>
+                            <td/><td/><td/>
+                        </tr>
                     </tbody>
                     <tfoot>
                         <tr>
@@ -167,7 +171,7 @@
                         </tr>
                     </tfoot>
                 </table>
-                <div class="row">
+                <div class="row pt8">
                     <div class="col-3">
                         <strong>
                             จำนวนเงิน <br/>
@@ -178,7 +182,7 @@
                         <p class="line_solid"><span t-esc="o.amount_text(o.amount)"/></p>
                     </div>
                 </div>
-                <div class="row">
+                <div class="row pt16">
                     <div class="col-3">
                         <strong>
                             หมายเหตุ <br/>
@@ -189,41 +193,68 @@
                         <span t-field="o.notes"></span>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4 horizontal_dotted_line" data-content="______________">
-                        <strong class="mr32">
-                            ลายเซ็นผู้อนุมัติ <br/>
-                            Authorized
-                        </strong>
+                <div class="row pt32">
+                    <div class="col-4">
+                        <div>
+                            <div class="horizontal_dotted_line" data-content="..................................">
+                                <strong class="mr32">
+                                    ผู้จัดทำ
+                                </strong>
+                            </div>
+                            <strong>Prepared by</strong>
+                        </div>
+                        <div class="horizontal_dotted_line" data-content="............../............../..............">
+                            <strong>
+                                Date
+                            </strong>
+                        </div>
                     </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="__________________">
-                        <strong class="mr8">
-                            ผู้จ่ายเงิน <br/>
-                            Paid by
-                        </strong>
+                    <div class="col-4">
+                        <div class="horizontal_dotted_line" data-content="..............................">
+                            <strong class="mr32">
+                                ผู้ตรวจสอบ
+                            </strong>
+                        </div>
+                        <div>
+                            <strong>Verify by</strong>
+                        </div>
+                        <div class="horizontal_dotted_line" data-content="............../............../..............">
+                            <strong>
+                                Date
+                            </strong>
+                        </div>
                     </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="__________________">
-                        <strong>
-                            ผู้รับเงิน <br/>
-                            Received by
-                        </strong>
+                    <div class="col-4">
+                        <div class="horizontal_dotted_line" data-content="................................">
+                            <strong class="mr32">
+                                ผู้อนุมัติ
+                            </strong>
+                        </div>
+                        <div>
+                            <strong>Authourized signature</strong>
+                        </div>
+                        <div class="horizontal_dotted_line" data-content="............../............../..............">
+                            <strong>
+                                Date
+                            </strong>
+                        </div>
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-4 horizontal_dotted_line" data-content="________/________/________">
-                        <strong>
-                            วันที่
-                        </strong>
-                    </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="________/________/________">
-                        <strong>
-                            วันที่
-                        </strong>
-                    </div>
-                    <div class="col-4 horizontal_dotted_line" data-content="________/________/________">
-                        <strong>
-                            วันที่
-                        </strong>
+                <div class="row pt32">
+                    <div class="col-4">
+                        <div class="horizontal_dotted_line" data-content=".................................">
+                            <strong class="mr32">
+                                ผู้รับเงิน
+                            </strong>
+                        </div>
+                        <div>
+                            <strong>Received by</strong>
+                        </div>
+                        <div class="horizontal_dotted_line" data-content="............../............../..............">
+                            <strong>
+                                Date
+                            </strong>
+                        </div>
                     </div>
                 </div>
             </div>
