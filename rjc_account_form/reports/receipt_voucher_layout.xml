@@ -127,7 +127,7 @@
                         </t>
                     </tbody>
                     <tfoot>
-                        <tr class="border-black">
+                        <tr>
                             <td/><td/><td/><td/><td/>
                             <td class="text-right">
                                 รวม

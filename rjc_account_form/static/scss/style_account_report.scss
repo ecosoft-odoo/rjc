@@ -164,7 +164,6 @@
 .payment {
     .horizontal_dotted_line {
       display: flex;
-      padding: 5px;
     }
     .horizontal_dotted_line::after {
         content: attr(data-content);
@@ -178,6 +177,7 @@
         thead {
             background-color: whitesmoke;
             tr th {
+                border-top: 1px solid black !important;
                 border-bottom: 1px solid black !important;
             }
         }
@@ -188,10 +188,8 @@
         }
         tfoot {
             tr td {
-                border-top: none;
-            }
-            tr .border-black td {
                 border-top: 1px solid black !important;
+                border-bottom: 1px solid black !important;
             }
             background-color: whitesmoke;
         }
@@ -209,6 +207,7 @@
             thead {
                 background-color: whitesmoke;
                 tr th {
+                    border-top: 1px solid black !important;
                     border-bottom: 1px solid black !important;
                 }
             }
@@ -219,7 +218,8 @@
             }
             tfoot {
                 tr td {
-                    border-top: none;
+                    border-top: 1px solid black !important;
+                    border-bottom: 1px solid black !important;
                 }
             }
         }
