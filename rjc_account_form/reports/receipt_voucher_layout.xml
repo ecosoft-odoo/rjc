@@ -268,31 +268,31 @@
                         </div>
                     </div>
                 </t>
-                <div class="row">
-                    <div class="col-3 horizontal_dotted_line" data-content=".........................">
+                <div class="row pt40">
+                    <div class="col-3 horizontal_dotted_line" data-content="......................">
                         Approved By
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content="...........................">
+                    <div class="col-3 horizontal_dotted_line" data-content=".....................">
                         Account By
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content="............................">
+                    <div class="col-3 horizontal_dotted_line" data-content=".....................">
                         Booked By
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content=".........................">
+                    <div class="col-3 horizontal_dotted_line" data-content="...................">
                         Received By
                     </div>
                 </div>
-                <div class="row">
-                    <div class="col-3 horizontal_dotted_line" data-content=".....................................">
+                <div class="row pt8">
+                    <div class="col-3 horizontal_dotted_line" data-content=".............................">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content=".....................................">
+                    <div class="col-3 horizontal_dotted_line" data-content=".............................">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content=".....................................">
+                    <div class="col-3 horizontal_dotted_line" data-content=".............................">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content=".....................................">
+                    <div class="col-3 horizontal_dotted_line" data-content=".............................">
                         Date
                     </div>
                 </div>
