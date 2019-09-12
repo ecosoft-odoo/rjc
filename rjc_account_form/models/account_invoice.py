@@ -4,16 +4,24 @@
 from odoo import models, api
 from num2words import num2words
 
+CURRENCY_NAME = {
+    'USD': 'ดอลลาร์',
+    'EUR': 'ยูโร',
+    'JPY': 'เยน',
+}
+
 
 class AccountInvoice(models.Model):
     _inherit = 'account.invoice'
 
     @api.multi
     def amount_text(self, amount):
-        try:
-            return num2words(amount, to='currency', lang='th')
-        except NotImplementedError:
-            return num2words(amount, to='currency', lang='en')
+        if self.currency_id != self.company_id.currency_id:
+            amount = num2words(amount, lang='th')
+            currency_name = CURRENCY_NAME[self.currency_id.name]
+            text_amount_currency = ''.join([amount, currency_name])
+            return text_amount_currency
+        return num2words(amount, to='currency', lang='th')
 
     @api.multi
     def amount_before_discount(self):
