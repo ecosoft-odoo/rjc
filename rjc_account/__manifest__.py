@@ -11,6 +11,7 @@
     'license': 'AGPL-3',
     'installable': True,
     'depends': [
+        'base',
         'account',
         'account_billing',
         'account_payment_netting',
@@ -18,6 +19,7 @@
         'l10n_th_withholding_tax_cert',
     ],
     'data': [
+        'security/security.xml',
         'views/account_invoice_view.xml',
         'views/account_payment_view.xml',
         'views/account_billing.xml',
