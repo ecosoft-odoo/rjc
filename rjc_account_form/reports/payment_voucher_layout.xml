@@ -193,7 +193,7 @@
                         <span t-field="o.notes"></span>
                     </div>
                 </div>
-                <div class="row pt32">
+                <div class="row pt48">
                     <div class="col-4">
                         <div>
                             <div class="horizontal_dotted_line" data-content="..................................">
@@ -240,7 +240,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="row pt32">
+                <div class="row pt64">
                     <div class="col-4">
                         <div class="horizontal_dotted_line" data-content=".................................">
                             <strong class="mr32">
