@@ -80,23 +80,27 @@
                                 </td>
                                 <td class="text-right">
                                     <t t-if="line.type == 'in_invoice'">
-                                        -<span t-field="line.amount_total"/>
+                                        <span t-esc="'{0:,.2f}'.format(line.amount_total*-1)"/>
                                     </t>
                                     <t t-if="line.type == 'out_invoice'">
-                                        <span t-field="line.amount_total"/>
+                                        <span t-esc="'{0:,.2f}'.format(line.amount_total)"/>
                                     </t>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="net_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-esc="'{0:,.2f}'.format(net_amount)"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="payment_paid" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <t t-if="payment_paid">
+                                        <span t-esc="'{0:,.2f}'.format(payment_paid)"/>
+                                    </t>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="payment_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-esc="'{0:,.2f}'.format(payment_amount)"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="payment_balance" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <t t-if="payment_balance">
+                                        <span t-esc="'{0:,.2f}'.format(payment_balance)"/>
+                                    </t>
                                 </td>
                             </tr>
                         </t>
@@ -119,7 +123,7 @@
                                     <td/>
                                     <td/>
                                     <td class="text-right">
-                                        <span t-field="line.balance" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        <span t-esc="'{0:,.2f}'.format(line.balance)"/>
                                     </td>
                                     <td/>
                                 </tr>
@@ -134,10 +138,10 @@
                             </td>
                             <td class="text-right">
                                 <t t-if="o.reconciled_invoice_ids">
-                                    <span t-esc="invoice_payment_total" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-esc="'{0:,.2f}'.format(invoice_payment_total)"/>
                                 </t>
                                 <t t-else="">
-                                    <span t-esc="sum(move_line.mapped('balance'))" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <span t-esc="'{0:,.2f}'.format(sum(move_line.mapped('balance')))"/>
                                 </t>
                             </td>
                             <td/>
@@ -151,7 +155,7 @@
                                         <t t-esc="diff_line.name"/>
                                     </td>
                                     <td class="text-right">
-                                        <t t-esc="diff_line.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        <t t-esc="'{0:,.2f}'.format(diff_line.amount)"/>
                                     </td>
                                     <td/>
                                 </tr>
@@ -165,7 +169,7 @@
                                     <t t-esc="o.writeoff_label"/>
                                 </td>
                                 <td class="text-right">
-                                    <t t-esc="payment_diff" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                    <t t-esc="'{0:,.2f}'.format(payment_diff)"/>
                                 </td>
                                 <td/>
                             </tr>
@@ -176,7 +180,7 @@
                                 ยอดรับชำระสุทธิ
                             </td>
                             <td class="text-right">
-                                <span t-field="o.amount"/>
+                                <span t-esc="'{0:,.2f}'.format(o.amount)"/>
                             </td>
                             <td/>
                         </tr>
@@ -224,52 +228,60 @@
                                         <span t-field="line.due_date"/>
                                     </td>
                                     <td class="text-right">
-                                        <span t-field="line.allocation" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
+                                        <span t-esc="'{0:,.2f}'.format(line.allocation)"/>
                                     </td>
                                     <td/>
                                     <td/>
                                 </tr>
                             </t>
                         </tbody>
+                        <tfoot>
+                            <t t-set="total_amount" t-value="check_amount + cash_amount + transfer_amount"/>
+                            <tr>
+                                <td/><td/><td/><td/>
+                                <td class="text-right">
+                                    รวมเช็ค
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(check_amount)"/>
+                                </td>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td/><td/><td/><td/>
+                                <td class="text-right">
+                                    รวมเงินสด
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(cash_amount)"/>
+                                </td>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td/><td/><td/><td/>
+                                <td class="text-right">
+                                    รวมเงินโอน
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(transfer_amount)"/>
+                                </td>
+                                <td/>
+                            </tr>
+                            <tr>
+                                <td/><td/><td/><td/>
+                                <td class="text-right">
+                                    รวมทั้งหมด
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(total_amount)"/>
+                                </td>
+                                <td/>
+                            </tr>
+                        </tfoot>
                     </table>
-                    <div class="pt8 border-black-bottom">
-                        <t t-set="total_amount" t-value="check_amount + cash_amount + transfer_amount"/>
-                        <div class="row">
-                            <div class="col-9 text-right">
-                                <span>รวมเช็ค</span>
-                            </div>
-                            <div class="col-3 text-right">
-                                <span t-esc="check_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-9 text-right">
-                                <span>รวมเงินสด</span>
-                            </div>
-                            <div class="col-3 text-right">
-                                <span t-esc="cash_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-9 text-right">
-                                <span>รวมเงินโอน</span>
-                            </div>
-                            <div class="col-3 text-right">
-                                <span t-esc="transfer_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                            </div>
-                        </div>
-                        <div class="row">
-                            <div class="col-9 text-right">
-                                <span>รวมทั้งหมด</span>
-                            </div>
-                            <div class="col-3 text-right">
-                                <span t-esc="total_amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
-                            </div>
-                        </div>
-                    </div>
                 </t>
                 <div class="row pt40">
-                    <div class="col-3 horizontal_dotted_line" data-content="......................">
+                    <div class="col-3 horizontal_dotted_line" data-content="...................">
                         Approved By
                     </div>
                     <div class="col-3 horizontal_dotted_line" data-content=".....................">
@@ -283,16 +295,16 @@
                     </div>
                 </div>
                 <div class="row pt8">
-                    <div class="col-3 horizontal_dotted_line" data-content=".............................">
+                    <div class="col-3 horizontal_dotted_line" data-content="........./........../..........">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content=".............................">
+                    <div class="col-3 horizontal_dotted_line" data-content="........./........../..........">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content=".............................">
+                    <div class="col-3 horizontal_dotted_line" data-content="........./........../..........">
                         Date
                     </div>
-                    <div class="col-3 horizontal_dotted_line" data-content=".............................">
+                    <div class="col-3 horizontal_dotted_line" data-content="........./........../..........">
                         Date
                     </div>
                 </div>
