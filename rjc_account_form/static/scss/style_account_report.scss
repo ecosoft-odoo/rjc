@@ -180,10 +180,42 @@
                 border-top: 1px solid black !important;
                 border-bottom: 1px solid black !important;
             }
+            th.inv_no {
+              table-layout: fixed;
+              width: 25%;
+            }
+            th.description {
+              table-layout: fixed;
+              width: 40%;
+            }
+            th.date {
+              table-layout: fixed;
+              width: 15%;
+            }
+            th.amount {
+              table-layout: fixed;
+              width: 20%;
+            }
         }
         tbody {
             tr td {
                 border-bottom: 1px solid black !important;
+            }
+            td.inv_no {
+              table-layout: fixed;
+              width: 25%;
+            }
+            td.description {
+              table-layout: fixed;
+              width: 40%;
+            }
+            td.date {
+              table-layout: fixed;
+              width: 15%;
+            }
+            td.amount {
+              table-layout: fixed;
+              width: 20%;
             }
         }
         tfoot {

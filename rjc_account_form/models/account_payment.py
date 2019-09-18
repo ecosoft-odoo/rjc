@@ -28,10 +28,10 @@ class account_payment(models.Model):
         move_line_id = self.env['account.move.line']
         full_reconcile_id = move_line_id.search(
             [('payment_id', '=', self.id)]).filtered(
-            'full_reconcile_id').full_reconcile_id
+            'full_reconcile_id').mapped('full_reconcile_id')
         if full_reconcile_id:
             move_reconcile_id = move_line_id.search([
-                ('full_reconcile_id', '=', full_reconcile_id.id)]).filtered(
+                ('full_reconcile_id', 'in', full_reconcile_id.ids)]).filtered(
                 lambda l: not l.payment_id)
             return move_reconcile_id
         return move_line_id
