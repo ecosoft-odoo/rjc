@@ -109,7 +109,7 @@
                                 </td>
                                 <td/>
                                 <td class="text-right">
-                                    <t t-esc="'{0:,.2f}'.format(payment_diff)"/>
+                                    <t t-esc="'{0:,.2f}'.format(payment_diff*-1)"/>
                                 </td>
                             </tr>
                         </t>
