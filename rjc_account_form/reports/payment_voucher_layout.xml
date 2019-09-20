@@ -56,10 +56,10 @@
                 <table class="table table-sm">
                     <thead>
                         <tr class="text-left">
-                            <th class="inv_no">ใบส่งสินค้า / Invoice No.</th>
-                            <th class="description">รายการ / Description</th>
-                            <th class="date">วันที่ / Date</th>
-                            <th class="amount">จำนวนเงิน / Amount</th>
+                            <th>ใบส่งสินค้า / Invoice No.</th>
+                            <th>รายการ / Description</th>
+                            <th>วันที่ / Date</th>
+                            <th>จำนวนเงิน / Amount</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -71,16 +71,16 @@
                             <t t-set="payment_amount" t-value="line._get_payments_widget(payment_widget, o.id, 'amount', type)"/>
                             <t t-set="total_payment" t-value="total_payment + payment_amount"/>
                             <tr>
-                                <td class="inv_no">
+                                <td>
                                     <span t-field="line.reference"/>
                                 </td>
-                                <td class="description">
+                                <td>
                                     <span t-field="line.comment"/>
                                 </td>
-                                <td class="date">
+                                <td>
                                     <span t-field="line.date_invoice"/>
                                 </td>
-                                <td class="amount text-right">
+                                <td class="text-right">
                                     <span t-esc="'{0:,.2f}'.format(payment_amount)"/>
                                 </td>
                             </tr>
@@ -157,8 +157,7 @@
                     <tfoot>
                         <tr>
                             <td>
-                                บัญชี / A/C :<br/>
-                                <span t-field="o.journal_id"/>
+                                บัญชี / A/C : <span t-field="o.journal_id"/>
                             </td>
                             <td>
                                 Payment Ref : <span t-field="o.cheque_no"/>
