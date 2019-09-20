@@ -59,7 +59,7 @@ class AccountPayment(models.Model):
     def _compute_amount_intransit_line_total(self):
         self.amount_intransit_line_total = \
             sum(self.payment_intransit_line_ids.mapped('allocation'))
-        if self.amount_intransit_line_total > self.amount:
+        if round(self.amount_intransit_line_total, 2) > round(self.amount, 2):
             raise ValidationError(_(
                 'Balance allocation must less than %s'
             ) % self.amount)
