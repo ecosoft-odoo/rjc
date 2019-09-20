@@ -157,7 +157,7 @@
                     <tfoot>
                         <tr>
                             <td>
-                                บัญชี / A/C : <span t-field="o.journal_id"/>
+                                บัญชี / A/C : <span t-field="o.journal_id.name"/>
                             </td>
                             <td>
                                 Payment Ref : <span t-field="o.cheque_no"/>

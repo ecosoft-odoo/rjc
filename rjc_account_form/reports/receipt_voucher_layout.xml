@@ -45,14 +45,14 @@
                 <table class="table table-sm">
                     <thead>
                         <tr>
-                            <th>#</th>
-                            <th>Date</th>
-                            <th>Invoice No.</th>
-                            <th class="text-right">ยอดเต็ม</th>
-                            <th class="text-right">ยอดสุทธิ</th>
-                            <th class="text-right">ชำระแล้ว</th>
-                            <th class="text-right">ชำระครั้งนี้</th>
-                            <th class="text-right">ยอดค้างชำระ</th>
+                            <th class="no">#</th>
+                            <th class="date">Date</th>
+                            <th class="inv_no">Invoice No.</th>
+                            <th class="amount text-right">ยอดเต็ม</th>
+                            <th class="net_amount text-right">ยอดสุทธิ</th>
+                            <th class="payment_paid text-right">ชำระแล้ว</th>
+                            <th class="payment_amount text-right">ชำระครั้งนี้</th>
+                            <th class="payment_balance text-right">ยอดค้างชำระ</th>
                         </tr>
                     </thead>
                     <tbody>
