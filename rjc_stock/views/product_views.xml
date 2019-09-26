@@ -15,25 +15,33 @@
         </field>
     </record>
 
+    <!-- Product -->
     <record id="product_template_tree_view" model="ir.ui.view">
         <field name="name">product.template.product.tree</field>
         <field name="model">product.template</field>
         <field name="inherit_id" ref="product.product_template_tree_view"/>
         <field name="arch" type="xml">
             <field name="standard_price" position="attributes">
-                <attribute name="groups">stock.group_stock_manager</attribute>
+                <attribute name="invisible">True</attribute>
             </field>
+            <xpath expr="//tree" position="inside">
+                <field name="standard_price" groups="stock.group_stock_manager"/>
+            </xpath>
         </field>
     </record>
 
+<!-- Product Varient -->
     <record id="product_product_tree_view" model="ir.ui.view">
         <field name="name">product.product.tree</field>
         <field name="model">product.product</field>
         <field name="inherit_id" ref="product.product_product_tree_view"/>
         <field name="arch" type="xml">
             <field name="standard_price" position="attributes">
-                <attribute name="groups">stock.group_stock_manager</attribute>
+                <attribute name="invisible">True</attribute>
             </field>
+            <xpath expr="//tree" position="inside">
+                <field name="standard_price" groups="stock.group_stock_manager"/>
+            </xpath>
         </field>
     </record>
 </odoo>
