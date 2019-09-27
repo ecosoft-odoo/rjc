@@ -18,6 +18,25 @@ class AccountInvoice(models.Model):
         readonly=False,
     )
 
+    @api.model
+    def default_get(self, default_fields):
+        """ Override partner_bank_id in refund for invoice netting
+            Create directly
+        """
+        res = super().default_get(default_fields)
+        res['partner_bank_id'] = False
+        return res
+
+    @api.model
+    def create(self, vals):
+        """ Override partner_bank_id in refund for invoice netting
+            Create from Vendor Bills
+        """
+        res = super().create(vals)
+        if res.partner_bank_id:
+            res.partner_bank_id = False
+        return res
+
     @api.multi
     def action_invoice_open(self):
         """ If invoice line has account_id in Fixed asset,
