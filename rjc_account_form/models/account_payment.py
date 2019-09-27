@@ -24,7 +24,7 @@ class account_payment(models.Model):
         return num2words(amount, to='currency', lang='th')
 
     @api.multi
-    def _get_move_line(self):
+    def _get_move_line_1(self):
         move_line_id = self.env['account.move.line']
         full_reconcile_id = move_line_id.search(
             [('payment_id', '=', self.id)], order="id").filtered(
@@ -35,6 +35,39 @@ class account_payment(models.Model):
                 lambda l: not l.payment_id)
             return move_reconcile_id
         return move_line_id
+
+    @api.multi
+    def _get_amount_diff(self, move_line):
+        payment_move_line_id = self.env['account.move.line'].search([
+            ('payment_id', '=', self.id),
+            ('reconciled', '=', True)])
+        reconcile_id = self.env['account.partial.reconcile'].search([
+            ('credit_move_id', '=', move_line.id),
+            ('debit_move_id', '=', payment_move_line_id.id)])
+        print(reconcile_id.amount)
+        print("===========11========")
+        return reconcile_id.amount
+
+    @api.multi
+    def _get_move_line(self, type):
+        self.ensure_one()
+        move_line = self.env['account.move.line']
+        payment_move_line_id = move_line.search([
+            ('payment_id', '=', self.id),
+            ('reconciled', '=', True)])
+        if type == 'outbound':
+            reconcile_id = payment_move_line_id.matched_credit_ids
+            # check case refund
+            full_reconcile_id = reconcile_id.mapped('credit_move_id').mapped('full_reconcile_id')
+            if any(full_reconcile_id):
+                move_line_ids = move_line.search([
+                    ('full_reconcile_id', 'in', full_reconcile_id.ids)
+                ]).filtered(lambda l: not l.payment_id)
+                return move_line_ids
+            return reconcile_id.mapped('credit_move_id')
+        if type == 'inbound':
+            reconcile_id = payment_move_line_id.matched_debit_ids
+        return reconcile_id.mapped('credit_move_id')
 
     @api.multi
     def _get_payment_intransit(self):
