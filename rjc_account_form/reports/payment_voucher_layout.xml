@@ -64,26 +64,49 @@
                     </thead>
                     <tbody>
                         <t t-set="total_payment" t-value="0"/>
-                        <!-- Invoice Case -->
-                        <t t-foreach="o.reconciled_invoice_ids" t-as="line">
-                            <t t-set="type" t-value="'in_invoice'"/>
-                            <t t-set="payment_widget" t-value="line._get_payments_vals()"/>
-                            <t t-set="payment_amount" t-value="line._get_payments_widget(payment_widget, o.id, 'amount', type)"/>
-                            <t t-set="total_payment" t-value="total_payment + payment_amount"/>
+                        <t t-set="reconcile_line_id" t-value="o._get_move_line('outbound')"/>
+                        <t t-foreach="reconcile_line_id" t-as="line">
+                            <t t-set="amount" t-value="o._get_amount_diff(line)"/>
                             <tr>
                                 <td>
-                                    <span t-field="line.reference"/>
+                                    <t t-if="line.move_id.ref">
+                                        <span t-field="line.move_id.ref"/>
+                                    </t>
+                                    <t t-else="">
+                                        <span t-field="line.move_id.name"/>
+                                    </t>
                                 </td>
                                 <td>
-                                    <span t-field="line.comment"/>
+                                    <span t-field="line.move_id.narration"/>
                                 </td>
                                 <td>
-                                    <span t-field="line.date_invoice"/>
+                                    <span t-field="line.move_id.date"/>
                                 </td>
                                 <td class="text-right">
-                                    <span t-esc="'{0:,.2f}'.format(payment_amount)"/>
+                                    <span t-esc="'{0:,.2f}'.format(amount)"/>
                                 </td>
                             </tr>
+                            <!-- <t t-else="">
+                                <tr>
+                                    <td>
+                                        <t t-if="line.credit_move_id.move_id.ref">
+                                            <span t-field="line.credit_move_id.move_id.ref"/>
+                                        </t>
+                                        <t t-else="">
+                                            <span t-field="line.credit_move_id.move_id.name"/>
+                                        </t>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.credit_move_id.move_id.narration"/>
+                                    </td>
+                                    <td>
+                                        <span t-field="line.credit_move_id.move_id.date"/>
+                                    </td>
+                                    <td class="text-right">
+                                        <span t-esc="'{0:,.2f}'.format(line.amount)"/>
+                                    </td>
+                                </tr>
+                            </t> -->
                         </t>
                         <t t-if="o.payment_difference_handling == 'reconcile_multi_deduct'">
                             <t t-set="payment_multi_diff" t-value="o._get_payment_amount_multi_diff()"/>
@@ -113,42 +136,7 @@
                                 </td>
                             </tr>
                         </t>
-
-                        <!-- Expense Case -->
-                        <t t-if="o.expense_sheet_id">
-                            <tr>
-                                <td/>
-                                <td>
-                                    <span t-field="o.expense_sheet_id.name"/>
-                                </td>
-                                <td>
-                                    <span t-field="o.expense_sheet_id.accounting_date"/>
-                                </td>
-                                <td class="text-right">
-                                    <span t-esc="'{0:,.2f}'.format(o.expense_sheet_id.total_amount)"/>
-                                </td>
-                            </tr>
-                        </t>
-                        <!-- Tax Adjustment Case, Direct Payment difference and Import-->
-                        <t t-if="not o.expense_sheet_id and not o.reconciled_invoice_ids">
-                            <t t-set="move_line" t-value="o._get_move_line()"/>
-                            <t t-foreach="move_line" t-as="line">
-                                <tr>
-                                    <td>
-                                        <span t-esc="line.move_id.ref"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="line.move_id.narration"/>
-                                    </td>
-                                    <td>
-                                        <span t-esc="line.move_id.date"/>
-                                    </td>
-                                    <td class="text-right">
-                                        <span t-esc="'{0:,.2f}'.format(line.balance*-1)"/>
-                                    </td>
-                                </tr>
-                            </t>
-                        </t>
+                        <!-- blank line -->
                         <tr style="color: rgba(255,255,255,0);">
                             <td>.</td>
                             <td/><td/><td/>

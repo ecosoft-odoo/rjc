@@ -58,6 +58,35 @@
                     <tbody>
                         <t t-set="column" t-value="0"/>
                         <t t-set="invoice_payment_total" t-value="0"/>
+                        <!-- <t t-set="reconcile_line_id" t-value="o._get_move_line('inbound')"/>
+                        <t t-foreach="reconcile_line_id" t-as="line">
+                            <t t-set="column" t-value="column + 1"/>
+                            <t t-set="payment_paid" t-value="line.amount + line.debit_move_id.amount_residual"/>
+                            <tr>
+                                <td>
+                                    <span t-esc="column"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.debit_move_id.move_id.date"/>
+                                </td>
+                                <td>
+                                    <span t-field="line.debit_move_id.move_id.narration"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(line.debit_move_id.balance)"/>
+                                </td>
+                                <td/>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(payment_paid)"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(line.amount)"/>
+                                </td>
+                                <td class="text-right">
+                                    <span t-esc="'{0:,.2f}'.format(line.debit_move_id.amount_residual)"/>
+                                </td>
+                            </tr>
+                        </t> -->
                         <!-- Invoice Case -->
                         <t t-foreach="o.reconciled_invoice_ids" t-as="line">
                             <t t-set="column" t-value="column + 1"/>
@@ -106,7 +135,7 @@
                         </t>
                         <!-- Tax Adjustment Case, Direct Payment difference and Import-->
                         <t t-if="not o.reconciled_invoice_ids">
-                            <t t-set="move_line" t-value="o._get_move_line()"/>
+                            <t t-set="move_line" t-value="o._get_move_line_1()"/>
                             <t t-foreach="move_line" t-as="line">
                                 <t t-set="column" t-value="column + 1"/>
                                 <tr>
