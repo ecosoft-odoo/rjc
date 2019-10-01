@@ -37,37 +37,45 @@ class account_payment(models.Model):
         return move_line_id
 
     @api.multi
-    def _get_amount_diff(self, move_line):
+    def _get_amount_diff(self, move_line, refund):
         payment_move_line_id = self.env['account.move.line'].search([
             ('payment_id', '=', self.id),
             ('reconciled', '=', True)])
+        if refund:
+            return move_line.balance * -1
         reconcile_id = self.env['account.partial.reconcile'].search([
             ('credit_move_id', '=', move_line.id),
             ('debit_move_id', '=', payment_move_line_id.id)])
-        print(reconcile_id.amount)
-        print("===========11========")
         return reconcile_id.amount
 
     @api.multi
     def _get_move_line(self, type):
         self.ensure_one()
+        refund = False
         move_line = self.env['account.move.line']
         payment_move_line_id = move_line.search([
             ('payment_id', '=', self.id),
             ('reconciled', '=', True)])
         if type == 'outbound':
             reconcile_id = payment_move_line_id.matched_credit_ids
-            # check case refund
-            full_reconcile_id = reconcile_id.mapped('credit_move_id').mapped('full_reconcile_id')
+            full_reconcile_id = reconcile_id.mapped(
+                'credit_move_id').mapped('full_reconcile_id')
             if any(full_reconcile_id):
                 move_line_ids = move_line.search([
                     ('full_reconcile_id', 'in', full_reconcile_id.ids)
                 ]).filtered(lambda l: not l.payment_id)
-                return move_line_ids
-            return reconcile_id.mapped('credit_move_id')
+                invoice_ids = move_line_ids.mapped('invoice_id')
+                # check case refund
+                if invoice_ids and \
+                    ('in_refund' in invoice_ids.mapped('type') or
+                     'out_refund' in invoice_ids.mapped('type')):
+                    refund = True
+                res = [refund, move_line_ids]
+                return res
         if type == 'inbound':
             reconcile_id = payment_move_line_id.matched_debit_ids
-        return reconcile_id.mapped('credit_move_id')
+        res = [refund, reconcile_id.mapped('credit_move_id')]
+        return res
 
     @api.multi
     def _get_payment_intransit(self):
