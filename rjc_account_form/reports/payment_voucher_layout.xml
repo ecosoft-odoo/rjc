@@ -65,8 +65,8 @@
                     <tbody>
                         <t t-set="total_payment" t-value="0"/>
                         <t t-set="reconcile_line_id" t-value="o._get_move_line('outbound')"/>
-                        <t t-foreach="reconcile_line_id" t-as="line">
-                            <t t-set="amount" t-value="o._get_amount_diff(line)"/>
+                        <t t-foreach="reconcile_line_id[1]" t-as="line">
+                            <t t-set="amount" t-value="o._get_amount_diff(line, reconcile_line_id[0])"/>
                             <tr>
                                 <td>
                                     <t t-if="line.move_id.ref">
