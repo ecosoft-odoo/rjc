@@ -57,13 +57,15 @@ class account_payment(models.Model):
             ('payment_id', '=', self.id),
             ('reconciled', '=', True)])
         if type == 'outbound':
-            reconcile_id = payment_move_line_id.matched_credit_ids
+            reconcile_id = payment_move_line_id.mapped('matched_credit_ids')
             full_reconcile_id = reconcile_id.mapped(
                 'credit_move_id').mapped('full_reconcile_id')
             if any(full_reconcile_id):
+                amount_payment = sum(payment_move_line_id.mapped('credit'))
                 move_line_ids = move_line.search([
                     ('full_reconcile_id', 'in', full_reconcile_id.ids)
-                ]).filtered(lambda l: not l.payment_id)
+                ]).filtered(lambda l: not l.payment_id or
+                            l.balance == amount_payment)
                 invoice_ids = move_line_ids.mapped('invoice_id')
                 # check case refund
                 if invoice_ids and \
