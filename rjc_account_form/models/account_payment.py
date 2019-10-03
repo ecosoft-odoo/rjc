@@ -57,7 +57,7 @@ class account_payment(models.Model):
             ('payment_id', '=', self.id),
             ('reconciled', '=', True)])
         if type == 'outbound':
-            reconcile_id = payment_move_line_id.matched_credit_ids
+            reconcile_id = payment_move_line_id.mapped('matched_credit_ids')
             full_reconcile_id = reconcile_id.mapped(
                 'credit_move_id').mapped('full_reconcile_id')
             if any(full_reconcile_id):
