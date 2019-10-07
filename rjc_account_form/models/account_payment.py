@@ -41,8 +41,21 @@ class account_payment(models.Model):
         payment_move_line_id = self.env['account.move.line'].search([
             ('payment_id', '=', self.id),
             ('reconciled', '=', True)])
+        # Case Refund
         if refund:
             return move_line.balance * -1
+        # Case SINV, INV netting
+        if len(payment_move_line_id) > 1:
+            reconcile_id = self.env['account.partial.reconcile'].search([
+                ('credit_move_id', '=', move_line.id)])
+            if reconcile_id:
+                payment_netting = sum(reconcile_id.mapped('amount'))
+            else:
+                reconcile_id = self.env['account.partial.reconcile'].search([
+                    ('debit_move_id', '=', move_line.id)])
+                payment_netting = sum(reconcile_id.mapped('amount')) * -1
+            return payment_netting
+        # Case normal
         reconcile_id = self.env['account.partial.reconcile'].search([
             ('credit_move_id', '=', move_line.id),
             ('debit_move_id', '=', payment_move_line_id.id)])
