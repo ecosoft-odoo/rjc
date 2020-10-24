@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <template id="report_mrp_bom" inherit_id="mrp.report_mrp_bom">
+        <xpath expr="//table/thead/tr/th[5]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//table/thead/tr/th[6]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//table/tbody/tr/td[5]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//table/tbody/tr/td[6]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//table/tfoot/tr/td[3]/span" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//table/tfoot/tr/td[5]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//table/tfoot/tr/td[6]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+    </template>
+
+    <template id="report_mrp_bom_line" inherit_id="mrp.report_mrp_bom_line">
+        <xpath expr="//tr[1]/td[5]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//tr[1]/td[6]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//t[3]/tr/td[5]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//t[3]/tr/td[6]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+    </template>
+
+    <template id="report_mrp_operation_line" inherit_id="mrp.report_mrp_operation_line">
+        <xpath expr="//tr/td[5]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//tr/td[6]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+    </template>
+
+    <template id="report_mrp_bom_pdf_line" inherit_id="mrp.report_mrp_bom_pdf_line">
+        <xpath expr="//tr/td[5]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+        <xpath expr="//tr/td[6]" position="attributes">
+            <attribute name="groups">mrp.group_mrp_manager</attribute>
+        </xpath>
+    </template>
+</odoo>
