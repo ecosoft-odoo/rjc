@@ -13,6 +13,7 @@
     'installable': True,
     'depends': [
         'mrp',
+        'stock_account',
         'rjc_stock',
     ],
     'data': [
