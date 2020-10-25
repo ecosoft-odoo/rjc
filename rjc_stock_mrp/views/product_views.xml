@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view" model="ir.ui.view">
+        <field name="name">product.template.common.form</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="rjc_stock.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <label for="standard_price" position="attributes">
+                <attribute name="groups">stock.group_stock_manager,mrp.group_mrp_manager</attribute>
+            </label>
+            <div name="standard_price_uom" position="attributes">
+                <attribute name="groups">stock.group_stock_manager,mrp.group_mrp_manager</attribute>
+            </div>
+        </field>
+    </record>
+
+    <record id="product_template_tree_view" model="ir.ui.view">
+        <field name="name">product.template.product.tree</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="rjc_stock.product_template_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price'][2]" position="attributes">
+                <attribute name="groups">stock.group_stock_manager,mrp.group_mrp_manager</attribute>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_product_tree_view" model="ir.ui.view">
+        <field name="name">product.product.tree</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="rjc_stock.product_product_tree_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='standard_price'][2]" position="attributes">
+                <attribute name="groups">stock.group_stock_manager,mrp.group_mrp_manager</attribute>
+            </xpath>
+        </field>
+    </record>
+</odoo>
