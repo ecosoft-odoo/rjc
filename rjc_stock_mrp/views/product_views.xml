@@ -35,4 +35,18 @@
             </xpath>
         </field>
     </record>
+
+    <record id="product_variant_easy_edit_view_inherit" model="ir.ui.view">
+        <field name="name">product.product.product.view.form.easy.inherit</field>
+        <field name="model">product.product</field>
+        <field name="inherit_id" ref="stock_account.product_variant_easy_edit_view_inherit"/>
+        <field name="arch" type="xml">
+            <xpath expr="//label[@for='standard_price']" position="attributes">
+                <attribute name="groups">stock.group_stock_manager,mrp.group_mrp_manager</attribute>
+            </xpath>
+            <xpath expr="//div[@name='standard_price_div']" position="attributes">
+                <attribute name="groups">stock.group_stock_manager,mrp.group_mrp_manager</attribute>
+            </xpath>
+        </field>
+    </record>
 </odoo>
