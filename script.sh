@@ -1,6 +1,7 @@
+pg_container="postgres"
 pg_user="odoo"
-prod_db="RJC_EMPTY"
-psql="psql -U $pg_user -d $prod_db"
+prod_db="TGI"
+psql="docker exec -it $pg_container psql -U $pg_user $prod_db"
 
 # Sales
 $psql -c "delete from sale_order";
@@ -10,14 +11,21 @@ $psql -c "delete from sale_order_line";
 $psql -c "delete from purchase_order";
 $psql -c "delete from purchase_order_line";
 
+# Point of sale
+$psql -c "delete from pos_order";
+$psql -c "delete from pos_session";
+
 # MRP
 $psql -c "delete from mrp_production";
+$psql -c "delete from mrp_unbuild";
 
 # Stock
 $psql -c "delete from stock_inventory";
 $psql -c "delete from stock_picking";
 $psql -c "delete from stock_move";
 $psql -c "delete from stock_scrap";
+$psql -c "delete from stock_move_line";
+
 # serial number
 $psql -c "delete from stock_quant";
 $psql -c "delete from stock_production_lot";
