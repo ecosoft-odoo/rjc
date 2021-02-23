@@ -92,7 +92,122 @@
                     <p class="type_3_base"><t t-esc="'{0:,.2f}'.format(line_id.base)"/></p>
                     <p class="type_3_tax"><t t-esc="'{0:,.2f}'.format(line_id.amount)"/></p>
                 </t>
+                <t t-if="line_id.wt_cert_income_type == '4A'">
+                    <p class="type_4A_date"><t t-esc="date"/></p>
+                    <p class="type_4A_base"><t t-esc="'{0:,.2f}'.format(line_id.base)"/></p>
+                    <p class="type_4A_tax"><t t-esc="'{0:,.2f}'.format(line_id.amount)"/></p>
+                </t>
+                <t t-if="line_id.wt_cert_income_type == '4B11'">
+                    <p class="type_4B11_date">
+                        <t t-esc="date" />
+                    </p>
+                    <p class="type_4B11_base">
+                        <t t-esc="'{0:,.2f}'.format(line_id.base)" />
+                    </p>
+                    <p class="type_4B11_tax">
+                        <t t-esc="'{0:,.2f}'.format(line_id.amount)" />
+                    </p>
+                </t>
+                <t t-if="line_id.wt_cert_income_type == '4B12'">
+                    <p class="type_4B12_date">
+                        <t t-esc="date" />
+                    </p>
+                    <p class="type_4B12_base">
+                        <t t-esc="'{0:,.2f}'.format(line_id.base)" />
+                    </p>
+                    <p class="type_4B12_tax">
+                        <t t-esc="'{0:,.2f}'.format(line_id.amount)" />
+                    </p>
+                </t>
+                <t t-if="line_id.wt_cert_income_type == '4B13'">
+                    <p class="type_4B13_date">
+                        <t t-esc="date" />
+                    </p>
+                    <p class="type_4B13_base">
+                        <t t-esc="'{0:,.2f}'.format(line_id.base)" />
+                    </p>
+                    <p class="type_4B13_tax">
+                        <t t-esc="'{0:,.2f}'.format(line_id.amount)" />
+                    </p>
+                </t>
+                <t t-if="line_id.wt_cert_income_type == '4B14'">
+                    <p class="type_4B14_description">
+                        <t
+                            t-esc="o._compute_desc_type_other(o.wt_line, 'wt_cert_income_desc', '4B14')"
+                        />
+                    </p>
+                    <p class="type_4B14_date">
+                        <t t-esc="date" />
+                    </p>
+                    <p class="type_4B14_base">
+                        <t t-esc="'{0:,.2f}'.format(line_id.base)" />
+                    </p>
+                    <p class="type_4B14_tax">
+                        <t t-esc="'{0:,.2f}'.format(line_id.amount)" />
+                    </p>
+                </t>
+                <t t-if="line_id.wt_cert_income_type == '4B21'">
+                    <p class="type_4B21_date">
+                        <t t-esc="date" />
+                    </p>
+                    <p class="type_4B21_base">
+                        <t t-esc="'{0:,.2f}'.format(line_id.base)" />
+                    </p>
+                    <p class="type_4B21_tax">
+                        <t t-esc="'{0:,.2f}'.format(line_id.amount)" />
+                    </p>
+                </t>
+                <t t-if="line_id.wt_cert_income_type == '4B22'">
+                    <p class="type_4B22_date">
+                        <t t-esc="date" />
+                    </p>
+                    <p class="type_4B22_base">
+                        <t t-esc="'{0:,.2f}'.format(line_id.base)" />
+                    </p>
+                    <p class="type_4B22_tax">
+                        <t t-esc="'{0:,.2f}'.format(line_id.amount)" />
+                    </p>
+                </t>
+                <t t-if="line_id.wt_cert_income_type == '4B23'">
+                    <p class="type_4B23_date">
+                        <t t-esc="date" />
+                    </p>
+                    <p class="type_4B23_base">
+                        <t t-esc="'{0:,.2f}'.format(line_id.base)" />
+                    </p>
+                    <p class="type_4B23_tax">
+                        <t t-esc="'{0:,.2f}'.format(line_id.amount)" />
+                    </p>
+                </t>
+                <t t-if="line_id.wt_cert_income_type == '4B24'">
+                    <p class="type_4B24_date">
+                        <t t-esc="date" />
+                    </p>
+                    <p class="type_4B24_base">
+                        <t t-esc="'{0:,.2f}'.format(line_id.base)" />
+                    </p>
+                    <p class="type_4B24_tax">
+                        <t t-esc="'{0:,.2f}'.format(line_id.amount)" />
+                    </p>
+                </t>
+                <t t-if="line_id.wt_cert_income_type == '4B25'">
+                    <p class="type_4B25_description">
+                        <t
+                            t-esc="o._compute_desc_type_other(o.wt_line, 'wt_cert_income_desc', '4B25')"
+                        />
+                    </p>
+                    <p class="type_4B25_date">
+                        <t t-esc="date" />
+                    </p>
+                    <p class="type_4B25_base">
+                        <t t-esc="'{0:,.2f}'.format(line_id.base)" />
+                    </p>
+                    <p class="type_4B25_tax">
+                        <t t-esc="'{0:,.2f}'.format(line_id.amount)" />
+                    </p>
+                </t>
             </t>
+            
             <!-- support multi line in type 5 -->
             <t t-set="line_type_5" t-value="o._get_line_wht_type(5)"/>
             <span class="type_5_date text-right">
