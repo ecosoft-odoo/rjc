@@ -184,6 +184,7 @@
                                         <t t-esc="diff_line.name"/>
                                     </td>
                                     <td class="text-right">
+                                        -
                                         <t t-esc="'{0:,.2f}'.format(diff_line.amount)"/>
                                     </td>
                                     <td/>
