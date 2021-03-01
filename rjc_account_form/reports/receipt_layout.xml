@@ -152,6 +152,7 @@
                                         <t t-esc="diff_line.name"/>
                                     </td>
                                     <td class="text-right">
+                                        -
                                         <t t-esc="diff_line.amount" t-options='{"widget": "monetary", "display_currency": o.currency_id}'/>
                                     </td>
                                     <td/>
