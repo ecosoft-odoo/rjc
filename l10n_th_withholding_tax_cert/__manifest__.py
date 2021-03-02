@@ -3,7 +3,7 @@
 
 {
     'name': 'Thai Localization - Withholding Tax Certificate',
-    'version': '12.0.1.0.1',
+    'version': '12.0.1.0.3',
     'author': 'Ecosoft,Odoo Community Association (OCA)',
     'license': 'AGPL-3',
     'website': 'https://github.com/OCA/l10n-thailand/',
@@ -16,6 +16,6 @@
              'views/account_view.xml',
              ],
     'installable': True,
-    'development_status': 'beta',
+    'development_status': 'Beta',
     'maintainers': ['kittiu'],
 }
