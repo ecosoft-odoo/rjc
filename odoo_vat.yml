@@ -1,6 +1,6 @@
 version: "2"
 services:
-  postgres:
+  postgres_vat:
     image: postgres:11.2
     container_name: postgres_vat
     restart: always
@@ -15,14 +15,14 @@ services:
       - /postgresql_vat/data:/var/lib/postgresql/data/pgdata
     networks:
       mynetwork_vat:
-  odoo:
+  odoo_vat:
     image: newtratip/odoo:12.0
     container_name: odoo_vat
     restart: always
     ports:
       - "6818:8069"
     environment:
-      - HOST=postgres
+      - HOST=postgres_vat
       - PORT=5433
       - USER=odoo
       - PASSWORD=odoo
@@ -32,7 +32,7 @@ services:
       - /odoo_vat/log:/var/log/odoo
       - /odoo_vat/data:/var/lib/odoo
     depends_on:
-      - postgres
+      - postgres_vat
     networks:
       mynetwork_vat:
 
