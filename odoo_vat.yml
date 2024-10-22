@@ -1,0 +1,42 @@
+version: "2"
+services:
+  postgres:
+    image: postgres:11.2
+    container_name: postgres_vat
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=odoo
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - /postgresql_vat/data:/var/lib/postgresql/data/pgdata
+    networks:
+      mynetwork_vat:
+  odoo:
+    image: newtratip/odoo:12.0
+    container_name: odoo_vat
+    restart: always
+    ports:
+      - "6818:8069"
+    environment:
+      - HOST=postgres
+      - PORT=5433
+      - USER=odoo
+      - PASSWORD=odoo
+    volumes:
+      - /odoo_vat/addons:/mnt/extra-addons
+      - /odoo_vat/config:/etc/odoo
+      - /odoo_vat/log:/var/log/odoo
+      - /odoo_vat/data:/var/lib/odoo
+    depends_on:
+      - postgres
+    networks:
+      mynetwork_vat:
+
+networks:
+  mynetwork_vat:
+    driver_opts:
+      encrypted: 1
