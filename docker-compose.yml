@@ -1,0 +1,67 @@
+version: "2"
+services:
+  # NO VAT
+  postgres:
+    image: postgres:11.2
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=0d00pwd
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - /postgresql/data:/var/lib/postgresql/data/pgdata
+  odoo:
+    image: newtratip/odoo:12.0
+    container_name: odoo
+    restart: always
+    ports:
+      - "6823:8069"
+    environment:
+      - HOST=postgres
+      - PORT=5432
+      - USER=odoo
+      - PASSWORD=0d00pwd
+    volumes:
+      - /odoo/addons:/mnt/extra-addons
+      - /odoo/config:/etc/odoo
+      - /odoo/log:/var/log/odoo
+      - /odoo/data:/var/lib/odoo
+    depends_on:
+      - postgres
+
+  # VAT
+  postgres_vat:
+    image: postgres:11.2
+    container_name: postgres_vat
+    restart: always
+    ports:
+      - "5433:5432"
+    environment:
+      - POSTGRES_DB=postgres
+      - POSTGRES_PASSWORD=0d00pwd
+      - POSTGRES_USER=odoo
+      - PGDATA=/var/lib/postgresql/data/pgdata
+    volumes:
+      - /postgresql_vat/data:/var/lib/postgresql/data/pgdata
+  odoo_vat:
+    image: newtratip/odoo:12.0
+    container_name: odoo_vat
+    restart: always
+    ports:
+      - "6818:8069"
+    environment:
+      - HOST=postgres
+      - PORT=5433
+      - USER=odoo
+      - PASSWORD=0d00pwd
+    volumes:
+      - /odoo_vat/addons:/mnt/extra-addons
+      - /odoo_vat/config:/etc/odoo
+      - /odoo_vat/log:/var/log/odoo
+      - /odoo_vat/data:/var/lib/odoo
+    depends_on:
+      - postgres_vat
