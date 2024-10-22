@@ -1,6 +1,5 @@
 version: "2"
 services:
-  # NO VAT
   postgres:
     image: postgres:11.2
     container_name: postgres
